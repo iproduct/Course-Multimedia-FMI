@@ -1,0 +1,31 @@
+header {
+    background-color: lightgray;
+    padding: 20px;
+}
+
+nav>ul>li {
+    list-style-type: none;
+}
+
+h1 {
+    color:green;
+    margin: 0;
+}
+#greeting {
+    color:red;
+}    
+div.info{
+    font-size: 14pt;
+}
+.picture {
+    float:left;
+    margin:0 30px 0 0;
+}
+
+footer {
+    clear: both;
+    padding: 20px;
+    text-align: center;
+    background-color: gray;
+    color: white;
+}
