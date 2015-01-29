@@ -11,11 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
-        <script>
-            function showInfo() {
-                document.getElementById("display").innerHTML = "<b>Hello from JavaScript!</b>";
-            }
-        </script>
+        <script src="js/custom.js" type="text/javascript"></script>
     </head>
     <body>
         <header class="jumbotron">
@@ -43,8 +39,10 @@ and open the template in the editor.
                 </div>
             </section>
             <aside class="col-md-3">
-                <img src="img/HTML5_logo.png" alt="html 5 logo">
-                <div id="display"></div>
+                <img id="picture_html" src="img/HTML5_logo.png" alt="html 5 logo" 
+                     onmouseover="changeSrc()" onmouseout="changeBack()" >
+                <div id="display" 
+                     onmouseover="document.getElementById('display').style.fontSize='200%'"></div>
             </aside>
         </section>
         <footer>
