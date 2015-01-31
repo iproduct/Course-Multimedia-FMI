@@ -1,11 +1,30 @@
+@font-face {
+    font-family: play;
+    src: url("../font/Play-Regular.ttf");
+}
+@font-face {
+    font-family: play;
+    font-weight: bold;
+    src: url("../font/Play-Bold.ttf");
+}
+
 header {
     background-color: lightgray;
     padding: 20px;
+    font-family: play;
+    font-weight: bold;
 }
 
 nav>ul>li {
     list-style-type: none;
 }
+
+nav>ul>li::before {
+    font-family: 'Glyphicons Halflings';
+    content: "\e041";
+    margin-right: 10px;
+}
+
 
 h1 {
     color:green;
@@ -16,6 +35,7 @@ h1 {
 }    
 div.info{
     font-size: 14pt;
+    font-family: play;
 }
 .picture {
     float:left;
@@ -28,4 +48,43 @@ footer {
     text-align: center;
     background-color: gray;
     color: white;
+}
+
+/* CSS 3 Animations */
+.animation {
+    position: relative;
+    /* Chrome, Safari, Opera */
+    -webkit-animation-name: myfirst;
+    -webkit-animation-duration: 5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-delay: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+    -webkit-animation-play-state: running;
+    /* Standard syntax */
+    animation-name: myfirst;
+    animation-duration: 5s;
+    animation-timing-function: linear;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes myfirst {
+    0%   {background:red; left:0px; top:0px;}
+    25%  {background:yellow; left:200px; top:0px;}
+    50%  {background:blue; left:200px; top:200px; transform: rotateY(180deg);}
+    75%  {background:green; left:0px; top:200px;}
+    100% {background:red; left:0px; top:0px;  transform:rotateY(0deg);}
+}
+
+/* Standard syntax */
+@keyframes myfirst {
+    0%   {background:red; left:0px; top:0px; transform: rotateY(0deg);}
+    25%  {background:yellow; left:200px; top:0px; transform: rotateY(90deg);}
+    50%  {background:blue; left:200px; top:200px; transform: rotateY(180deg);}
+    75%  {background:green; left:0px; top:200px; transform: rotateY(90deg);}
+    100% {background:red; left:0px; top:0px; transform: rotateY(0deg);}
 }

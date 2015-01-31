@@ -11,6 +11,9 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="css/main.css">
+        <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
         <script src="js/custom.js" type="text/javascript"></script>
     </head>
     <body>
@@ -18,7 +21,7 @@ and open the template in the editor.
             <h1><span id="greeting">Hello</span> from HTML 5</h1>
         </header>
         <section id="main" class="row">
-            <nav class="col-md-2">
+            <nav class="col-md-3">
                 <ul>
                     <li><a href="http://en.wikipedia.org/wiki/HTML5">HTML 5 in Wikipedia</a></li>
                     <li><a href="http://www.w3schools.com/html">HTML 5 in W3Schools</a></li>
@@ -27,22 +30,23 @@ and open the template in the editor.
                     <li><a href="http://en.wikipedia.org/wiki/HTML5">HTML 5 in Wikipedia</a></li>
                 </ul>
             </nav>
-            <section class="info col-md-7">
-                <img class="picture" src="img/chimpanzee_s.jpg" alt="chimpanzee" width="300" height="300">
+            <section class="info col-md-6">
+                <img class="animation" src="img/chimpanzee_s.jpg" alt="chimpanzee" width="300" height="300">
                 <div style="color:green" class="info">HTML5 is a core technology markup language of the Internet used for structuring and 
                     presenting content for the World Wide Web. As of October 2014 this is the final 
                     and complete[2] fifth revision of the HTML standard of the World Wide Web 
                     Consortium (W3C).[3] The previous version, HTML 4, was standardised in 1997.
                 </div>
                 <div id="js_experiments">
-                    <button onclick="showInfo()">Say Hello!</button>
+                    <button onclick="showInfo()"> <span class="glyphicon glyphicon-globe"></span>
+                        Say Hello!</button>
                 </div>
             </section>
             <aside class="col-md-3">
                 <img id="picture_html" src="img/HTML5_logo.png" alt="html 5 logo" 
                      onmouseover="changeSrc()" onmouseout="changeBack()" >
                 <div id="display" 
-                     onmouseover="document.getElementById('display').style.fontSize='200%'"></div>
+                     onmouseover="document.getElementById('display').style.fontSize = '200%'"></div>
             </aside>
         </section>
         <footer>
