@@ -9,17 +9,29 @@ function showInfo() {
 }
 
 
-function changeSrc(){
+function changeSrc() {
     document.getElementById("picture_html").src = "img/html.png";
 }
 
-function changeBack(){
+function changeBack() {
     document.getElementById("picture_html").src = "img/HTML5_logo.png";
 }
 
-function highlight(containerId, inputId){
-    var keyword = document.getElementById(inputId).value;
+function highlight(containerId, inputId) {
+    var keyword = document.getElementById(inputId).value.trim();
     console.log(keyword);
     var text = document.getElementById(containerId).innerHTML;
     console.log(text);
+    var index = 0;
+    var found, replacement="";
+    do {
+        index = text.toUpperCase().indexOf(keyword.toUpperCase(), index + replacement.length);
+        if(index !== -1) {
+            found = text.substr(index, keyword.length);
+            replacement = "<span class='highlight'>" + found + "</span>";
+            text = text.substr(0,index) + replacement
+                    + text.substring(index + keyword.length);
+        }
+    } while (index !== -1);
+    document.getElementById(containerId).innerHTML = text;
 }
