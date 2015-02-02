@@ -18,6 +18,13 @@ and open the template in the editor.
     </head>
     <body>
         <header class="jumbotron">
+            <div id="search">
+                <input type="text" id="keyword" name="keyword">
+                <button id="search_button" onclick="highlight('info','keyword')">
+                    <span class="glyphicon glyphicon-search"></span>
+                    Search
+                </button>
+            </div>
             <h1><span id="greeting">Hello</span> from HTML 5</h1>
         </header>
         <section id="main" class="row">
@@ -32,7 +39,7 @@ and open the template in the editor.
             </nav>
             <section class="info col-md-6">
                 <img class="animation" src="img/chimpanzee_s.jpg" alt="chimpanzee" width="300" height="300">
-                <div style="color:green" class="info">HTML5 is a core technology markup language of the Internet used for structuring and 
+                <div style="color:green" class="info" id="info">HTML5 is a core technology markup language of the Internet used for structuring and 
                     presenting content for the World Wide Web. As of October 2014 this is the final 
                     and complete[2] fifth revision of the HTML standard of the World Wide Web 
                     Consortium (W3C).[3] The previous version, HTML 4, was standardised in 1997.

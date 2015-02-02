@@ -50,25 +50,32 @@ footer {
     color: white;
 }
 
+#search {
+    float: right;
+    padding: 1em;
+}
+
+
+
 /* CSS 3 Animations */
 .animation {
     position: relative;
     /* Chrome, Safari, Opera */
-    -webkit-animation-name: myfirst;
+  /*  -webkit-animation-name: myfirst;
     -webkit-animation-duration: 5s;
     -webkit-animation-timing-function: linear;
     -webkit-animation-delay: 2s;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-direction: alternate;
-    -webkit-animation-play-state: running;
+    -webkit-animation-play-state: running;*/
     /* Standard syntax */
-    animation-name: myfirst;
+   /* animation-name: myfirst;
     animation-duration: 5s;
     animation-timing-function: linear;
     animation-delay: 2s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-    animation-play-state: running;
+    animation-play-state: running;*/
 }
 
 /* Chrome, Safari, Opera */

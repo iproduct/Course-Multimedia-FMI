@@ -16,3 +16,10 @@ function changeSrc(){
 function changeBack(){
     document.getElementById("picture_html").src = "img/HTML5_logo.png";
 }
+
+function highlight(containerId, inputId){
+    var keyword = document.getElementById(inputId).value;
+    console.log(keyword);
+    var text = document.getElementById(containerId).innerHTML;
+    console.log(text);
+}
