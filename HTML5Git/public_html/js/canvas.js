@@ -3,6 +3,7 @@
  */
 function init() {
     canvasDemo01();
+    canvasDemo02();
 }
 
 function canvasDemo01() {
@@ -40,4 +41,13 @@ function canvasDemo01() {
     ctx.fillText("Hello Canvas 2D!", 10,50);
     ctx.strokeText("Hello Canvas 2D!",10,50);
 
+}
+
+function canvasDemo02() {
+    var canvas = document.getElementById("canvas02");
+    var ctx = canvas.getContext("2d");
+    var width = canvas.width;
+    var height = canvas.height;
+    var background = document.getElementById("background02");
+    ctx.drawImage(background, 100, 80, 350, 240, 0, 0, width, height);
 }
