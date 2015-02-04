@@ -98,3 +98,22 @@ footer {
     75%  {background:green; left:0px; top:200px; transform: rotateY(90deg);}
     100% {background:red; left:0px; top:0px; transform: rotateY(0deg);}
 }
+
+
+/* Canvas demos */
+.canvas_demo {
+    width: 350px;
+    height: 200px;
+    border: 1px solid brown;
+    float: left;
+    margin-right: 20px;
+}
+
+section.info div.info{
+    min-height: 200px;
+}
+
+article {
+    margin-bottom: 20px;
+    min-height: 200px;
+}

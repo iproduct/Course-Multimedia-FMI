@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 
-function showInfo() {
-    document.getElementById("display").innerHTML = "<b>Hello from JavaScript!</b>";
+function showInfo(event) {
+    document.getElementById("display").innerHTML = "<b>Hello from JavaScript - Mouse Button: " + event.button + "</b>";
 }
 
 

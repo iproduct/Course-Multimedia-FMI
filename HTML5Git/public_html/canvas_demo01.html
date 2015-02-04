@@ -1,12 +1,7 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
-        <title>Hello HTML 5</title>
+        <title>Canvas HTML 5 Demo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -25,7 +20,7 @@ and open the template in the editor.
                     Search
                 </button>
             </div>
-            <h1><span id="greeting">Hello</span> from HTML 5</h1>
+            <h1><span id="greeting">Canvas</span> HTML 5 Demo</h1>
         </header>
         <section id="main" class="row">
             <nav class="col-md-3">
@@ -38,16 +33,14 @@ and open the template in the editor.
                 </ul>
             </nav>
             <section class="info col-md-6">
-                <img class="animation" src="img/chimpanzee_s.jpg" alt="chimpanzee" width="300" height="300">
-                <div style="color:green" class="info" id="info">HTML5 is a core technology markup language of the Internet used for structuring and 
-                    presenting content for the World Wide Web. As of October 2014 this is the final 
-                    and complete[2] fifth revision of the HTML standard of the World Wide Web 
-                    Consortium (W3C).[3] The previous version, HTML 4, was standardised in 1997.
-                </div>
-                <div id="js_experiments">
-                    <button onclick="showInfo(event)"> <span class="glyphicon glyphicon-globe"></span>
-                        Say Hello!</button>
-                </div>
+                <article id="demo01">
+                    <canvas id="canvas01" class="canvas_demo">Your browser does not support canvas.</canvas>
+                    <div style="color:green" class="info" id="info">
+                        HTML5 Canvas Demo 01: 
+                        <button onclick="showInfo(event)"> <span class="glyphicon glyphicon-globe"></span>
+                            Say Hello!</button>
+                    </div>
+                </article>
             </section>
             <aside class="col-md-3">
                 <img id="picture_html" src="img/HTML5_logo.png" alt="html 5 logo" 
