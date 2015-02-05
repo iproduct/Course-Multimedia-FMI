@@ -117,3 +117,12 @@ article {
     margin-bottom: 20px;
     min-height: 200px;
 }
+
+/* Geolocation and mapping demo */
+.geolocation_demo{
+    width: 350px;
+    height: 200px;
+    border: 1px solid gray;
+    float: left;
+    margin-right: 20px;
+}
