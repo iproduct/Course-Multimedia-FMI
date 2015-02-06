@@ -9,7 +9,7 @@ function init() {
 function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(geolocationDemo01, handleError);
-    } else { 
+    } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
 }
@@ -25,15 +25,31 @@ function geolocationDemo01(location) {
     };
 
     var map = new google.maps.Map(document.getElementById("map01"), mapProp);
-    
+
     //add marker
-    var marker=new google.maps.Marker({ position:latlon});
+    var marker = new google.maps.Marker({
+        position: latlon,
+//        animation: google.maps.Animation.BOUNCE,
+        icon: "img/pin.png",
+    });
     marker.setMap(map);
+
+    //info window
+    var infowindow = new google.maps.InfoWindow({
+        content: "Факултет по математика и информатика, СУ<br>"
+            + "Джеймс Баучер 5"
+    });
+
+    google.maps.event.addListener(marker, 'click', function () {
+        infowindow.open(map, marker);
+    });
+    
+
 }
 
 function handleError(error) {
     var div = document.getElementById("map01");
-    switch(error.code) {
+    switch (error.code) {
         case error.PERMISSION_DENIED:
             div.innerHTML = "User denied the request for Geolocation."
             break;

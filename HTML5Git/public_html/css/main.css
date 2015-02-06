@@ -126,3 +126,33 @@ article {
     float: left;
     margin-right: 20px;
 }
+
+/* Dear and Drop demo */
+.draganddrop_demo{
+    width: 350px;
+    height: 400px;
+    border: 1px solid gray;
+    float: left;
+    margin-right: 20px;
+}
+#basket {
+    width: 350px;
+    height: 200px;
+    border: 5px inset green;
+}
+#products{
+    margin-top: 20px;
+    border: 3px inset orange;
+    min-height: 180px;
+}
+.product {
+    float:left;
+    width: 150px;
+    border: 3px solid red;
+    text-align: center;
+    margin:5px;
+    padding:3px;
+}
+.product img {
+    margin: auto;
+}
