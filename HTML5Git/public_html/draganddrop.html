@@ -12,7 +12,7 @@
         <script src="js/custom.js" type="text/javascript"></script>
         <script src="js/draganddrop.js" type="text/javascript"></script>
     </head>
-    <body onload="init()">
+    <body>
         <header class="jumbotron">
             <div id="search">
                 <input type="text" id="keyword" name="keyword">
@@ -34,20 +34,22 @@
                 </ul>
             </nav>
             <section class="info col-md-6">
-                <!-- Geolocation Demo 01 -->
+                <!-- Drag and Drop Demo 01 -->
                 <article id="demo01">
                     <div id="map01" class="draganddrop_demo">
-                        <div id="basket"> Drop products here ...
+                        <div class="basket" ondragover="dragOver(event)" ondrop="dropProduct(event)"> 
+                        </div>
+                        <div class="basket" ondragover="dragOver(event)" ondrop="dropProduct(event)"> 
                         </div>
                         <div id="products">
-                            <div id="p1" class="product">
-                                <img src="img/pin.png" alt="pin" draggable="true"
-                                     ondragstart="startDrag(event)">
+                            <div id="p1" class="product"  draggable="true" 
+                                 ondragstart="dragStart(event)">
+                                <img src="img/pin.png" alt="pin">
                                 <p class="description">High quality pins</p>
                             </div>
-                            <div id="p2" class="product">
-                                <img src="img/book.png" alt="book" draggable="true"
-                                     ondragstart="startDrag(event)">
+                            <div id="p2" class="product" draggable="true" 
+                                 ondragstart="dragStart(event)">
+                                <img src="img/book.png" alt="book">
                                 <p class="description">JavaScript - The Good Parts <br>
                                     Author: Douglas Crockford</p>                          
                             </div>

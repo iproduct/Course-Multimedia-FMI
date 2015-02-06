@@ -130,12 +130,12 @@ article {
 /* Dear and Drop demo */
 .draganddrop_demo{
     width: 350px;
-    height: 400px;
+    height: 600px;
     border: 1px solid gray;
     float: left;
     margin-right: 20px;
 }
-#basket {
+.basket {
     width: 350px;
     height: 200px;
     border: 5px inset green;
