@@ -15,16 +15,20 @@ function getLocation() {
 }
 
 function geolocationDemo01(location) {
-    lat = location.coords.latitude;
-    lon = location.coords.longitude;
-    latlon = new google.maps.LatLng(lat, lon);
+    var lat = location.coords.latitude;
+    var lon = location.coords.longitude;
+    var latlon = new google.maps.LatLng(lat, lon);
     var mapProp = {
         center: latlon,
         zoom: 16,
-        mapTypeId: google.maps.MapTypeId.SATELLITE
+        mapTypeId: google.maps.MapTypeId.HYBRID
     };
 
     var map = new google.maps.Map(document.getElementById("map01"), mapProp);
+    
+    //add marker
+    var marker=new google.maps.Marker({ position:latlon});
+    marker.setMap(map);
 }
 
 function handleError(error) {
