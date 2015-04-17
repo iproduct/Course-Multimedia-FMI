@@ -1,7 +1,13 @@
 /* 
  * Drag and drop demo
  */
+function init() {
+    document.getElementById("p1").addEventListener("dragStart", dragStart, true);
+
+}
+
 function dragStart(event) {
+    event.stopPropagation();
     event.dataTransfer.setData("productId", event.target.id);
 }
 

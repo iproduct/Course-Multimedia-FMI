@@ -12,7 +12,7 @@
         <script src="js/custom.js" type="text/javascript"></script>
         <script src="js/draganddrop.js" type="text/javascript"></script>
     </head>
-    <body>
+    <body onload="init()">
         <header class="jumbotron">
             <div id="search">
                 <input type="text" id="keyword" name="keyword">
@@ -44,7 +44,8 @@
                         <div id="products">
                             <div id="p1" class="product"  draggable="true" 
                                  ondragstart="dragStart(event)">
-                                <img src="img/pin.png" alt="pin">
+                                <img src="img/pin.png" alt="pin" draggable="false" 
+                                     ondragstart="dragOver(event)">
                                 <p class="description">High quality pins</p>
                             </div>
                             <div id="p2" class="product" draggable="true" 
