@@ -9,5 +9,7 @@ and open the template in the editor.
 */
 .demo1 {
     position:relative;
+    width: 200px;
+    margin: 10px 20px;
 }
 
