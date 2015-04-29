@@ -13,3 +13,7 @@ and open the template in the editor.
     margin: 10px 20px;
 }
 
+#phones>tbody>tr>td>img {
+    max-width: 200px;
+}
+
