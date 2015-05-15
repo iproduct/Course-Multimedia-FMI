@@ -66,9 +66,9 @@ jQuery(function ($) {
 //            dialog.dialog( "option", "title", phoneData.name + " Details" );
 //            dialog.dialog( "close" );
 //            dialog.dialog( "open" );
+            updateCarouselImages(phoneData.images);         
             $('#phone-details').modal('show'); //Open Bootstrap way dialog
-            $.each(phoneData, function( key, sectionData ){
-                console.log(key + "-->" + sectionData);
+            $.each(phoneData, function( key, sectionData ){    
                 var itemData = sectionData;
                 try {
                     itemData = "<ul class='list-group'>";
@@ -89,7 +89,19 @@ jQuery(function ($) {
     }
     
     
-    function showPhoneDetailsDialog(phoneId){
-    
+    function updateCarouselImages(images){
+        console.log("Images: " + images);
+        $(".carousel-indicators").empty();
+        $(".carousel-inner").empty();
+        $.each(images, function(index, image) {
+            $(".carousel-indicators")
+            .append("<li " + ((index === 0)?" class='active'":"")
+            + " data-target='#carousel-example-generic' data-slide-to='" 
+                + index +"'></li>");
+            $(".carousel-inner")
+            .append("<div class='item " + ((index === 0)?"active":"") + "'>"
+            + "<img class='img-responsive center-block' src='" + image + "' alt='" + image + "'>"
+            + "</div></li>");
+        });
     }
 });
