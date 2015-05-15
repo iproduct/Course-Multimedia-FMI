@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>jQuery AJAX Demo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" 
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+        <link rel="stylesheet" href="css/custom.css">
+
+        <!-- jQuery library -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>        
+        <script src="js/ajax.js"></script>
+    </head>
+    <body>
+        <main class="container">
+            <h1 class="jumbotron">jQuery AJAX Demo</h1>
+            <section id="phone-list" class="row">
+                <h2>Choose a Phone:</h2>
+                <table id="phones" class="ui-widget ui-widget-content">
+                    <thead>
+                        <tr class="ui-widget-header ">
+                            <th>No.</th>
+                            <th>Picture</th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <button id="refresh_phones">Refresh Phone List</button>
+            </section>   
+
+            <!-- Phone Details Dialog -->
+            <section id="phone-details"  class="modal fade" tabindex="-1" 
+                     role="dialog" aria-labelledby="myModalLabel" 
+                     aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" 
+                                    data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            <h4 class="modal-title">Choose a Phone:</h4>
+                        </div>
+                        <div id="phone_table" class="modal-body">
+                            <div id="phone-details-list"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" 
+                                    data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->         
+            </section>
+        </main>
+    </body>
+</html>

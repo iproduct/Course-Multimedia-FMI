@@ -1,0 +1,94 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+jQuery.noConflict();
+jQuery(function ($) {
+    // get phone list json
+    function loadPhonesList() {
+        var jqxhr = $.get("phones/phones.json", function () {
+            console.log("Phones list successfully receceived.");
+        })
+        .done(function (phonesData) {
+//            console.log("Data:", phonesData);
+            $( "#phones tbody" ).empty();
+            $.each(phonesData, function(index, phone) {
+                $( "#phones tbody" ).append( "<tr data-id='" +
+                        phone.id + "'>" +
+                    "<td>" + index + "</td>" +
+                    "<td><img src='" + phone.imageUrl + 
+                    "' alt='" + phone.name + " picture'></td>" +
+                    "<td>" + phone.name + "</td>" +
+                    "<td>" + phone.age + "</td>" +
+                    "<td>" + phone.snippet + "</td>" +
+                  "</tr>" );
+            });
+            // add click listeners to all phones
+            $("#phones tbody tr").click(function(){
+                var phoneId = $(this).attr("data-id");
+                console.log(phoneId);
+                showDetails(phoneId);
+            });
+        })
+        .fail(function () {
+            alert("No connection to phone shop server.");
+        });
+    }
+    
+    loadPhonesList();
+    $("#refresh_phones").click(function() {
+        loadPhonesList();
+    });
+    
+//    var dialog = $( "#phone_details" ).dialog({
+//        title: "Phone Details for ",
+//        autoOpen: false,
+//        height: 600,
+//        width: 800,
+//        modal: false,
+//        buttons: {
+//          "Add to Cart": function(){ console.log("Phone added to cart");},
+//          Cancel: function() {
+//            dialog.dialog( "close" );
+//          }
+//        },
+//        close: function() {
+////          form[ 0 ].reset();
+////          allFields.removeClass( "ui-state-error" );
+//        }
+//    });
+    
+    function showDetails(phoneId){
+        var jqxhr = $.get("phones/" + phoneId + ".json")
+        .done(function (phoneData) {
+//            dialog.dialog( "option", "title", phoneData.name + " Details" );
+//            dialog.dialog( "close" );
+//            dialog.dialog( "open" );
+            $('#phone-details').modal('show'); //Open Bootstrap way dialog
+//            $.each(phoneData, function( key, sectionData ){
+//                console.log(key + "-->" + sectionData);
+//                var itemData = sectionData;
+//                try {
+//                    itemData = "<ul class='list-group'>";
+//                    $.each(sectionData, function( itemKey, sectionItem) {
+//                       itemData += "<li class='list-group-item row'><span class='property-label'>" + itemKey + 
+//                            + "</span><span class='property-data'>" + sectionItem + "</span></li>";
+//                    });
+//                    itemData += "</ul>";
+//                } catch (e){ console.log(e);}
+//                $("#phone-details-list")
+//                    .append("<div class='panel panel-primary'><div class='panel-heading'>"
+//                    + "<h3 class='panel-title'>" + key + "</h3></div>"
+//                    + "<div class='panel-body' >" + itemData + "</div></div>");
+//
+//            });
+        });
+        
+    }
+    
+    
+    function showPhoneDetailsDialog(phoneId){
+    
+    }
+});
