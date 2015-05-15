@@ -24,22 +24,19 @@ and open the template in the editor.
     <body>
         <main class="container">
             <h1 class="jumbotron">jQuery AJAX Demo</h1>
-            <section id="phone-list" class="row">
-                <h2>Choose a Phone:</h2>
-                <table id="phones" class="ui-widget ui-widget-content">
-                    <thead>
-                        <tr class="ui-widget-header ">
-                            <th>No.</th>
-                            <th>Picture</th>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                    </tbody>
-                </table>
+            <section id="phone-list">
+                <header>
+                <h2 class="row">Choose a Phone:</h2>
+                <div class="row hidden-xs">
+                    <div class="col-xs-12 col-sm-3">Picture</div>
+                    <div class="col-xs-8 col-sm-3">Name</div>
+                    <div class="col-xs-4 col-sm-1">Age</div>
+                    <div class="col-xs-12 col-sm-5">Description</div>
+                </div>
+                </header>
+                <div id="phones-master">
+                   <!-- phones will be appended here -->
+                <div>
                 <button id="refresh_phones">Refresh Phone List</button>
             </section>   
 

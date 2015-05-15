@@ -12,17 +12,17 @@ jQuery(function ($) {
         })
         .done(function (phonesData) {
 //            console.log("Data:", phonesData);
-            $( "#phones tbody" ).empty();
+            $( "#phones-master" ).empty();
             $.each(phonesData, function(index, phone) {
-                $( "#phones tbody" ).append( "<tr data-id='" +
+                $( "#phones-master" ).append( "<div class='row' data-id='" +
                         phone.id + "'>" +
-                    "<td>" + index + "</td>" +
-                    "<td><img src='" + phone.imageUrl + 
-                    "' alt='" + phone.name + " picture'></td>" +
-                    "<td>" + phone.name + "</td>" +
-                    "<td>" + phone.age + "</td>" +
-                    "<td>" + phone.snippet + "</td>" +
-                  "</tr>" );
+                    "<div class='phone-image col-xs-12 col-sm-3'>" +
+                    "<img class='img-responsive' src='" + phone.imageUrl + 
+                    "' alt='" + phone.name + " picture'></div>" +
+                    "<div class='col-xs-8 col-sm-3'>" + phone.name + "</div>" +
+                    "<div class='col-xs-4 col-sm-1''>" + phone.age + "</div>" +
+                    "<div class='col-xs-12 col-sm-5'>" + phone.snippet + "</div>" +
+                  "</div>" );
             });
             // add click listeners to all phones
             $("#phones tbody tr").click(function(){
