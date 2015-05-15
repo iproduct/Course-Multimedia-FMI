@@ -9,3 +9,8 @@
     text-align: center;
 }
 
+.section-title {
+    font-weight: bold;
+    font-style: italic;
+    padding-top: 10px;
+}

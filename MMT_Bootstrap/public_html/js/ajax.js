@@ -21,11 +21,12 @@ jQuery(function ($) {
                     "' alt='" + phone.name + " picture'></div>" +
                     "<div class='col-xs-8 col-sm-3'>" + phone.name + "</div>" +
                     "<div class='col-xs-4 col-sm-1''>" + phone.age + "</div>" +
+                    "<div class='col-xs-12 visible-xs section-title'>Description:</div>" +
                     "<div class='col-xs-12 col-sm-5'>" + phone.snippet + "</div>" +
                   "</div>" );
             });
             // add click listeners to all phones
-            $("#phones tbody tr").click(function(){
+            $("#phones-master .row").click(function(){
                 var phoneId = $(this).attr("data-id");
                 console.log(phoneId);
                 showDetails(phoneId);
