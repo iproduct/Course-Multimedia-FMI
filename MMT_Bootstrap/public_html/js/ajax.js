@@ -66,23 +66,23 @@ jQuery(function ($) {
 //            dialog.dialog( "close" );
 //            dialog.dialog( "open" );
             $('#phone-details').modal('show'); //Open Bootstrap way dialog
-//            $.each(phoneData, function( key, sectionData ){
-//                console.log(key + "-->" + sectionData);
-//                var itemData = sectionData;
-//                try {
-//                    itemData = "<ul class='list-group'>";
-//                    $.each(sectionData, function( itemKey, sectionItem) {
-//                       itemData += "<li class='list-group-item row'><span class='property-label'>" + itemKey + 
-//                            + "</span><span class='property-data'>" + sectionItem + "</span></li>";
-//                    });
-//                    itemData += "</ul>";
-//                } catch (e){ console.log(e);}
-//                $("#phone-details-list")
-//                    .append("<div class='panel panel-primary'><div class='panel-heading'>"
-//                    + "<h3 class='panel-title'>" + key + "</h3></div>"
-//                    + "<div class='panel-body' >" + itemData + "</div></div>");
-//
-//            });
+            $.each(phoneData, function( key, sectionData ){
+                console.log(key + "-->" + sectionData);
+                var itemData = sectionData;
+                try {
+                    itemData = "<ul class='list-group'>";
+                    $.each(sectionData, function( itemKey, sectionItem) {
+                       itemData += "<li class='list-group-item row'><span class='property-label'>" + itemKey + 
+                            + "</span><span class='property-data'>" + sectionItem + "</span></li>";
+                    });
+                    itemData += "</ul>";
+                } catch (e){ console.log(e);}
+                $("#phone-details-list")
+                    .append("<div class='panel panel-info'><div class='panel-heading'>"
+                    + "<h3 class='panel-title'>" + key + "</h3></div>"
+                    + "<div class='panel-body' >" + itemData + "</div></div>");
+
+            });
         });
         
     }
