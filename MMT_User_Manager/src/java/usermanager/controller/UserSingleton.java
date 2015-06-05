@@ -26,15 +26,11 @@
  */
 package usermanager.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.ejb.Stateless;
+import javax.annotation.PostConstruct;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import usermanager.entity.User;
 
 
@@ -43,28 +39,16 @@ import usermanager.entity.User;
  *
  * @author Trayan Iliev, IPT [http://iproduct.org]
  */
-@Stateless
-public class UserController {
+
+@Singleton
+@Startup
+public class UserSingleton {
     @PersistenceContext (unitName = "User_ManagerPU")
     EntityManager em; 
     
-    public List<User> getAllUsers(){
-        List<User> userList = new ArrayList<>();
-        
-        // get all registered users from db
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<User> q = cb.createQuery(User.class);
-        Root<User> vote = q.from(User.class);
-        q.select(vote);
-        TypedQuery<User> query = em.createQuery(q);
-
-        List<User> users = query.getResultList();
-        
-        return userList;
-    }
-    
-    public User addUser(User newUser){
-         em.persist(newUser);
-         return newUser;
-    }
+//    @PostConstruct
+//    public void init() {
+//        User user = new User("Ivan Petrov", "ivan", "ivan@abv.bg", "ivanivan");
+//        em.persist(user);
+//    }
 }
