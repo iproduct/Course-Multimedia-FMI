@@ -31,6 +31,9 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import java.util.ArrayList;
+import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -50,7 +53,6 @@ public class UserController {
     @PersistenceContext (unitName = "User_ManagerPU")
     EntityManager em; 
     
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public List<User> getAllUsers(){
         
         // get all registered users from db
@@ -69,12 +71,11 @@ public class UserController {
         return em.find(User.class, id);
     }
     
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
     public User addUser(User newUser){
         newUser.setRegistrationDate(new Date());
         em.persist(newUser);
         System.out.println(newUser);
         return newUser;
     }
-    
+   
 }
