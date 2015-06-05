@@ -27,26 +27,20 @@
 package usermanager.resource;
 
 import java.net.URI;
-import java.net.URL;
 import java.util.List;
-import javax.ejb.Stateless;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
-import javax.persistence.criteria.Root;
+import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import static javax.ws.rs.core.MediaType.*;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
+import usermanager.controller.UserController;
 import usermanager.entity.User;
 
 
@@ -56,10 +50,9 @@ import usermanager.entity.User;
  * @author Trayan Iliev, IPT [http://iproduct.org]
  */
 @Path("users")
-@Stateless
 public class UserResource {
-    @PersistenceContext (unitName = "User_ManagerPU")
-    EntityManager em; 
+    @EJB
+    UserController controller;
     
     @Context
     UriInfo uriInfo;
@@ -67,22 +60,22 @@ public class UserResource {
     @GET
     @Produces({APPLICATION_XML, APPLICATION_JSON})
     public List<User> getAllUsers(){
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<User> q = cb.createQuery(User.class);
-        Root<User> vote = q.from(User.class);
-        q.select(vote);
-        TypedQuery<User> query = em.createQuery(q);
-
-        List<User> users = query.getResultList();
-        return users;
+       return controller.getAllUsers();
+    } 
+    
+    @GET
+    @Path("{id}")
+    @Produces({APPLICATION_XML, APPLICATION_JSON})
+    public User getUserById(@PathParam("id") long id){
+       return controller.getUsetById(id);
     }
     
     @POST
     @Consumes({APPLICATION_XML, APPLICATION_JSON})
     public Response addUser(User user){
-        em.persist(user);
+        User created = controller.addUser(user);
         return Response.created(URI.create(
-            UriBuilder.fromPath(uriInfo.getPath()).segment("" + user.getId()).build().toString()
+            UriBuilder.fromPath(uriInfo.getPath()).segment("" + created.getId()).build().toString()
         )).build();
     }
 

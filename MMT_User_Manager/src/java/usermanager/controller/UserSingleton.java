@@ -26,17 +26,11 @@
  */
 package usermanager.controller;
 
-import java.util.Date;
-import java.util.List;
-import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
+import javax.annotation.PostConstruct;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import usermanager.entity.User;
 
 
@@ -45,36 +39,16 @@ import usermanager.entity.User;
  *
  * @author Trayan Iliev, IPT [http://iproduct.org]
  */
-@Stateless
-public class UserController {
+
+@Singleton
+@Startup
+public class UserSingleton {
     @PersistenceContext (unitName = "User_ManagerPU")
     EntityManager em; 
     
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public List<User> getAllUsers(){
-        
-        // get all registered users from db
-        CriteriaBuilder cb = em.getCriteriaBuilder();
-        CriteriaQuery<User> q = cb.createQuery(User.class);
-        Root<User> vote = q.from(User.class);
-        q.select(vote);
-        TypedQuery<User> query = em.createQuery(q);
-
-        List<User> userList = query.getResultList();
-        
-        return userList;
-    }
-    
-    public User getUsetById(long id){
-        return em.find(User.class, id);
-    }
-    
-    @TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
-    public User addUser(User newUser){
-        newUser.setRegistrationDate(new Date());
-        em.persist(newUser);
-        System.out.println(newUser);
-        return newUser;
-    }
-    
+//    @PostConstruct
+//    public void init() {
+//        User user = new User("Ivan Petrov", "ivan", "ivan@abv.bg", "ivanivan");
+//        em.persist(user);
+//    }
 }

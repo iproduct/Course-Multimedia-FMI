@@ -56,9 +56,11 @@ jQuery(function ($) {
 
     // get phone list json
     function loadUsersList() {
-        var jqxhr = $.get(USER_SERVICE_URL, function () {
-            console.log("Phones list successfully receceived.");
-        }).done(function (usersData) {
+        var jqxhr =  $.ajax(USER_SERVICE_URL, {
+            method: "GET",
+            dataType: "json"
+        })
+        .done(function (usersData) {
             console.log("Data:", usersData);
             $("#users-master").empty();
             $.each(usersData, function (index, user) {

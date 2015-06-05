@@ -26,6 +26,7 @@
  */
 package usermanager.entity;
 
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,7 +35,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 /**
@@ -45,6 +50,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "USERS")
+@XmlRootElement
 public class User {
     @TableGenerator(name = "user_gen",
             table = "id_gen",
@@ -61,9 +67,12 @@ public class User {
     private long id;
     private String name;
     private String username;
+    @Pattern(regexp = "[\\w\\.]+@\\w+(\\.\\w+)+")
     private String email;
     private String password;
     private String description;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date registrationDate;
 
     public User() {
     }
@@ -129,6 +138,14 @@ public class User {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     @Override
