@@ -1,0 +1,64 @@
+.navbar-brand {
+    padding-top: 3px;
+    padding-bottom: 5px;
+}
+
+.header_img {
+    width: 320px;
+    height: 258px;
+    padding-left: 20px;
+}
+
+.disclaimer {
+    font-size: 1em !important;
+    font-style: italic;
+}
+.output {
+    font: 1.5em Arial, sans-serif;
+    color: green;
+}
+.icon-bar {
+    background: #204d74;
+}
+
+.translucent {
+    background-color: transparent !important;
+}
+
+footer {
+    margin-top: 100px;
+}
+
+/* Poll panels */
+.panel-question {
+    overflow: hidden;
+    white-space:nowrap;
+    font-weight: bold;
+}
+.panel-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 20px;
+}
+.poll-legend {
+    overflow:hidden;
+    text-overflow: ellipsis;
+    width: 70px;
+    height: 150px;
+}
+
+.manage-poll form{
+    display: inline-table;
+    margin: 0;
+    padding: 0;
+}
+
+/* Lightbox */
+.modal-popup {width:600px;}
+.thumbnail-popup {margin-bottom:6px;}
+
+/* jQuery UI Sortable */
+#alternatives-sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
+#alternatives-sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 2.8em; }
+html>body #alternatives-sortable li { height: 2.8em; line-height: 1.5em; }
+.ui-state-highlight { height: 2.8em; line-height: 1.5em; }

@@ -11,6 +11,11 @@ function animate() {
     var x = 0;
     var y = 0;
     var angle = 0;
+    var dx2 = 0.2; //px per 100ms
+    var dy2 = 0.2; //px per 100ms
+    var dAngle2 = Math.PI/502; //rad per 100ms
+    var y2 = 0;
+    var angle2 = 0;
     var previous = null;
     var canvas = document.getElementById('canvas');
     if (canvas !== null && canvas.getContext) {
@@ -18,7 +23,10 @@ function animate() {
     } else {
         alert("Problem creating canvas 2D drawing context.");
     }
-    var audio = document.getElementById("audio");
+    var x2 = canvas.width;
+
+    var audio = document.createElement("AUDIO");
+    audio.src = "audio/sound01.mp3";
     
     function draw(timestamp){
         var progress;
@@ -32,6 +40,18 @@ function animate() {
         bounceIf(x, y);
         ctx.translate(x , y);
         ctx.rotate(angle);
+        ctx.translate(-100, -100);
+        ctx.drawImage(img, 0, 0, 200, 200);
+        ctx.restore();
+
+//Second image
+        ctx.save();
+        x2 += progress * dx2;
+        y2 += progress * dy2;
+        angle2 += (progress * dAngle2) %  (2 * Math.PI);
+        bounceIf2(x2, y2);
+        ctx.translate(x2 , y2);
+        ctx.rotate(angle2);
         ctx.translate(-100, -100);
         ctx.drawImage(img, 0, 0, 200, 200);
         ctx.restore();
@@ -63,6 +83,28 @@ function animate() {
         }
         if(x < 0) {
             dx = -dx;
+            audio.src = sound2;
+            audio.play();
+       }
+    }
+    function bounceIf2(x2, y2) {
+        if(y2 >= canvas.height) {
+            dy2 = -dy2;
+            audio.src = sound1;
+            audio.play();
+        }
+        if(y2 < 0) {
+            dy2 = -dy2;
+            audio.src = sound1;
+            audio.play();
+        }
+        if(x2 >= canvas.width) {
+            dx2 = -dx2;
+            audio.src = sound2;
+            audio.play();
+        }
+        if(x2 < 0) {
+            dx2 = -dx2;
             audio.src = sound2;
             audio.play();
        }

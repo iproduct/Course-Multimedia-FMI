@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<jpa:entity-mappings persistenceUnitName="PollingPU" jaxb-support="true" jaxb-namespace="org.iproduct.polling" id="_141539628344548" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_2_1.xsd" xmlns:java="http://jcp.org/en/jsr/detail?id=270" xmlns:jpa="http://java.sun.com/xml/ns/persistence/orm" xmlns:ns4="http://nbmodeler.java.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <jpa:package>org.iproduct.polling.entity</jpa:package>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="Alternative" visibile="true" minimized="false" id="_141539628363251">
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="java.lang.Long" visibile="true" id="_141539628363253">
+                <annotation/>
+                <jpa:column unique="true" nullable="false" insertable="false" updatable="false" length="255" precision="0" scale="0"/>
+                <jpa:generated-value strategy="TABLE" generator="alt_gen"/>
+                <jpa:table-generator name="alt_gen" table="id_gen" pk-column-name="GEN_KEY" value-column-name="GEN_VALUE" pk-column-value="alt_id" allocation-size="1"/>
+                <jpa:sequence-generator/>
+            </jpa:id>
+            <jpa:basic name="text" attribute-type="java.lang.String" visibile="true" id="_141539628363254">
+                <annotation/>
+                <annotation/>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true" length="255"/>
+            </jpa:basic>
+            <jpa:basic name="position" optional="false" attribute-type="int" visibile="true" id="_141539628363255">
+                <annotation/>
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:version name="version" attribute-type="int" visibile="true" id="_144778653396525">
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:version>
+            <jpa:many-to-one name="poll" target-entity="Poll" optional="false" primaryKey="false" connected-entity-id="_141539628378857" connected-attribute-id="_141539628378860" visibile="true" id="_141539628363256">
+                <annotation/>
+            </jpa:many-to-one>
+            <jpa:one-to-many name="votes" target-entity="Vote" mapped-by="alternative" collection-type="java.util.List" connected-entity-id="_141539628396065" connected-attribute-id="_141539628396068" visibile="true" id="_141539628363252">
+                <jpa:cascade>
+                    <jpa:cascade-all/>
+                </jpa:cascade>
+            </jpa:one-to-many>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="Poll" visibile="true" minimized="false" id="_141539628378857">
+        <annotation>@javax.xml.bind.annotation.XmlRootElement</annotation>
+        <annotation>@javax.xml.bind.annotation.XmlAccessorType(javax.xml.bind.annotation.XmlAccessType.FIELD)</annotation>
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="java.lang.Long" visibile="true" id="_141539628378862">
+                <annotation/>
+                <jpa:column unique="true" nullable="false" insertable="false" updatable="false"/>
+                <jpa:generated-value strategy="TABLE" generator="poll_gen"/>
+                <jpa:table-generator name="poll_gen" table="id_gen" pk-column-name="GEN_KEY" value-column-name="GEN_VALUE" pk-column-value="poll_id" allocation-size="1"/>
+                <jpa:sequence-generator/>
+            </jpa:id>
+            <jpa:basic name="question" optional="false" attribute-type="java.lang.String" visibile="true" id="_141539628378858">
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="255"/>
+            </jpa:basic>
+            <jpa:basic name="start" optional="false" attribute-type="java.util.Date" visibile="true" id="_141539628378859">
+                <annotation/>
+                <jpa:column name="poll_start" unique="false" nullable="false" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="end" optional="false" attribute-type="java.util.Date" visibile="true" id="_141539628378861">
+                <annotation/>
+                <jpa:column name="poll_end" unique="false" nullable="false" insertable="true" updatable="true"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="title" optional="false" attribute-type="java.lang.String" visibile="true" id="_141539628378863">
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true" length="255"/>
+            </jpa:basic>
+            <jpa:basic name="status" attribute-type="org.iproduct.polling.entity.PollStatus" visibile="true" id="_141539628378864">
+                <jpa:column unique="false" nullable="false" insertable="true" updatable="true"/>
+                <jpa:enumerated>ORDINAL</jpa:enumerated>
+            </jpa:basic>
+            <jpa:version name="version" attribute-type="int" visibile="true" id="_144778648802124">
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:version>
+            <jpa:many-to-one name="owner" target-entity="User" optional="true" primaryKey="true" connected-entity-id="_1447785581354" connected-attribute-id="_144778621471521" visibile="true" id="_144778621471520">
+                <jpa:join-table/>
+                <jpa:cascade>
+                    <jpa:cascade-all/>
+                </jpa:cascade>
+            </jpa:many-to-one>
+            <jpa:one-to-many name="alternatives" target-entity="Alternative" mapped-by="poll" collection-type="java.util.List" connected-entity-id="_141539628363251" connected-attribute-id="_141539628363256" visibile="true" id="_141539628378860">
+                <jpa:cascade>
+                    <jpa:cascade-all/>
+                </jpa:cascade>
+            </jpa:one-to-many>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" compositePrimaryKeyType="NONE" static-metamodel="false" abstract="false" class="Vote" visibile="true" minimized="false" id="_141539628396065">
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="java.lang.Long" visibile="true" id="_141539628396067">
+                <annotation/>
+                <jpa:column unique="true" nullable="false" insertable="false" updatable="false" length="255" precision="0" scale="0"/>
+                <jpa:generated-value strategy="TABLE" generator="vote_gen"/>
+                <jpa:table-generator name="vote_gen" table="id_gen" catalog="" schema="" pk-column-name="GEN_KEY" value-column-name="GEN_VALUE" pk-column-value="vote_id" initial-value="0" allocation-size="1"/>
+            </jpa:id>
+            <jpa:basic name="voteTime" attribute-type="java.util.Date" visibile="true" id="_141539628396066">
+                <jpa:column name="vote_time" unique="false" nullable="false" insertable="true" updatable="true" length="255" precision="0" scale="0"/>
+                <jpa:temporal>TIMESTAMP</jpa:temporal>
+            </jpa:basic>
+            <jpa:basic name="email" optional="false" attribute-type="java.lang.String" visibile="true" id="_141539628396069">
+                <annotation/>
+                <annotation/>
+                <jpa:column unique="false" nullable="false" insertable="false" updatable="false" length="255"/>
+            </jpa:basic>
+            <jpa:version name="version" attribute-type="int" visibile="true" id="_144778656068726">
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:version>
+            <jpa:many-to-one name="alternative" target-entity="Alternative" optional="false" primaryKey="false" connected-entity-id="_141539628363251" connected-attribute-id="_141539628363252" visibile="true" id="_141539628396068"/>
+            <jpa:many-to-one name="voter" target-entity="User" primaryKey="true" connected-entity-id="_1447785581354" connected-attribute-id="_144778634782323" visibile="true" id="_144778634782322">
+                <jpa:join-table/>
+            </jpa:many-to-one>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:entity jaxb-root-element="false" static-metamodel="false" abstract="false" class="User" visibile="true" minimized="false" id="_1447785581354">
+        <jpa:attributes>
+            <jpa:id name="id" attribute-type="Long" visibile="true" id="_144778563067810">
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:id>
+            <jpa:basic name="email" attribute-type="String" visibile="true" id="_144778572995712">
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="password" attribute-type="String" visibile="true" id="_144778579172913">
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="firstName" attribute-type="String" visibile="true" id="_144778586124314">
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:basic name="lastName" attribute-type="String" visibile="true" id="_144778588300615">
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:basic>
+            <jpa:version name="version" attribute-type="int" visibile="true" id="_144778568077411">
+                <jpa:column unique="false" nullable="true" insertable="true" updatable="true"/>
+            </jpa:version>
+            <jpa:one-to-many name="polls" target-entity="Poll" mapped-by="owner" connected-entity-id="_141539628378857" connected-attribute-id="_144778621471520" visibile="true" id="_144778621471521"/>
+            <jpa:one-to-many name="votes" target-entity="Vote" mapped-by="voter" connected-entity-id="_141539628396065" connected-attribute-id="_144778634782322" visibile="true" id="_144778634782323"/>
+        </jpa:attributes>
+    </jpa:entity>
+    <jpa:diagram id="_141539628344549">
+        <plane elementRef="_141539628344548" id="_141539628344550_p">
+            <shape elementRef="_141539628363251" id="_141539628363251_gui">
+                <Bounds x="288.0" y="31.0" width="157.0" height="202.0"/>
+            </shape>
+            <shape elementRef="_141539628378857" id="_141539628378857_gui">
+                <Bounds x="49.0" y="31.0" width="128.0" height="265.0"/>
+            </shape>
+            <shape elementRef="_141539628396065" id="_141539628396065_gui">
+                <Bounds x="543.0" y="43.0" width="128.0" height="202.0"/>
+            </shape>
+            <shape elementRef="_1447785581354" id="_1447785581354_gui">
+                <Bounds x="302.0" y="277.0" width="128.0" height="244.0"/>
+            </shape>
+        </plane>
+    </jpa:diagram>
+</jpa:entity-mappings>

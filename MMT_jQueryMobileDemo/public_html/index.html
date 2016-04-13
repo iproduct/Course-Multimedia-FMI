@@ -3,7 +3,10 @@
     <head>
         <title>Page Title</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" />
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.css" />      
+        <link rel="stylesheet" href="css/jquery.mobile.theme-1.4.5.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.icons-1.4.5.css" />
+        <link rel="stylesheet" href="css/custom.css" />
         <script src="js/jquery-1.11.3.js"></script>
         <script src="js/jquery.mobile-1.4.5.js"></script>
     </head>
@@ -16,7 +19,7 @@
             <div role="main" class="ui-content">
                 <h2 class="mc-text-center">Welcome!</h2>
                 <p class="mc-top-margin-1-5"><b>Existing Users</b></p>
-                <a href="#signin" class="ui-btn ui-btn-b ui-corner-all">Sign In</a>
+                <a href="#signin" class="ui-btn ui-btn-b ui-corner-all" data-theme="c">Sign In</a>
                 <p class="mc-top-margin-1-5"><b>Don't have an account?</b></p>
                 <a href="sign-up.html" class="ui-btn ui-btn-b ui-corner-all">Sign Up</a>
                 <p></p>
@@ -24,8 +27,10 @@
             <div data-role="footer">
                 <h1>Copyright 2015 &copy; Course HCI</h1>
             </div>
-        </div><!-- /page -->
-        <div data-role="page" data-dialog="true" id="signin">
+        </div>
+        
+        <!-- /page -->
+        <div data-role="page"  id="signin">
             <div data-role="main" class="ui-content">
                 <a href="#start">Back</a>
             </div>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>JS Module Pattern Demo - by Addy Osmany</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--[if lt IE 9]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="js/dynamic_load.js">
+        </script>
+        <script>
+            function init() {
+                function test() {
+                    // basketModule returns an object with a public API we can use
+
+                    basketModule.addItem({
+                        item: "bread",
+                        price: 0.5
+                    });
+
+                    basketModule.addItem({
+                        item: "butter",
+                        price: 0.3
+                    });
+
+                    // Outputs: 2
+                    console.log(basketModule.getItemCount());
+
+                    // Outputs: 0.8
+                    console.log(basketModule.getTotal());
+
+                    // However, the following will not work:
+
+                    // Outputs: undefined
+                    // This is because the basket itself is not exposed as a part of our
+                    // the public API
+                    //console.log( basketModule.basket );
+                    console.log(basketModule.getAllItems());
+
+                    // This also won't work as it only exists within the scope of our
+                    // basketModule closure, but not the returned public object
+                    //console.log( basket );
+
+                }
+                loadDynamic('js', ['basket.js'], test);
+            }
+        </script>
+    </head>
+    <body onload="init()">
+        <h1>JS Module Pattern Demo - by Addy Osmany</h1>
+
+    </body>
+</html>
