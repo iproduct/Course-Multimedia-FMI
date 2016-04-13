@@ -1,0 +1,33 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Object Oriented JS Demo</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+       <!-- <script type="text/javascript" src="js/global.js">
+        </script>
+        <script type="text/javascript" src="js/patterns.js">
+        </script> -->
+       <script type="text/javascript" src="js/file.js">
+        </script>
+    </head>
+    <body>
+        <h1>Object Oriented JS Demo</h1>
+        <form>
+            <input type="file" id="fileChooser" name="fileChooser" 
+                   multiple="multiple" onchange="handleFile()" /> <br />
+            <input type="file" id="imageChooser" name="imageChooser" 
+                   multiple="multiple" onchange="handleImage()" />
+        </form>
+        <div id="pr"></div>
+        <progress id="p" value="0" max="100" > </progress><br />
+        <canvas id="canvas" width="500" height="300">
+            Please, use browser supporting HTML 5 &lt;canvas&gt; tag
+        </canvas>  
+        <div id="image_data"></div>
+        <div id="result">TODO write content</div>
+    </body>
+</html>

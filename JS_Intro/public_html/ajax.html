@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>AJAX Demo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="js/log.js"></script>
+        <script src="js/ajax.js"></script>
+        <style>
+            #errors {
+                color:red;
+            }
+            #results img {
+                max-height: 150px;
+            }
+            table, th , td  {
+                border: 1px solid grey;
+                border-collapse: collapse;
+                padding: 5px;
+            }
+            table tr:nth-child(odd)	{
+                background-color: #f1f1f1;
+            }
+            table tr:nth-child(even) {
+                background-color: #ffffff;
+            }
+
+        </style>
+    </head>
+    <body onload="init()">
+        <h1>JS AJAX Demo</h1>
+        <div id="results"></div>
+        <p id="errors"></p>
+    </body>
+</html>
