@@ -13,9 +13,10 @@
     </div>
     <script>
         function handler(event) {
-            var elem = event.currentTarget;
-            console.log(elem.className);
-            // event.stopPropagation();
+            var elem = event.currentTarget; // where the listener is
+            var target = event.target; //where the event is generated
+            console.log(`currentTarget: ${elem.className}`, `, target: ${target.className}`);
+            event.stopPropagation();
             elem.style.background = "#ffff00";
             alert(elem.className);
             elem.style.background = '';
