@@ -9,11 +9,16 @@ import { Product } from '../product.model';
 })
 export class ProductListComponent implements OnInit {
   products: Array<Product>;
+  selectedProduct: Product;
 
   constructor(private service: ProductService) { }
 
   ngOnInit() {
     this.products = this.service.findAll();
+  }
+
+  selectProduct(product: Product) {
+    this.selectedProduct = product;
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { NgForm } from '@angular/forms/src/forms';
 import { Product } from '../product.model';
 
@@ -8,7 +8,7 @@ import { Product } from '../product.model';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
-  product: Product = new Product(undefined, undefined, undefined);
+  @Input() product: Product = new Product(undefined, undefined, undefined);
 
   constructor() { }
 
