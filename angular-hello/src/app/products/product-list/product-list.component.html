@@ -1,8 +1,0 @@
-<h2>Choose a Product</h2>
-<ul class="items">
-  <li *ngFor="let product of products" (click)="selectProduct(product)"
-    [class.selected]="product === selectedProduct">
-    <span class="item-badge">{{product.id}}</span> {{product.name}} - {{product.price}}
-  </li>
-</ul>
-<app-product-detail *ngIf="selectedProduct" [product]="selectedProduct"></app-product-detail>

@@ -32,7 +32,7 @@ function test() {
       markupResult += `<li>${currentEmp.name} - ${currentEmp.age} 
       ${currentEmp.qualifications ? ': ' + currentEmp.qualifications.join(', ') : ''}</li>`;
 
-      // console.log(i + ': ' + currentEmp.name + ' - ' + currentEmp.age);
+      console.log(i + ': ' + currentEmp.name + ' - ' + currentEmp.age);
     }
     markupResult += '</ul>';
     return markupResult;
@@ -42,9 +42,8 @@ function test() {
 
 
   function Employee(aName, aPractice) {
-    aPractice = aPractice || 0;
     this.name = aName;
-    this.practice = aPractice;
+    this.practice = aPractice || 0;
     // this.toString = function() {
     //   return this.name + ', practice: ' + this.practice;
     // };
@@ -58,7 +57,11 @@ function test() {
   var e2 = new Employee('Petar', 5);
   element.innerHTML += '<p>' + e1 + '</p><p>' + e2 + '</p>';
 
-  
+
+  // Homework: Create Programmer constructor extending Employee with multivalued property 
+  // 'languages' and override toString method from Employee to print additional information 
+  // - programming languages for the programmer instance.
+
 }
 
 
