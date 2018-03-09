@@ -1,4 +1,4 @@
-var counter = (function countWithClosure() { //IIFE - Module pattern
+var counter = function countWithClosure() { //IIFE - Module pattern
   var count = 0; //private state
   return { //public API
     increment: function () {
@@ -8,8 +8,7 @@ var counter = (function countWithClosure() { //IIFE - Module pattern
       return --count;
     }
   };
-})();
-
+}();
 
 console.log(counter.increment());
 console.log(counter.increment());

@@ -1,16 +1,25 @@
 
 var triangle = { a: 1, b: 2, c: 3 };
 
-function ColoredTriangle() {
-  this.color = 'blue';
-}
+var coloredTriangle = Object.create(triangle, {
+  color: {
+    value: 'blue',
+    writable: true,
+    enumerable: true,
+    configurable: true
+  },
+  name: {
+    value: 'triangle',
+    writable: true,
+    enumerable: true,
+    configurable: true
+  },
+});
 
-ColoredTriangle.prototype = triangle;
+// console.log(coloredTriangle.color);
 
-var obj = new ColoredTriangle();
-
-for (var prop in obj) {
-  if (obj.hasOwnProperty(prop)) {
-    console.log('obj.' + prop + ' = ' + obj[prop]);
+for (var prop in coloredTriangle) {
+  if (coloredTriangle.hasOwnProperty(prop)) {
+    console.log('coloredTriangle.' + prop + ' = ' + coloredTriangle[prop]);
   }
 }

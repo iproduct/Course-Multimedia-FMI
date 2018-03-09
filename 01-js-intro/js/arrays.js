@@ -21,18 +21,20 @@ employees.push(person1, person2);
 
 // var copy = employees.slice(0);// shallow copy
 var copy = JSON.parse(JSON.stringify(employees));// deep copy
+console.log(copy);
+console.log(copy[0] === employees[0]);
 
 var result = employees.filter(
   function (employee) {
     return employee.age < 40;
   })
   .map((emp, index) => ({ name: emp.name.toUpperCase(), index, age: emp.age }))
-  // .reduce( (accum, res) => accum + res.age, 0);
-  .forEach((res) =>
-    console.log(`${res.index} -> ${res.name}, ${res.age}`)
-  );
+  .reduce( (accum, res) => accum + res.age, 0);
+  // .forEach((res) =>
+  //   console.log(`${res.index} -> ${res.name}, ${res.age}`)
+  // );
 
-// console.log(result);
+console.log(result);
 
 
 

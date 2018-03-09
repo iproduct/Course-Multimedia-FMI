@@ -4,7 +4,7 @@
  */
 
 var array = [3, 5, 7, 2, 7, 2, 9];
-var index = array.indexOf(2, -5); // index is assigned 0
+var index = array.indexOf(2, -4); // index is assigned 0
 console.log("index of 2 is ", index);
 index = array.lastIndexOf(2); // index is assigned -1
 console.log("index of 2 is ", index);
@@ -12,9 +12,7 @@ console.log("index of 2 is ", index);
 //var array = [2, 2, 5, 9, 2];
 //var index = array.lastIndexOf(7);
 
-function isYoung(value, index, array) {
-    return value < 45;
-}
+const isYoung = v => v < 45;
 function doubleAge(value) {
     return value * 2;
 }
@@ -36,10 +34,10 @@ function average(accumulator, value, index, array) {
 }
 
 var result = [41, 20, 17, 50, 39, 75]
-    // .some( function(value) { return !isYoung(value); } );
+    .filter( isYoung )
     // .some( value => !isYoung(value) );
-    .filter(isYoung)
+    // .filter(isYoung)
     .map(ageNextYear)
-    // .reduce(average, 0);
-    .forEach(print);
-// console.log("YoungAvg = ", result);
+    .reduce(average, 0);
+    //  .forEach(print);
+console.log("YoungAvg = ", result);
