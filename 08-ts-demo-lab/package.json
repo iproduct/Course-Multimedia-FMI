@@ -1,0 +1,12 @@
+{
+  "name": "08-ts-demo-lab",
+  "version": "1.0.0",
+  "description": "typescript demo",
+  "main": "index.js",
+  "repository": "https://github.com/iproduct/Course-Multimedia-FMI.git",
+  "author": "Trayan Iliev",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "lite-server": "^2.3.0"
+  }
+}
