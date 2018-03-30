@@ -1,5 +1,7 @@
-function greeter(person: string) {
-    return 'Hello, ' + person + ' from Typescript!';
-}
-const user2 = 'Super User';
-document.getElementById('content').innerHTML = greeter(user2);
+import { Customer, Admin } from './users';
+
+const bill = new Customer('Bill', 'Smith', 'bill@gmail.com', 'bill');
+const ana = new Admin('Ana', 'Georgieva', 'ana@gmail.com', 'ana');
+document.getElementById('content').innerHTML = 
+    `${bill.congratulation} <br>
+     ${ana.congratulation}`;
