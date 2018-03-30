@@ -3,10 +3,22 @@
   "version": "1.0.0",
   "description": "typescript demo",
   "main": "index.js",
+  "scripts": {
+    "lite-server": "lite-server",
+    "start": "concurrently \"tsc -w\" \"lite-server\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": "https://github.com/iproduct/Course-Multimedia-FMI.git",
   "author": "Trayan Iliev",
   "license": "Apache-2.0",
   "devDependencies": {
+    "@types/jquery": "^3.3.1",
+    "concurrently": "^3.5.1",
     "lite-server": "^2.3.0"
+  },
+  "dependencies": {
+    "core-js": "^2.5.4",
+    "jquery": "^3.3.1",
+    "systemjs": "^0.21.1"
   }
 }
