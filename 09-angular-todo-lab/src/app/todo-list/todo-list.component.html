@@ -1,6 +1,6 @@
-<ul class="item-container">
-  <li *ngFor="let todo of todos">
-    <td-todo-item [todo]="todo"></td-todo-item>
+<ul class="items">
+  <li *ngFor="let todo of todos; let i=index;">
+    <td-todo-item [todo]="todo" [index]="i" ></td-todo-item>
   </li>
 </ul>
 
