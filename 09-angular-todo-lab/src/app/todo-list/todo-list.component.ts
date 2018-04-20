@@ -24,5 +24,10 @@ export class TodoListComponent implements OnInit {
     this.todos.push(todo);
   }
 
+  removeTodo(todo: Todo) {
+    const index = TODOS.findIndex(td => td.title === todo.title);
+    TODOS.splice(index, 1);
+  }
+
 
 }

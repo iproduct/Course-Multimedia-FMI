@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges, EventEmitter, Output } from '@angular/core';
 import { Todo, TodoStatus } from '../todo.model';
 
 @Component({
@@ -10,6 +10,7 @@ export class TodoItemComponent implements OnInit {
 
   @Input() todo: Todo;
   @Input() index: number;
+  @Output() remove = new EventEmitter<void>();
 
   constructor() { }
 
@@ -18,6 +19,10 @@ export class TodoItemComponent implements OnInit {
 
   getStatusText(todo): string {
     return TodoStatus[todo.status];
+  }
+
+  removeTodo() {
+    this.remove.emit();
   }
 
 }
