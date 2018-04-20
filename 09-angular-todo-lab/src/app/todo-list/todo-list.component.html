@@ -1,5 +1,7 @@
+<h3>Things TODO:</h3>
+<td-todo-input (todoAdded)="addTodo($event)" ></td-todo-input>
 <ul class="items">
-  <li *ngFor="let todo of todos; let i=index;">
+  <li *ngFor="let todo of todos; let i=index;" (click)="selectTodo(todo)">
     <td-todo-item [todo]="todo" [index]="i" ></td-todo-item>
   </li>
 </ul>

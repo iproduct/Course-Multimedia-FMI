@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import TODOS from '../todo-mock-data';
+import { Todo } from '../todo.model';
 
 @Component({
   selector: 'td-todo-list',
@@ -8,10 +9,20 @@ import TODOS from '../todo-mock-data';
 })
 export class TodoListComponent implements OnInit {
   todos = TODOS;
+  selectedTodo: Todo;
 
   constructor() { }
 
   ngOnInit() {
   }
+
+  selectTodo(todo) {
+    this.selectedTodo = todo;
+  }
+
+  addTodo(todo: Todo): void {
+    this.todos.push(todo);
+  }
+
 
 }
