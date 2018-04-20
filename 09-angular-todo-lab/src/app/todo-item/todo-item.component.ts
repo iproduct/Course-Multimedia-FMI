@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Todo } from '../todo.model';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { Todo, TodoStatus } from '../todo.model';
 
 @Component({
   selector: 'td-todo-item',
@@ -9,9 +9,14 @@ import { Todo } from '../todo.model';
 export class TodoItemComponent implements OnInit {
 
   @Input() todo: Todo;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  getStatusText(todo): string {
+    return TodoStatus[todo.status];
   }
 
 }
