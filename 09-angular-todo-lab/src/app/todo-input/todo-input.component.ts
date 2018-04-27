@@ -10,15 +10,20 @@ export class TodoInputComponent implements OnInit {
 
   /*@Input()*/ todo = new Todo(undefined);
   @Output() todoAdded = new EventEmitter<Todo>();
+  text = '';
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  onAddTodo() {
-    this.todoAdded.emit(this.todo);
-    this.todo = new Todo(undefined);
+  onAddTodo(todoText) {
+    this.todoAdded.emit(new Todo(todoText));
+    // this.todo = new Todo(undefined);
+  }
+
+  onKeyup(ev: KeyboardEvent) {
+    this.text = (ev.target as HTMLInputElement).value;
   }
 
 }

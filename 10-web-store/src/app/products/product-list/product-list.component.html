@@ -1,0 +1,5 @@
+<ul class="product-list">
+  <li *ngFor="let product of products; let i = index;">
+    <span class="badge">{{i + 1}}</span> {{product.name}} - {{product.description}} - {{product.price}}
+  </li>
+</ul>
