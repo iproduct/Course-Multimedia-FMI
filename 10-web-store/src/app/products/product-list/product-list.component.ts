@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PRODUCTS } from '../mock-data';
+import Product from '../product.model';
 
 @Component({
   selector: 'ws-product-list',
@@ -8,6 +9,7 @@ import { PRODUCTS } from '../mock-data';
 })
 export class ProductListComponent implements OnInit {
   products = PRODUCTS;
+  selectedProduct: Product;
 
   constructor() { }
 

@@ -1,5 +1,6 @@
 <ul class="items">
-  <li *ngFor="let product of products; let i = index;">
+  <li *ngFor="let product of products; let i = index;" (click)="selectedProduct=product;">
     <span class="badge">{{i + 1}}</span> {{product.name}} - {{product.description}} - {{product.price}}
   </li>
 </ul>
+<ws-product-detail *ngIf="selectedProduct" [product]="selectedProduct"></ws-product-detail>

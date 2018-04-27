@@ -1,0 +1,14 @@
+<form (ngSubmit)="submitProduct()" class="product-form">
+  <mat-form-field class="input-full-width">
+    <input matInput type="text" placeholder="Product ID" name="id" disabled [ngModel]="product.id" />
+  </mat-form-field>
+  <mat-form-field class="input-full-width">
+    <input matInput type="text" placeholder="Name" name="name" [(ngModel)]="product.name" />
+  </mat-form-field>
+  <mat-form-field class="input-full-width">
+    <input matInput type="text" placeholder="Description" name="dscription" [(ngModel)]="product.description" />
+  </mat-form-field>
+  <mat-form-field class="input-full-width">
+    <input matInput type="text" placeholder="Price" name="price" [(ngModel)]="product.price" />
+  </mat-form-field>
+</form>
