@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     BrowserAnimationsModule,
     MatInputModule,
+    MatButtonModule,
   ],
   declarations: [
     ProductListComponent,

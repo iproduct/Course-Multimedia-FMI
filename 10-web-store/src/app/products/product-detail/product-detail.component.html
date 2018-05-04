@@ -1,14 +1,22 @@
-<form (ngSubmit)="submitProduct()" class="product-form">
+<form #form="ngForm" (ngSubmit)="submitProduct()" class="product-form">
   <mat-form-field class="input-full-width">
-    <input matInput type="text" placeholder="Product ID" name="id" disabled [ngModel]="product.id" />
+    <input matInput type="text" placeholder="Product ID" name="id" disabled 
+      [ngModel]="editedProduct.id" />
   </mat-form-field>
   <mat-form-field class="input-full-width">
-    <input matInput type="text" placeholder="Name" name="name" [(ngModel)]="product.name" />
+    <input matInput type="text" required placeholder="Name" name="name" 
+      [(ngModel)]="editedProduct.name" />
   </mat-form-field>
   <mat-form-field class="input-full-width">
-    <input matInput type="text" placeholder="Description" name="dscription" [(ngModel)]="product.description" />
+    <input matInput type="text" placeholder="Description" name="description" 
+      [(ngModel)]="editedProduct.description" />
   </mat-form-field>
   <mat-form-field class="input-full-width">
-    <input matInput type="text" placeholder="Price" name="price" [(ngModel)]="product.price" />
+    <input matInput type="number" required min="0" pattern="^(\d+(\.\d+)?)$"
+      placeholder="Price" name="price" [(ngModel)]="editedProduct.price" />
   </mat-form-field>
+  <button type="submit" mat-raised-button color="primary"
+    [disabled]="form.pristine || form.invalid">Submit</button>
+  <button type="button" mat-raised-button color="warn" (click)="resetProduct()">Reset</button>
+  <button type="button" mat-raised-button (click)="cancel()">Cancel</button>
 </form>

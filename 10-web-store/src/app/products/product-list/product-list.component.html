@@ -1,6 +1,10 @@
+
+<button type="button" mat-raised-button (click)="addNewProduct()">Add New Product</button>
 <ul class="items">
-  <li *ngFor="let product of products; let i = index;" (click)="selectedProduct=product;">
+  <li *ngFor="let product of products; let i = index;" (click)="selectProduct(product)"
+    [class.selected]="product === selectedProduct" >
     <span class="badge">{{i + 1}}</span> {{product.name}} - {{product.description}} - {{product.price}}
   </li>
 </ul>
-<ws-product-detail *ngIf="selectedProduct" [product]="selectedProduct"></ws-product-detail>
+<ws-product-detail *ngIf="selectedProduct || isNewProduct" [product]="selectedProduct" 
+  (productEdited)="editProduct($event)" ></ws-product-detail>
