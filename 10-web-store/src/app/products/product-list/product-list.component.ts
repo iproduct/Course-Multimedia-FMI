@@ -10,13 +10,17 @@ import { ProductsService } from '../products.service';
 })
 export class ProductListComponent implements OnInit {
   products: Product[];
+  errors: string;
   selectedProduct: Product;
   isNewProduct = false;
 
   constructor(private productService: ProductsService) { }
 
   ngOnInit() {
-    this.products = this.productService.findAll();
+    this.productService.findAll().subscribe(
+      (products) => this.products = products,
+      (err) => this.errors = err
+    );
   }
 
   selectProduct(product: Product) {
@@ -32,7 +36,8 @@ export class ProductListComponent implements OnInit {
   editProduct(product: Product) {
     if (product) {
       if (this.isNewProduct) {
-        this.products.push(product);
+        this.productService.create(product)
+          .subscribe(p => this.products.push(p));
       } else {
         const index = this.products.findIndex(prod => prod.id === product.id);
         this.products.splice(index, 1, product);

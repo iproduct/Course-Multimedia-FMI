@@ -7,11 +7,13 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ProductsService } from './products.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,

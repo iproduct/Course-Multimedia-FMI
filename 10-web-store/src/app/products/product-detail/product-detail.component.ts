@@ -24,7 +24,7 @@ export class ProductDetailComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     if (!this.product || !this.product.id) {
       this.isNewProduct = true;
-      this.product = new Product('' + Date.now(), undefined, undefined, undefined);
+      this.product = new Product(undefined, undefined, undefined, undefined);
       this.resetProduct();
     }
     if (changes['product'].currentValue !== changes['product'].previousValue) {
