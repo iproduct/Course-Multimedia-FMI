@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PRODUCTS } from '../mock-data';
 import Product from '../product.model';
+import { ProductsService } from '../products.service';
 
 @Component({
   selector: 'ws-product-list',
@@ -8,13 +9,14 @@ import Product from '../product.model';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  products = PRODUCTS;
+  products: Product[];
   selectedProduct: Product;
   isNewProduct = false;
 
-  constructor() { }
+  constructor(private productService: ProductsService) { }
 
   ngOnInit() {
+    this.products = this.productService.findAll();
   }
 
   selectProduct(product: Product) {
