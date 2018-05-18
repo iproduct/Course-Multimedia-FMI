@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PRODUCTS } from '../mock-data';
 import Product from '../product.model';
 import { ProductsService } from '../products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'ws-product-list',
@@ -14,7 +15,8 @@ export class ProductListComponent implements OnInit {
   selectedProduct: Product;
   isNewProduct = false;
 
-  constructor(private productService: ProductsService) { }
+  constructor(private productService: ProductsService,
+    private router: Router) { }
 
   ngOnInit() {
     this.productService.findAll().subscribe(
@@ -26,6 +28,7 @@ export class ProductListComponent implements OnInit {
   selectProduct(product: Product) {
     this.selectedProduct = product;
     this.isNewProduct = false;
+    this.router.navigate(['products', product.id]);
   }
 
   addNewProduct() {

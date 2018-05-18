@@ -29,6 +29,14 @@ export class ProductsService {
     );
   }
 
+  find(id: string): Observable<Product> {
+    const productUrl = `${API_URL}/products/${id}`;
+    return this.http.get<ProductsResponse>(productUrl).pipe(
+      map(resp => resp.data),
+      catchError(this.handleError)
+    );
+  }
+
   create(product: Product): Observable<Product> {
     const productsUrl = `${API_URL}/products`;
     return this.http.post<ProductResponse>(productsUrl, product).pipe(

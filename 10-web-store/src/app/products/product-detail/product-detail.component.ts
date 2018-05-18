@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import Product from '../product.model';
 import { NgForm } from '@angular/forms';
+import { ProductsService } from '../products.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { map, switchMap, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'ws-product-detail',
@@ -12,12 +15,25 @@ export class ProductDetailComponent implements OnInit, OnChanges {
   @Output() productEdited = new EventEmitter<Product>();
   editedProduct: Product;
   isNewProduct = false;
+  error: string;
 
   @ViewChild('form') form: NgForm;
 
-  constructor() { }
+  constructor(private productsService: ProductsService,
+    private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.route.paramMap.pipe(
+      map(parmMap => parmMap.get('productId') as string),
+      filter(id => !!id),
+      switchMap(id => this.productsService.find(id))
+    ).subscribe(
+      product => {
+        this.product = product || this.product;
+        this.resetProduct();
+      },
+      err => this.error = err
+    );
     this.resetProduct();
   }
 
