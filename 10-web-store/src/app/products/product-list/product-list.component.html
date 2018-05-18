@@ -1,5 +1,8 @@
 
 <button type="button" mat-raised-button (click)="addNewProduct()">Add New Product</button>
+
+<div class="errors" *ngIf="errors">{{errors}}</div>
+
 <ul class="items">
   <li *ngFor="let product of products; let i = index;" (click)="selectProduct(product)"
     [class.selected]="product === selectedProduct" >

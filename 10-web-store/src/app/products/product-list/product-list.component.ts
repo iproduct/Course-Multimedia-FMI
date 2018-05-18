@@ -37,7 +37,13 @@ export class ProductListComponent implements OnInit {
     if (product) {
       if (this.isNewProduct) {
         this.productService.create(product)
-          .subscribe(p => this.products.push(p));
+          .subscribe(
+            p => {
+              this.products.push(p);
+              this.errors = undefined;
+            },
+            err => this.errors = err
+          );
       } else {
         const index = this.products.findIndex(prod => prod.id === product.id);
         this.products.splice(index, 1, product);

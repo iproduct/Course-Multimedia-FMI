@@ -1,4 +1,4 @@
-import {map} from 'rxjs/operators';
+import {map, catchError} from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import Product from './product.model';
@@ -24,14 +24,16 @@ export class ProductsService {
   findAll(): Observable<Product[]> {
     const productsUrl = `${API_URL}/products`;
     return this.http.get<ProductsResponse>(productsUrl).pipe(
-      map(resp => resp.data)
+      map(resp => resp.data),
+      catchError(this.handleError)
     );
   }
 
   create(product: Product): Observable<Product> {
     const productsUrl = `${API_URL}/products`;
     return this.http.post<ProductResponse>(productsUrl, product).pipe(
-      map(resp => resp.data)
+      map(resp => resp.data),
+      catchError(this.handleError)
     );
   }
 
