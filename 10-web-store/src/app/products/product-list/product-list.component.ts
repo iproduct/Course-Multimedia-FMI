@@ -34,6 +34,7 @@ export class ProductListComponent implements OnInit {
   addNewProduct() {
     this.selectedProduct = undefined;
     this.isNewProduct = true;
+    this.router.navigate(['products', 'add']);
   }
 
   editProduct(product: Product) {
@@ -51,6 +52,7 @@ export class ProductListComponent implements OnInit {
         const index = this.products.findIndex(prod => prod.id === product.id);
         this.products.splice(index, 1, product);
       }
+      this.router.navigate(['products', product.id]);
     }
     this.selectedProduct = undefined;
     this.isNewProduct = false;

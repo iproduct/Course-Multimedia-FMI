@@ -15,7 +15,7 @@ export class ProductDetailComponent implements OnInit, OnChanges {
   @Output() productEdited = new EventEmitter<Product>();
   editedProduct: Product;
   isNewProduct = false;
-  error: string;
+  errors: string;
 
   @ViewChild('form') form: NgForm;
 
@@ -32,7 +32,7 @@ export class ProductDetailComponent implements OnInit, OnChanges {
         this.product = product || this.product;
         this.resetProduct();
       },
-      err => this.error = err
+      err => this.errors = err
     );
     this.resetProduct();
   }
@@ -50,6 +50,26 @@ export class ProductDetailComponent implements OnInit, OnChanges {
 
   submitProduct() {
     this.productEdited.emit({ ...this.editedProduct});
+    if (this.product && this.product.id ) {
+      this.productsService.update({ ...this.editedProduct})
+        .subscribe(
+          product => {
+            this.product = product;
+            this.errors = undefined;
+            this.router.navigate(['/products']);
+          },
+          err => this.errors = err
+        );
+    } else {
+      this.productsService.create({ ...this.editedProduct}).subscribe(
+        product => {
+          this.product = product;
+          this.errors = undefined;
+          this.router.navigate(['/products']);
+        },
+        err => this.errors = err
+      );
+    }
   }
 
   cancel() {

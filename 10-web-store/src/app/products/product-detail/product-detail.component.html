@@ -1,4 +1,6 @@
 <form #form="ngForm" (ngSubmit)="submitProduct()" class="product-form">
+  <div class="errors" *ngIf="errors">{{errors}}</div>
+  
   <mat-form-field class="input-full-width">
     <input matInput type="text" placeholder="Product ID" name="id" disabled 
       [ngModel]="editedProduct.id" />

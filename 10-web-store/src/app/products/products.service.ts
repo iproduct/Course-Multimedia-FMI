@@ -45,6 +45,22 @@ export class ProductsService {
     );
   }
 
+  update(product: Product): Observable<Product> {
+    const productUrl = `${API_URL}/products/${product.id}`;
+    return this.http.put<ProductResponse>(productUrl, product).pipe(
+      map(resp => resp.data),
+      catchError(this.handleError)
+    );
+  }
+
+  delete(id: string): Observable<Product> {
+    const productUrl = `${API_URL}/products/${id}`;
+    return this.http.delete<ProductsResponse>(productUrl).pipe(
+      map(resp => resp.data),
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // Client-side or network error
