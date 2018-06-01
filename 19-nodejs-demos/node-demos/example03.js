@@ -1,5 +1,5 @@
 var irc = require('irc');
-var client = new irc.Client('irc.freenode.net', 'my_bot3', {
+var client = new irc.Client('irc.freenode.net', 'my_bot11', {
   channels: ['#node_channel']
 });
 

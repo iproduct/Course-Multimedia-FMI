@@ -26,7 +26,7 @@ class MemoryWatcher extends EventEmitter {
 
 //Use it!
 var watcher = new MemoryWatcher({
-  maxBytes: 25200000,
+  maxBytes: 26000000,
   frequency: 500
   
 });
