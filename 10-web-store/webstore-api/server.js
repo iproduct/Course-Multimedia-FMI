@@ -21,8 +21,6 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-'use strict';
-
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
@@ -60,7 +58,7 @@ app.use(function (req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function (err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.json({
       message: err.message,
       error: err
     });
@@ -70,7 +68,7 @@ if (app.get('env') === 'development') {
   // no stacktraces leaked to user
   app.use(function (err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.json({
       message: err.message,
       error: {}
     });
@@ -82,7 +80,9 @@ const url = 'mongodb://localhost:27017/webstore';
 
 //Use connect to connect to db
 MongoClient.connect(url, { db: { w: 1 } }).then((db) => {
-  // assert.equal(null, err);
+  if (db === null) {
+    throw new Error(`Can not connect tpo database: ${url}`);
+  }
   console.log(`Successfully connected to MongoDB server at: ${url}`);
 
   //Add db as app local property
