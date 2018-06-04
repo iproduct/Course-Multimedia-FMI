@@ -29,10 +29,10 @@ var result = employees.filter(
     return employee.age < 40;
   })
   .map((emp, index) => ({ name: emp.name.toUpperCase(), index, age: emp.age }))
-  .reduce( (accum, res) => accum + res.age, 0);
-  // .forEach((res) =>
-  //   console.log(`${res.index} -> ${res.name}, ${res.age}`)
-  // );
+  // .reduce( (accum, res) => accum + res.age, 0);
+  .forEach((res) =>
+    console.log(`${res.index} -> ${res.name}, ${res.age}`)
+  );
 
 console.log(result);
 
