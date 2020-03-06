@@ -36,6 +36,12 @@ export class RepositoryImpl {
     getNextId() {
         return ++RepositoryImpl.nextId;
     }
+    *[Symbol.iterator]() {
+        const array = Array.from(this.entities.values());
+        for (let i = 0; i < array.length; i++) {
+            yield array[i];
+        }
+    }
 }
 RepositoryImpl.nextId = 0;
 //# sourceMappingURL=repository.js.map

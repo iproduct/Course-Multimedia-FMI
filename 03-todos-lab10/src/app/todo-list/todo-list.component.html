@@ -1,0 +1,5 @@
+<ul class="todos items">
+  <li *ngFor="let todo of todos; let i = index">
+    {{i + 1}}. {{todo.title}}: {{getStatus(todo.status)}}
+  </li>
+</ul>

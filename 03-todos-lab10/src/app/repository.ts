@@ -14,15 +14,15 @@ export interface Repository<T extends Identifiable> extends Iterable<T> {
     create(entity: T): T;
     update(entity: T): T | undefined;
     deleteById: EntityByIdGetter<T>;
-    
+
 }
 
-export class RepositoryImpl<T extends Identifiable> implements Repository<T>{
+export class RepositoryImpl<T extends Identifiable> implements Repository<T> {
     private static nextId = 0;
     private entities = new Map<IdType, T>();
     findAll(): T[] {
         return Array.from(this.entities.values());
-    }    
+    }
     findById(id: IdType): T | undefined {
         return this.entities.get(id);
     }
@@ -33,17 +33,17 @@ export class RepositoryImpl<T extends Identifiable> implements Repository<T>{
     }
     update(entity: T): T | undefined {
         const found = this.entities.get(entity.id);
-        if(found) {
+        if (found) {
             this.entities.set(entity.id, entity);
             return entity;
         } else {
             return undefined;
         }
-        
+
     }
     deleteById(id: IdType): T | undefined {
         const found = this.entities.get(id);
-        if(found) {
+        if (found) {
             this.entities.delete(id);
             return found;
         } else {
@@ -67,10 +67,10 @@ export class RepositoryImpl<T extends Identifiable> implements Repository<T>{
 
     * [Symbol.iterator]() {
         const array = Array.from(this.entities.values());
-        for(let i = 0; i< array.length; i++) {
+        for (let i = 0; i < array.length; i++) {
             yield array[i];
         }
     }
 
 }
-// 
+//

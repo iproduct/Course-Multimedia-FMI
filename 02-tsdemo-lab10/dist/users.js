@@ -2,7 +2,7 @@ export var Role;
 (function (Role) {
     Role[Role["CUSTOMER"] = 1] = "CUSTOMER";
     Role[Role["MANAGER"] = 2] = "MANAGER";
-    Role[Role["ADMIN"] = 3] = "ADMIN";
+    Role[Role["ADMIN"] = 4] = "ADMIN";
 })(Role || (Role = {}));
 export class UserImpl {
     constructor(id, firstName, lastName, email, password, roles, contact) {

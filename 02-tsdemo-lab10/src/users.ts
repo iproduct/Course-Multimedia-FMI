@@ -21,8 +21,8 @@ export interface User extends Person {
 
 export enum Role {
   CUSTOMER = 1,
-  MANAGER,
-  ADMIN
+  MANAGER = 2,
+  ADMIN = 4
 }
 
 export class UserImpl implements User {
