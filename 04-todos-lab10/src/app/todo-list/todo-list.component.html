@@ -1,0 +1,7 @@
+<td-todo-input (newTodo)="addTodo($event)"></td-todo-input>
+<ul class="todos items">
+  <li *ngFor="let todo of todos; let i = index">
+    <td-todo-item [todo]="todo" [index]="i" (statusChange)="statusChanged($event)">
+    </td-todo-item>
+  </li>
+</ul>
