@@ -1,0 +1,22 @@
+<div fxLayout.lt-sm="column" fxLayout.sm="raw wrap" fxLayoutAlign="start start"
+  fxLayoutGap="30px">
+  <div fxLayout="column" class="product-card-container" fxLayoutGap="5px">
+    <mat-card class="product-card" *ngFor="let product of products; let i = index">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image">
+          <img mat-card-image [src]="product.imageUrl" alt="Photo of a Shiba Inu">
+        </div>
+        <mat-card-title>
+          {{product.name}} - {{product.price | currency:'USD':'symbol':'1.2-2'}}
+        </mat-card-title>
+        <mat-card-subtitle>{{product.description}}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+    <!-- <ws-product-details [product]="product"></ws-product-details> -->
+</div>
