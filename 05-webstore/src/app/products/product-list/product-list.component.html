@@ -1,7 +1,12 @@
-<div fxLayout.lt-sm="column" fxLayout.sm="raw wrap" fxLayoutAlign="start start"
+<div class="product-list-header" fxLayout.lt-sm="column" fxLayout.sm="raw wrap" fxLayoutAlign="start start"
+  fxLayoutGap="30px">
+  <h3>Products Available: </h3>
+</div>
+<div class="product-wrapper" fxLayout.lt-sm="column" fxLayout.sm="raw wrap" fxLayoutAlign="start start"
   fxLayoutGap="30px">
   <div fxLayout="column" class="product-card-container" fxLayoutGap="5px">
-    <mat-card class="product-card" *ngFor="let product of products; let i = index">
+    <mat-card class="product-card" *ngFor="let product of products; let i = index" (click)="selectProduct(product)"
+      [class.selected]="product.id === selectedProduct?.id">
       <mat-card-header>
         <div mat-card-avatar class="example-header-image">
           <img mat-card-image [src]="product.imageUrl" alt="Photo of a Shiba Inu">
@@ -18,5 +23,7 @@
       </mat-card-actions>
     </mat-card>
   </div>
-    <!-- <ws-product-details [product]="product"></ws-product-details> -->
+  <ws-product-details-reactive class="product-details" *ngIf="selectedProduct" [product]="selectedProduct" mode="edit"
+    (productChange)="productChanged($event)" (cancelChange)="productCanceled()" >
+  </ws-product-details-reactive>
 </div>

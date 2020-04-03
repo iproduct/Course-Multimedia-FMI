@@ -26,6 +26,10 @@
   background-color: blanchedalmond;
 }
 
+mat-card.product-card.selected {
+  background-color: rgb(255, 152, 56);
+}
+
 .product-header {
   width: 70%;
 }
@@ -51,3 +55,9 @@
   min-width: 3em;
   padding: 0px;
 }
+
+.product-details {
+  width: 800px;
+}
+
+

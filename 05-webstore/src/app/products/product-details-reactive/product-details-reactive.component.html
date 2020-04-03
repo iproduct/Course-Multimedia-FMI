@@ -1,12 +1,12 @@
-<mat-card *ngIf="mode === 'present' && masterProduct" class="product-card-detail">
+<mat-card *ngIf="mode === 'present' && product" class="product-card-detail">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image">
-      <img mat-card-image [src]="masterProduct.imageUrl" alt="Product photo">
+      <img mat-card-image [src]="product.imageUrl" alt="Product photo">
     </div>
     <mat-card-title>
-      {{masterProduct.name}} - {{masterProduct.price | currency:'USD':'symbol':'1.2-2'}}
+      {{product.name}} - {{product.price | currency:'USD':'symbol':'1.2-2'}}
     </mat-card-title>
-    <mat-card-subtitle>{{masterProduct.description}}</mat-card-subtitle>
+    <mat-card-subtitle>{{product.description}}</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-actions>
@@ -15,7 +15,7 @@
   </mat-card-actions>
 </mat-card>
 
-<mat-card *ngIf="mode === 'edit' && masterProduct" class="product-card-detail">
+<mat-card *ngIf="mode === 'edit' && product" class="product-card-detail">
   <mat-card-header>
     <div mat-card-avatar class="example-header-image">
       <img mat-card-image [src]="product.imageUrl" alt="Product photo">
@@ -26,27 +26,24 @@
   </mat-card-header>
 
   <mat-card-content>
-    <form #f="ngForm" class="product-form">
+    <form [formGroup]="form" class="product-form">
       <mat-form-field>
-        <input readonly matInput type="text" id="id" name="id" [(ngModel)]="product.id" placeholder="Product Id">
+        <input readonly matInput type="text" id="id" name="id" formControlName="id" placeholder="Product Id">
       </mat-form-field>
       <mat-form-field>
-        <input required minlength="2" maxlength="30" matInput type="text" id="name" name="name"
-          [(ngModel)]="product.name" placeholder="Product Name">
-          <mat-error *ngIf="formErrors.name">{{ formErrors.name }}</mat-error>
+        <input matInput type="text" id="name" name="name" formControlName="name" placeholder="Product Name">
+        <mat-error *ngIf="formErrors.name">{{ formErrors.name }}</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input required matInput type="number" id="price" name="price" [(ngModel)]="product.price" placeholder="Product Price"
-          pattern="^[\d.]+$">
+        <input matInput type="number" id="price" name="price" formControlName="price" placeholder="Product Price">
         <mat-error *ngIf="formErrors.price">{{ formErrors.price }}</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input required matInput type="text" id="description" name="description" [(ngModel)]="product.description"
-        placeholder="Product Description">
+        <input matInput type="text" id="description" name="description" formControlName="description" placeholder="Product Description">
         <mat-error *ngIf="formErrors.description">{{ formErrors.description }}</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input pattern="^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$" matInput type="text" id="imageUrl" name="imageUrl" [(ngModel)]="product.imageUrl" placeholder="Product Image URL">
+        <input matInput type="text" id="imageUrl" name="imageUrl" formControlName="imageUrl" placeholder="Product Image URL">
         <mat-error *ngIf="formErrors.imageUrl">{{ formErrors.imageUrl }}</mat-error>
       </mat-form-field>
     </form>
@@ -54,8 +51,9 @@
 
   <mat-card-actions>
     <button mat-raised-button color="primary" (click)="submitProduct()"
-      [disabled]="f.pristine || f.invalid">Submit</button>
+      [disabled]="form.pristine || form.invalid">Submit</button>
     <button mat-raised-button color="warn" (click)="resetProduct()">Reset</button>
     <button mat-raised-button (click)="cancelProduct()">Cancel</button>
   </mat-card-actions>
 </mat-card>
+

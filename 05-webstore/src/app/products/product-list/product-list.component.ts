@@ -10,10 +10,23 @@ import { Product } from '../products.model';
 export class ProductListComponent implements OnInit {
 
   products: Product[] = PRODUCTS as Product[];
+  selectedProduct: Product;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  selectProduct(product) {
+    this.selectedProduct = product;
+  }
+
+  productChanged(product: Product) {
+    this.products = this.products.map(p => p.id === product.id ? product : p);
+  }
+
+  productCanceled() {
+    this.selectedProduct = undefined;
   }
 
 }
