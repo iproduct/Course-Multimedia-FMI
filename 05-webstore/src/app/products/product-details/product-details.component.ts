@@ -1,13 +1,15 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChange, SimpleChanges, AfterViewChecked, ViewChild } from '@angular/core';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter, SimpleChange,
+  SimpleChanges, AfterViewChecked, ViewChild, OnDestroy } from '@angular/core';
 import { Product } from '../products.model';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'ws-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.css']
 })
-export class ProductDetailsComponent implements OnInit, OnChanges, AfterViewChecked {
+export class ProductDetailsComponent implements OnInit, OnDestroy, OnChanges, AfterViewChecked {
   @Input('product') masterProduct: Product;
   @Input() mode = 'present';
   @Output() productChange = new EventEmitter<Product>();
@@ -16,6 +18,7 @@ export class ProductDetailsComponent implements OnInit, OnChanges, AfterViewChec
 
   product: Product = new Product(undefined, undefined, undefined);
   previousForm: NgForm;
+  statusSubscription: Subscription;
 
   formErrors = {
     name: '',
@@ -45,6 +48,7 @@ export class ProductDetailsComponent implements OnInit, OnChanges, AfterViewChec
 
   constructor() { }
 
+
   ngOnInit(): void {
     this.resetProduct();
   }
@@ -58,10 +62,14 @@ export class ProductDetailsComponent implements OnInit, OnChanges, AfterViewChec
   ngAfterViewChecked(): void {
     if (this.form && this.form !== this.previousForm) {
       this.previousForm = this.form;
-      this.form.statusChanges.subscribe(status => this.onStatusChanged());
+      if (this.statusSubscription) { this.statusSubscription.unsubscribe(); }
+      this.statusSubscription = this.form.statusChanges.subscribe(status => this.onStatusChanged());
     }
   }
 
+  ngOnDestroy(): void {
+    if (this.statusSubscription) { this.statusSubscription.unsubscribe(); }
+  }
 
   submitProduct() {
     this.masterProduct = Object.assign({}, this.product);
