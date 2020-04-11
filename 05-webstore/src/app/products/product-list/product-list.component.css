@@ -60,4 +60,8 @@ mat-card.product-card.selected {
   width: 800px;
 }
 
+.add-product-button {
+  float: right;
+}
+
 

@@ -6,7 +6,7 @@ import { PRODUCTS } from '../products/mock-products';
 
 @Injectable()
 export class PromiseBackendMockService implements PromiseBackendService {
-  private static nextId = 0;
+  private static nextId = PRODUCTS.length;
   private entityMap = new Map<string, Identifiable[]>();
 
   constructor() {

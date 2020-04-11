@@ -1,6 +1,9 @@
-<div class="product-list-header" fxLayout.lt-sm="column" fxLayout.sm="raw wrap" fxLayoutAlign="start start"
-  fxLayoutGap="30px">
+<div class="product-list-header" fxLayout.sm="raw wrap" fxLayoutAlign="start center"  fxLayoutGap="30px">
   <h3>Products Available: </h3>
+  <button class="add-product-button" mat-raised-button color="primary" (click)="addProduct()">
+    <mat-icon mat-button>add_to_photos</mat-icon>
+    Add Product
+  </button>
 </div>
 <div class="product-wrapper" fxLayout.lt-sm="column" fxLayout.sm="raw wrap" fxLayoutAlign="start start"
   fxLayoutGap="30px">

@@ -1,4 +1,7 @@
 import { Identifiable, ResourceType, IdType } from '../shared/shared-types';
+import { InjectionToken } from '@angular/core';
+
+export const PROMISE_BACKEND = new InjectionToken<PromiseBackendService>('PromiseBackendService');
 
 export interface PromiseBackendService {
   findAll<T extends Identifiable>(kind: ResourceType<T>): Promise<T[]>;
