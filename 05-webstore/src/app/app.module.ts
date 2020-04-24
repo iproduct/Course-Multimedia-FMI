@@ -9,6 +9,8 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { RxDemoModule } from './rx-demo/rx-demo.module';
+import { WikiModule } from './wiki/wiki.module';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     ProductsModule,
     BrowserAnimationsModule,
     MatSidenavModule,
+    RxDemoModule,
+    WikiModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
