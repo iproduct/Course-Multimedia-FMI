@@ -20,7 +20,7 @@ const routes: Routes = [
     // canLoad: [AuthGuardService],
     loadChildren: () => import('./products/products.module').then(mod => mod.ProductsModule),
     data: {
-      preload: true,
+      preload: false,
       // rolesAllowed: [Role.CUSTOMER],
     }
   },
