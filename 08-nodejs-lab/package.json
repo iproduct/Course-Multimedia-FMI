@@ -1,0 +1,34 @@
+{
+  "name": "08-nodejs-lab",
+  "version": "1.0.0",
+  "description": "nodejs lab",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently --kill-others \"npm run server\" \"npm run livereload\"",
+    "livereload": "livereload ./http2.js -w 1000 -d",
+    "server": "nodemon -w ./http2.js ./http2.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iproduct/Course-Multimedia-FMI.git"
+  },
+  "keywords": [
+    "nodejs",
+    "demo",
+    "lab"
+  ],
+  "author": "Trayan Iliev",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/iproduct/Course-Multimedia-FMI/issues"
+  },
+  "homepage": "https://github.com/iproduct/Course-Multimedia-FMI#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.4",
+    "concurrently": "^5.2.0",
+    "livereload": "^0.9.1"
+  },
+  "dependencies": {
+  }
+}
