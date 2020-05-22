@@ -1,0 +1,36 @@
+{
+  "name": "09-express-rest-lab",
+  "version": "1.0.0",
+  "description": "express rest demo",
+  "main": "index.js",
+  "scripts": {
+    "start":  "concurrently --kill-others \"npm run nodemon\" \"npm run livereload\"",
+    "nodemon": "nodemon -w ./ ./server.js localhost 3000",
+    "livereload": "livereload . -w 1000 -d",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iproduct/Course-Multimedia-FMI.git"
+  },
+  "keywords": [
+    "express",
+    "rest",
+    "api",
+    "demo"
+  ],
+  "author": "Trayn Iliev",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/iproduct/Course-Multimedia-FMI/issues"
+  },
+  "homepage": "https://github.com/iproduct/Course-Multimedia-FMI#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "livereload": "^0.9.1",
+    "nodemon": "^2.0.4"
+  }
+}
