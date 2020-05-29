@@ -1,0 +1,18 @@
+.messages-enter {
+  opacity: 0.01;
+}
+
+.messages-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+
+.messages-exit {
+  opacity: 1;
+}
+
+.messages-exit-active {
+  opacity: 0.01;
+  transition: opacity 1000ms ease-in;
+}
+
