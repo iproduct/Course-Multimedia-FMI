@@ -15,7 +15,7 @@ export const ENTITY_TO_URL_MAP = {
 }
 
 export interface DataResponse<T> {
-  data: T
+  data: T;
 }
 
 @Injectable({
