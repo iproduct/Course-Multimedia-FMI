@@ -79,15 +79,15 @@ if (app.get("env") === "development") {
 }
 
 //Connection URL to db
-const url = 'mongodb://localhost:27017/webstore';
+const url = 'mongodb://localhost:27017';
 
 //Use connect to connect to db
-MongoClient.connect(url, { db: { w: 1 } }).then((db) => {
+MongoClient.connect(url, { db: { w: 1 } }).then((con) => {
   // assert.equal(null, err);
   console.log(`Successfully connected to MongoDB server at: ${url}`);
 
   //Add db as app local property
-  app.locals.db = db.db('webstore');
+  app.locals.db = con.db('webstore');
 
   // Starting the server
   app.listen(9000, (err) => {

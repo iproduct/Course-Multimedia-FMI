@@ -2,8 +2,8 @@ import { Injectable, Inject } from '@angular/core';
 import { User } from './user.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IdType } from '../shared/shared-types';
-import { BACKEND_SERVICE } from '../core/core.module';
+import { IdType } from '../shared/common-types';
+import { BACKEND } from '../core/backend.service';
 import { BackendService } from '../core/backend.service';
 
 @Injectable({
@@ -11,7 +11,7 @@ import { BackendService } from '../core/backend.service';
 })
 export class UserService {
 
-  constructor(@Inject(BACKEND_SERVICE) private backend: BackendService) { }
+  constructor(@Inject(BACKEND) private backend: BackendService) { }
 
   findAll(): Observable<User[]> {
     return this.backend.findAll(User);
@@ -28,7 +28,7 @@ export class UserService {
   }
 
   create(entity: User): Observable<User | undefined> {
-    return this.backend.add(User, entity);
+    return this.backend.create(User, entity);
   }
 
   update(entity: User): Observable<User | undefined> {
@@ -36,7 +36,7 @@ export class UserService {
   }
 
   delete(id: IdType): Observable<User | undefined> {
-    return this.backend.delete(User, id);
+    return this.backend.deleteById(User, id);
   }
 
 }

@@ -19,13 +19,17 @@
       <ws-nav-item (navigate)="closeSidenav()" routerLink="/users" icon="group" hint="Manage Users" tabindex="-1" >
         Users
       </ws-nav-item>
-      <ws-nav-item (navigate)="closeSidenav()" routerLink="/rxdemo" icon="view_list"
+      <ws-nav-item (navigate)="closeSidenav()" routerLink="/rx-demo" icon="view_list"
         hint="RxJS Reactive Demo" tabindex="-1">
         RX Demo
       </ws-nav-item>
       <ws-nav-item (navigate)="closeSidenav()" routerLink="/wiki" icon="view_list"
         hint="Wikipedia Serach Reactive Demo" tabindex="-1">
         Wiki
+      </ws-nav-item>
+      <ws-nav-item (navigate)="closeSidenav()" routerLink="/simple-form" icon="featured_play_list"
+        hint="Simple form demo" tabindex="-1">
+        Form Demo
       </ws-nav-item>
       <ws-nav-item (navigate)="closeSidenav()" *ngIf="loggedIn" routerLink="/users" icon="people"
         hint="Manage users" tabindex="-1">
@@ -40,10 +44,12 @@
   </mat-sidenav>
 
   <ws-toolbar (openMenu)="openSidenav()">
-    IPT WebStore Demo
+    WebStore Demo
   </ws-toolbar>
 
   <div class="container">
       <router-outlet></router-outlet>
+      <ws-messages level="DEBUG"></ws-messages>
   </div>
 </mat-sidenav-container>
+

@@ -27,6 +27,7 @@ export class UserResolver implements Resolve<User | undefined> {
         if (user) {
           return user;
         } else { // id not found
+            // window.history.back();
             this.router.navigate(['/users']);
             return undefined;
         }

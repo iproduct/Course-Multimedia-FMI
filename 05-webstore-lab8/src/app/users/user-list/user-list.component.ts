@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 import { UserService } from '../user.service';
 import { User, Gender, Role } from '../user.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MessageService } from 'src/app/core/message.service';
+import { slideInDownAnimation } from '../../shared/animations';
 
 @Component({
   selector: 'ws-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.css']
+  styleUrls: ['./user-list.component.css'],
+  animations: [ slideInDownAnimation ]
 })
 export class UserListComponent implements OnInit {
+  @HostBinding('@routeAnimation') routeAnimation = true;
   users: User[] = [];
   selectedUser: User;
   selectedMode: string;
@@ -34,7 +37,7 @@ export class UserListComponent implements OnInit {
         this.users = users;
         this.selectedUser = undefined;
       },
-      // err => this.messageService.error(err)
+      err => this.messageService.error(err)
     );
   }
 

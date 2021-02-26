@@ -18,7 +18,7 @@ import { take } from 'rxjs/operators';
 })
 export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges, CanComponentDeactivate {
   @Input() mode = 'present';
-  @Input() product: Product = new Product(undefined, undefined);
+  @Input() product: Product = new Product(null, null, null, null);
   @Output() productModified = new EventEmitter<Product>();
   @Output() productCanceled = new EventEmitter<void>();
   title = 'Product Details';
@@ -150,6 +150,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges, Can
     // Allow navigation if no user or the user data is not changed
     // tslint:disable-next-line:prefer-const
     let rawFormProduct = this.form.getRawValue() as Product;
+    delete rawFormProduct.id;
     if (this.isCanceled || shallowEquals(this.product, rawFormProduct)) {
       return true;
     }

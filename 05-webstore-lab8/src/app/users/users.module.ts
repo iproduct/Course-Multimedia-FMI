@@ -12,12 +12,14 @@ import { MatSelectModule } from '@angular/material';
 import { UsersRoutingModule } from './users-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { UserResolver } from './user-resolver';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     SharedModule,
     FlexLayoutModule,
     MatCardModule,

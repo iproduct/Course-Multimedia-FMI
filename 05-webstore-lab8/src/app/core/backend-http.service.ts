@@ -1,84 +1,96 @@
 import { Injectable } from '@angular/core';
 import { BackendService } from './backend.service';
-import { Identifiable, ResourceType } from '../shared/shared-types';
+import { Identifiable, ResourceType } from '../shared/common-types';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { map, tap, catchError, retry } from 'rxjs/operators';
+import { map, catchError, retry, tap } from 'rxjs/operators';
+import { retryAfter } from '../shared/rx-operators';
+import { LoggerService } from './logger.service';
 
 export const BASE_API_URL = 'http://localhost:4200/api';
-export const COLLECTION_TO_URL_MAP = {
-  'Product': 'products',
-  'User': 'users'
-};
 
-export interface RestResponse<T> {
+export const ENTITY_TO_URL_MAP = {
+  Product: 'products',
+  User: 'users',
+}
+
+export interface DataResponse<T> {
   data: T;
 }
 
-@Injectable()
-export class BackendHttpService implements BackendService {
-  constructor(private http: HttpClient) { }
+@Injectable({
+  providedIn: 'root'
+})
+export class BackendHttpService implements BackendService{
+
+  constructor(private http: HttpClient, private logger: LoggerService) {}
 
   findAll<T extends Identifiable>(kind: ResourceType<T>): Observable<T[]> {
-    const url = `${BASE_API_URL}/${this.getCollectionName(kind)}`;
-    return this.http.get<RestResponse<T[]>>(url).pipe(
-      map(resp => resp.data),
-      tap(entities => console.log(entities)),
-      retry(3),
-      catchError(this.handleError)
-    );
+    return this.http.get<DataResponse<T[]>>(`${BASE_API_URL}/${this.getUrl(kind)}`)
+      .pipe(
+        map(dataResp => dataResp.data),
+        tap(() => {}, err => this.logger.error(err)),
+        retryAfter(3, 1000),
+        catchError(this.handleError)
+      );
   }
   findById<T extends Identifiable>(kind: ResourceType<T>, id: string): Observable<T> {
-    const url = `${BASE_API_URL}/${this.getCollectionName(kind)}/${id}`;
-    return this.http.get<T>(url).pipe(
-      // map(resp => resp.data),
-      tap(fetched => console.log(`Entity fetched ${JSON.stringify(fetched)}`)),
+    return this.http.get<T>(`${BASE_API_URL}/${this.getUrl(kind)}/${id}`)
+    .pipe(
+      retryAfter(3, 1000),
       catchError(this.handleError)
     );
   }
-  add<T extends Identifiable>(kind: ResourceType<T>, entity: T): Observable<T> {
-    const url = `${BASE_API_URL}/${this.getCollectionName(kind)}`;
-    return this.http.post<T>(url, entity).pipe(
-      // map(resp => resp.data),
-      tap(created => console.log(created)),
-      catchError(this.handleError)
-    );
+  create<T extends Identifiable>(kind: ResourceType<T>, entity: T): Observable<T> {
+    return this.http.post<T>(`${BASE_API_URL}/${this.getUrl(kind)}`, entity)
+      .pipe(
+        tap(
+          created => this.logger.log(`${kind.typeId} created: ${JSON.stringify(created)}`),
+          err => this.logger.error(err)
+        ),
+        catchError(this.handleError)
+      );
   }
   update<T extends Identifiable>(kind: ResourceType<T>, entity: T): Observable<T> {
-    const url = `${BASE_API_URL}/${this.getCollectionName(kind)}/${entity.id}`;
-    return this.http.put<T>(url, entity).pipe(
-      // map(resp => resp.data),
-      tap(updated => console.log(`Entity updated ${JSON.stringify(updated)}`)),
-      catchError(this.handleError)
-    );
+    return this.http.put<T>(`${BASE_API_URL}/${this.getUrl(kind)}/${entity.id}`, entity)
+      .pipe(
+        tap(
+          updated => this.logger.log(`${kind.typeId} updated: ${JSON.stringify(updated)}`),
+          err => this.logger.error(err)
+        ),
+        catchError(this.handleError)
+      );
   }
-  delete<T extends Identifiable>(kind: ResourceType<T>, id: string): Observable<T> {
-    const url = `${BASE_API_URL}/${this.getCollectionName(kind)}/${id}`;
-    return this.http.delete<T>(url).pipe(
-      // map(resp => resp.data),
-      tap(deleted => console.log(`Entity deleted ${JSON.stringify(deleted)}`)),
-      catchError(this.handleError)
-    );
+  deleteById<T extends Identifiable>(kind: ResourceType<T>, id: string): Observable<T> {
+    return this.http.delete<T>(`${BASE_API_URL}/${this.getUrl(kind)}/${id}`)
+      .pipe(
+        tap(
+          deleted => this.logger.log(`${kind.typeId} deleted: ${JSON.stringify(deleted)}`),
+          err => this.logger.error(err)
+        ),
+        retryAfter(3, 1000),
+        catchError(this.handleError)
+      );
   }
 
-  protected getCollectionName<T extends Identifiable>(kind: ResourceType<T>): string {
-    return COLLECTION_TO_URL_MAP[kind.typeId];
+  protected getUrl<T extends Identifiable>(kind: ResourceType<T>): string {
+    return ENTITY_TO_URL_MAP[kind.typeId];
   }
 
-  private handleError(error: HttpErrorResponse) {
-    console.log(error);
+  protected handleError(error: HttpErrorResponse) {
+    this.logger.error(error);
     if (error.error instanceof ErrorEvent) {
       // Client-side or network error
-      console.error('Client-side error:', error.error.message);
+      this.logger.error('Client-side error:' + error.error.message);
     } else {
       // Backend unsuccessful status code.
-      console.error(
+      this.logger.error(
         `Backend returned code ${error.status}, ` +
         `body was: ${JSON.stringify(error.error || error)},
         message was: ${JSON.stringify(error.message)}`);
     }
     // return ErrorObservable with a user-facing error message
-    return throwError('Error performing the operation. Correct data and try again.');
+    return throwError(`Error performing the operation: ${error.message ? error.message : ''}. Correct data and try again.`);
   }
 
 }

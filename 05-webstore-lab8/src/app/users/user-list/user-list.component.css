@@ -1,3 +1,9 @@
+:host {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
 .user-list-header {
   width: 500px;
 }

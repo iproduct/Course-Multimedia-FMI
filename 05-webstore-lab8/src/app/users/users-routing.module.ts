@@ -12,9 +12,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { UserDetailReactiveComponent } from './user-detail-reactive/user-detail-reactive.component';
-import { Role } from './user.model';
-import { EmptyComponent } from '../shared/empty.component';
 import { UserResolver } from './user-resolver';
+import { Role } from './user.model';
 import { AuthGuardService } from '../auth/auth-guard.service';
 import { CanDeactivateGuard } from '../core/can-deactivate-guard.service';
 
@@ -22,13 +21,49 @@ import { CanDeactivateGuard } from '../core/can-deactivate-guard.service';
 @NgModule({
   imports: [
     RouterModule.forChild([
+      // {
+      //   path: 'users',
+      //   component: UserListComponent,
+      //   children: [
+      //     {
+      //       path: 'create',
+      //       component: UserDetailReactiveComponent,
+      //       data: {
+      //         mode: 'create',
+      //         title: 'Add New User'
+      //       },
+      //     },
+      //     {
+      //       path: 'present/:userId',
+      //       component: UserDetailReactiveComponent,
+      //       data: {
+      //         mode: 'present',
+      //       },
+      //       resolve: {
+      //         user: UserResolver
+      //       }
+      //     },
+      //     {
+      //       path: 'edit/:userId',
+      //       component: UserDetailReactiveComponent,
+      //       data: {
+      //         mode: 'edit',
+      //         title: 'Edit User Data'
+      //       },
+      //       resolve: {
+      //         user: UserResolver
+      //       }
+      //     },
+      //   ],
+      // }
       {
         path: 'register',
         component: UserDetailReactiveComponent,
+        canDeactivate: [CanDeactivateGuard],
         data: {
           title: 'User Registration',
           mode: 'register'
-        }
+        },
       },
       {
         path: 'users',
@@ -39,11 +74,6 @@ import { CanDeactivateGuard } from '../core/can-deactivate-guard.service';
           rolesAllowed: [Role.ADMIN],
         },
         children: [
-          {
-            path: '',
-            pathMatch: 'full',
-            component: EmptyComponent
-          },
           {
             path: 'create',
             pathMatch: 'full',

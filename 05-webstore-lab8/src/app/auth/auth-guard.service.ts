@@ -10,7 +10,9 @@ import { AuthenticationResult } from './auth.model';
 import { MessageService } from '../core/message.service';
 
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthGuardService implements CanActivate, CanActivateChild, CanLoad {
   private authResult: AuthenticationResult | undefined = undefined;
 

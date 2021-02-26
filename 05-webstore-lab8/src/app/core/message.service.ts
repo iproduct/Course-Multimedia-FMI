@@ -11,28 +11,27 @@ export interface MessageData {
   type: MessageType;
 }
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
 
-  private _messages$ = new Subject<MessageData>();
+  private messages$ = new Subject<MessageData>();
 
   constructor(private router: Router) {
-    router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        this._messages$.next(undefined); // clear messages on route change
-      }
-    });
+    // router.events.subscribe(event => {
+    //   if (event instanceof NavigationStart) {
+    //     this.messages$.next(undefined); // clear messages on route change
+    //   }
+    // });
   }
 
   get messages() {
-    return this._messages$.asObservable();
+    return this.messages$.asObservable();
   }
 
   show(message: string, type: MessageType) {
-    this._messages$.next({ message, type });
+    this.messages$.next({ message, type });
   }
 
   error(message: string) {

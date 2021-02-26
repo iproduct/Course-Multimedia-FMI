@@ -10,6 +10,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatCardModule, MatButtonModule, MatIconModule, MatInputModule, MatSelectModule } from '@angular/material';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth-interceptor';
+import { CachingInterceptor } from '../core/caching-interceptor';
+import { LoggingInterceptor } from '../core/logging-interceptor';
 
 @NgModule({
   imports: [
@@ -27,7 +29,7 @@ import { AuthInterceptor } from './auth-interceptor';
   ],
   declarations: [LoginFormComponent, LoginPageComponent],
   exports: [LoginPageComponent],
-  providers: [AuthGuardService, AuthService,
+  providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
 })

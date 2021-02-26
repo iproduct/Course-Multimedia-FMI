@@ -44,7 +44,7 @@ export class ProductListComponent implements OnInit {
 
   onAddProduct() {
     this.setMode('edit');
-    this.selectProduct(new Product(undefined, undefined));
+    this.selectedProduct = new Product(undefined, undefined);
     this.router.navigate(['products', 'create']);
   }
 

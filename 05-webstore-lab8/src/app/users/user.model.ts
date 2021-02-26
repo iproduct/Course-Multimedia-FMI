@@ -1,4 +1,4 @@
-import { Identifiable, IdType } from '../shared/shared-types';
+import { Identifiable, IdType } from '../shared/common-types';
 
 
 export interface IUser extends Identifiable {

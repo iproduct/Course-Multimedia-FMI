@@ -21,8 +21,9 @@
         [src]="getAvatarUrl()"
         [alt]="user.username ? user.username : ''">
       </div>
-    <mat-card-title>{{user.username}}</mat-card-title>
-  </mat-card-header>
+      <mat-card-title>{{title}}</mat-card-title>
+      <mat-card-title>{{user.username}}</mat-card-title>
+    </mat-card-header>
 
   <form [formGroup]="userForm" class="example-form" (ngSubmit)="submitUser()">
     <mat-card-content>

@@ -9,6 +9,8 @@ import { shallowEquals } from 'src/app/shared/utils';
 import { CanComponentDeactivate } from 'src/app/core/can-deactivate-guard.service';
 import { DialogService } from 'src/app/core/dialog.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { filter, switchMap, tap } from 'rxjs/operators';
+import { LoggerService } from 'src/app/core/logger.service';
 
 @Component({
   selector: 'ws-user-detail-reactive',
@@ -67,7 +69,7 @@ export class UserDetailReactiveComponent implements OnInit, OnChanges, CanCompon
     },
     password: {
       'required': 'Password is required.',
-      'pattern': 'Password should be between 6 and 20 characters, and should conatain at least one letter and one number.'
+      'pattern': 'Password should be between 8 and 20 characters, and should conatain at least one letter and one number.'
     },
     gender: {
       'required': 'Gender is required.'
@@ -80,12 +82,16 @@ export class UserDetailReactiveComponent implements OnInit, OnChanges, CanCompon
     }
   };
 
-  constructor(private route: ActivatedRoute, private router: Router, private fb: FormBuilder,
-              private userService: UserService,
-              private authService: AuthService,
-              private messageService: MessageService,
-              private dialogService: DialogService
-    ) {
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private fb: FormBuilder,
+    private userService: UserService,
+    private authService: AuthService,
+    private messageService: MessageService,
+    private dialogService: DialogService,
+    private logger: LoggerService
+  ) {
     for (const role in Role) {
       if (typeof Role[role] === 'number') {
         this.roles.push({ key: +Role[role], value: role });
@@ -103,22 +109,35 @@ export class UserDetailReactiveComponent implements OnInit, OnChanges, CanCompon
     //   filter(params => params['userId']),
     //   switchMap(params => this.userService.findById(params['userId'])),
     //   tap(user => console.log(user))
-    // ).subscribe(user => {
-    //   this.user = user;
-    //   this.resetUser();
-    // });
+    // ).subscribe(
+    //   user => {
+    //     this.user = user;
+    //     this.isNewUser = false;
+    //     this.resetUser();
+    //   },
+    //   err => this.messageService.error(err)
+    // );
 
     this.route.data
-    .subscribe((data: { user: User, title?: string, mode?: string }) => {
-      this.title = data.title || this.title;
-      this.mode = data.mode || this.mode;
-      const user = data.user;
-      if (user) {
-        this.user = user;
-        this.isNewUser = false;
-        this.resetUser();
-      }
-    });
+    .subscribe(
+      (data: { user: User, title?: string, mode?: string }) => {
+        this.title = data.title || this.title;
+        this.mode = data.mode || this.mode;
+        const user = data.user;
+        if (user) {
+          this.user = user;
+          this.isNewUser = false;
+          this.resetUser();
+        }
+      },
+      err => this.messageService.error(err)
+    );
+
+    this.authService.loggedIn.subscribe(
+      authResult => {
+        this.logger.log(authResult);
+        this.isAdmin = authResult && authResult.user.role === Role.ADMIN;
+      });
 
     this.buildForm();
   }
@@ -152,7 +171,7 @@ export class UserDetailReactiveComponent implements OnInit, OnChanges, CanCompon
         this.user.password,
         [
           Validators.required,
-          Validators.minLength(6),
+          Validators.minLength(8),
           Validators.maxLength(20),
           Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!$%@#£€*?&]{6,20}$/)
         ]
@@ -200,13 +219,13 @@ export class UserDetailReactiveComponent implements OnInit, OnChanges, CanCompon
     this.userChange.emit(this.user);
     if (this.isNewUser) {
       if (this.mode === 'register') {
-      //  this.authService.register(this.user).subscribe(
-        //   u => {
-        //     this.messageService.success(`Successfully registered user: ${u.username}`);
-        //     this.router.navigate(['/login']);
-        //   },
-        //   err => this.messageService.error(err)
-        // );
+        this.authService.register(this.user).subscribe(
+          u => {
+            this.messageService.success(`Successfully registered user: ${u.username}`);
+            this.router.navigate(['/login']);
+          },
+          err => this.messageService.error(err)
+        );
       } else {
         this.userService.create(this.user).subscribe(
           u => {
@@ -259,7 +278,10 @@ export class UserDetailReactiveComponent implements OnInit, OnChanges, CanCompon
 
   public canDeactivate(): Observable<boolean> | boolean {
     // Allow navigation if no user or the user data is not changed
-    if (this.isCanceled || shallowEquals(this.user, this.userForm.getRawValue())) {
+    // tslint:disable-next-line:prefer-const
+    let rawFormUser = this.userForm.getRawValue() as User;
+    delete rawFormUser.password;
+    if (this.isCanceled || shallowEquals(this.user, rawFormUser)) {
       return true;
     }
     // Otherwise ask the user to confirm loosing changes using the dialog service
