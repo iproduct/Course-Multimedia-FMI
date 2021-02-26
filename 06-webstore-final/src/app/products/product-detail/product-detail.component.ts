@@ -151,7 +151,8 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges, Can
     // tslint:disable-next-line:prefer-const
     let rawFormProduct = this.form.getRawValue() as Product;
     delete rawFormProduct.id;
-    if (this.isCanceled || shallowEquals(this.product, rawFormProduct)) {
+    const {id, ...prod_without_id} = this.product;
+    if (this.isCanceled || shallowEquals(prod_without_id, rawFormProduct)) {
       return true;
     }
     // Otherwise ask the user to confirm loosing changes using the dialog service
