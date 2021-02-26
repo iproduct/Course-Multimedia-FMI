@@ -1,0 +1,61 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css"; /*pink-bluegrey.css deeppurple-amber.css */
+@import "assets/themes/jquery-ui.theme.min.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -ms-overflow-style: none;
+  overflow: auto;
+}
+
+body * {
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+h2 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.router-outlet {
+  padding: 0px;
+}
+
+.item-badge {
+  display: inline-block;
+  font-size: small;
+  color: white;
+  padding: 0.6em 0.9em 1em 0.7em;
+  background-color: #607D8B;
+  line-height: 1em;
+  position: relative;
+  left: -1px;
+  top: -4px;
+  height: 2em;
+  width: 2em;
+  margin-right: .8em;
+  border-radius: 50%;
+}
+
+/* Main toolbar */
+
+.mat-toolbar-row {
+  flex-wrap: wrap;
+  height: 72px !important;
+}
+
+.in-toolbar .mat-form-field-ripple {
+  background-color: white;
+}
+
+.in-toolbar .mat-form-field-placeholder {
+  color: lightgray;
+}
+
+.in-toolbar .mat-focused .mat-form-field-placeholder {
+  color: white;
+}

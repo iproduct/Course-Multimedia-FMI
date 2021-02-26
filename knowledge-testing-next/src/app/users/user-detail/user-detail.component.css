@@ -1,0 +1,30 @@
+:host {
+  /*display: block;*/
+  width: 100%;
+  position: relative;
+  flex-basis: 1;
+  flex-grow: 1;
+  min-width: 320px;
+  max-width: 600px;
+  margin: 20px;
+}
+
+.user-detail-conatainer {
+  margin: 20px;
+}
+
+mat-form-field, mat-select, .buttons {
+  width: 90%;
+}
+
+mat-form-field {
+  margin: 0 0 10px;
+}
+
+mat-select {
+  margin: 10px 0 30px;
+}
+
+.buttons {
+  margin-bottom: 50px;
+}
