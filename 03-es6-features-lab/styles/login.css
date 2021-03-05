@@ -1,0 +1,36 @@
+.body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_form input {
+  width: 20vw;
+  margin-bottom: 1rem;
+  padding: 0.6rem;
+  border: 1px solid black;
+  border-radius: 4px;
+  transition: 0.5s all;
+}
+
+.login_form input:nth-of-type(3) {
+  width: 7.5vw;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.5s all;
+  font-size: 1.1rem;
+
+}
+.login_form input:nth-of-type(3):hover {
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./styles/main.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/usersProfile.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- ********* reusing the CSS from main.css for the header *********** -->
+    <header>
+      <h2 class="header_title">MyBlogs</h2>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/usersProfile.html">User's profile</a>
+        <a href="/register.html">Register</a>
+        <a href="/login.html">Login</a>
+      </nav>
+    </header>
+
+    <main class="usersProfile">
+      <section class="create_post">
+        <h3><span class="create_post-button active">Create a post</span> or <span class="edit_profile-button">Edit your profile</span></h3>
+
+        <form class="create_post--form">
+          <input type="text" placeholder="Title" required/>
+          <textarea placeholder="Post's content..." required></textarea>
+          <input type="text" placeholder="Keywords" required/>
+          <div class="create_post--addImage">
+            <label for="myfile">Image:</label>
+            <input type="file" name="myfile" required/>
+          </div>
+          <input type="submit" value="Post" />
+        </form>
+      </section>
+
+      <section>
+        <div class="your_posts">  
+          <h2 class="your_posts-title">Your posts</h2>
+          <input class="your_posts-searchbar" type="text" placeholder="Find a post..."/>
+        </div>
+
+        <!-- ********* reusing the CSS from main.css for the posts *********** -->
+        <div class="posts">
+          <div class="main_posts-post">
+            <i class="fa fa-pencil"></i>
+            <img class="main_posts-post--image" src="./assets/no-image.png" />
+            <h3 class="main_posts-post--title">Title of the post</h3>
+            <p class="main_posts-post--text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, cupiditate nulla impedit unde architecto incidunt laudantium
+              molestiae libero quaerat, nisi modi deserunt maxime
+            </p>
+          </div>
+          <div class="main_posts-post">
+            <i class="fa fa-pencil"></i>
+            <img class="main_posts-post--image" src="./assets/no-image.png" />
+            <h3 class="main_posts-post--title">Title of the post</h3>
+            <p class="main_posts-post--text">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, cupiditate nulla impedit unde architecto incidunt laudantium
+              molestiae libero quaerat, nisi modi deserunt maxime
+            </p>
+          </div>
+        </div>
+        <!-- ********* reusing the CSS from main.css for the pagination *********** -->
+        <div class="main_pagination">
+          <h4 class="main_pagination-arrow">&lt;</h4>
+          <h4 class="main_pagination-number active">1</h4>
+          <h4 class="main_pagination-number">2</h4>
+          <h4 class="main_pagination-number">3</h4>
+          <h4 class="main_pagination-arrow">&gt;</h4>
+        </div>
+      </section>
+    </main>
+    <!-- ********* reusing the CSS from main.css for the footer *********** -->
+    <footer>
+      <i class="fa fa-github-square"></i>
+      <i class="fa fa-linkedin-square"></i>
+      <i class="fa fa-pinterest-square"></i>
+      &copy; Lyuben Tenekedzhiev
+    </footer>
+  <body>
+</body>
+</html>

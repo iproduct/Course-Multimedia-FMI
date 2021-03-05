@@ -1,0 +1,98 @@
+.usersProfile {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ************************************ CREATE / EDIT (left side of the page) ************************************** */
+.create_post-button,
+.edit_profile-button {
+  border: 1px solid black;
+  padding: 0.4rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s all;
+}
+.create_post-button:hover,
+.edit_profile-button:hover {
+  color: white;
+  border: 1px solid white;
+  background-color: black;
+}
+.create_post-button.active {
+  color: white;
+  border: 1px solid white;
+  background-color: black;
+}
+
+.create_post h3 {
+  font-size: 1.2rem;
+  padding: 3rem 0rem;
+}
+.create_post--form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.create_post--form input {
+  width: 20vw;
+  margin-bottom: 1rem;
+  padding: 0.6rem;
+  border: 1px solid black;
+  border-radius: 4px;
+  transition: 0.5s all;
+}
+.create_post--form input:nth-of-type(3) {
+  background-color: white;
+  cursor: pointer;
+  width: 10vw;
+  text-transform: uppercase;
+}
+
+.create_post--form input:nth-of-type(3):hover {
+  color: white;
+  border: 1px solid white;
+  background-color: black;
+}
+.create_post--addImage {
+  display: flex;
+  align-items: baseline;
+}
+.create_post--addImage input {
+  border: none;
+}
+.create_post--form textarea {
+  width: 30vw;
+  height: 200px;
+  padding: 0.5rem;
+  border: 1px solid black;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+/* ********************************** POSTS (right side of the page) ************************************** */
+.posts {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 45vw;
+}
+
+.your_posts {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.your_posts-title {
+  padding: 3rem 0rem 1rem;
+}
+
+.your_posts-searchbar {
+  width: 15vw;
+  margin-top: 2rem;
+  padding: 0.6rem;
+  border: 1px solid black;
+  border-radius: 4px;
+  transition: 0.5s all;
+}

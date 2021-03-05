@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="./styles/main.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script src="src/users/user-repository.js" type="module" ></script>
+    <script src="src/posts/post-repository.js" type="module" ></script>
+    <title>Document</title>
+  </head>
+  <body>
+
+    <header>
+      <h2 class="header_title">MyBlogs</h2>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/usersProfile.html">User's profile</a>
+        <a href="/register.html">Register</a>
+        <a href="/login.html">Login</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="main">
+        <h2 class="main_title">Most recent posts <i class="fa fa-sort-desc"></i></h2>
+        <input class="main_searchbar" type="text" placeholder="Search..."/>
+      </div>
+      <!-- ****************** POSTS *****************-->
+      <section class="main_posts">
+        <div class="main_posts-post">
+          <i class="fa fa-pencil"></i>
+          <img class="main_posts-post--image" src="./assets/no-image.png" />
+          <h3 class="main_posts-post--title">Title of the post</h3>
+          <p class="main_posts-post--text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, cupiditate nulla impedit unde architecto incidunt laudantium
+            molestiae libero quaerat, nisi modi deserunt maxime
+          </p>
+        </div>
+        <div class="main_posts-post">
+          <img class="main_posts-post--image" src="./assets/no-image.png" />
+          <h3 class="main_posts-post--title">Title of the post</h3>
+          <p class="main_posts-post--text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, cupiditate nulla impedit unde architecto incidunt laudantium
+            molestiae libero quaerat, nisi modi deserunt maxime
+          </p>
+        </div>
+        <div class="main_posts-post">
+          <img class="main_posts-post--image" src="./assets/no-image.png" />
+          <h3 class="main_posts-post--title">Title of the post</h3>
+          <p class="main_posts-post--text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, cupiditate nulla impedit unde architecto incidunt laudantium
+            molestiae libero quaerat, nisi modi deserunt maxime
+          </p>
+        </div>
+        <div class="main_posts-post">
+          <img class="main_posts-post--image" src="./assets/no-image.png" />
+          <h3 class="main_posts-post--title">Title of the post</h3>
+          <p class="main_posts-post--text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, cupiditate nulla impedit unde architecto incidunt laudantium
+            molestiae libero quaerat, nisi modi deserunt maxime
+          </p>
+        </div>
+        <div class="main_posts-post">
+          <img class="main_posts-post--image" src="./assets/no-image.png" />
+          <h3 class="main_posts-post--title">Title of the post</h3>
+          <p class="main_posts-post--text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, cupiditate nulla impedit unde architecto incidunt laudantium
+            molestiae libero quaerat, nisi modi deserunt maxime
+          </p>
+        </div>
+        <div class="main_posts-post">
+          <img class="main_posts-post--image" src="./assets/no-image.png" />
+          <h3 class="main_posts-post--title">Title of the post</h3>
+          <p class="main_posts-post--text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, cupiditate nulla impedit unde architecto incidunt laudantium
+            molestiae libero quaerat, nisi modi deserunt maxime
+          </p>
+        </div>
+        <div class="main_posts-post">
+          <img class="main_posts-post--image" src="./assets/no-image.png" />
+          <h3 class="main_posts-post--title">Title of the post</h3>
+          <p class="main_posts-post--text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, cupiditate nulla impedit unde architecto incidunt laudantium
+            molestiae libero quaerat, nisi modi deserunt maxime
+          </p>
+        </div>
+        <div class="main_posts-post">
+          <img class="main_posts-post--image" src="./assets/no-image.png" />
+          <h3 class="main_posts-post--title">Title of the post</h3>
+          <p class="main_posts-post--text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, cupiditate nulla impedit unde architecto incidunt laudantium
+            molestiae libero quaerat, nisi modi deserunt maxime
+          </p>
+        </div>
+      </section>
+      <!-- ****************** PAGINATION *****************-->
+      <div class="main_pagination">
+        <h4 class="main_pagination-arrow">&lt;</h4>
+        <h4 class="main_pagination-number active">1</h4>
+        <h4 class="main_pagination-number">2</h4>
+        <h4 class="main_pagination-arrow">&gt;</h4>
+      </div>
+      <!-- ****************** SIGN IN / SIGN UP BUTTONS *****************-->
+      <section class="main_authentication">
+        <a href="/login.html">Sign in</a> or <a href="/register.html">Sign up</a>
+        <h4>Create a post. Share what's on your mind.</h4>
+      </section>
+    </main>
+
+    <footer>
+      <i class="fa fa-github-square"></i>
+      <i class="fa fa-linkedin-square"></i>
+      <i class="fa fa-pinterest-square"></i>
+      &copy; Lyuben Tenekedzhiev
+    </footer>
+  </body>
+</html>

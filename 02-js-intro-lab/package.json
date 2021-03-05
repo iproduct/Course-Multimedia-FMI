@@ -1,0 +1,15 @@
+{
+  "name": "02-js-intro-lab",
+  "version": "1.0.0",
+  "description": "js intro",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "js",
+    "intro"
+  ],
+  "author": "Trayan Iliev",
+  "license": "Apache-2.0"
+}

@@ -1,0 +1,184 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+
+html {
+  background: linear-gradient(to bottom, #feffff 29%, #d2ebf9 81%);
+}
+
+body {
+  width: 90vw;
+  margin: 0 auto;
+}
+
+/* ********************************** HEADER ************************************** */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 0rem;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  width: 35vw;
+}
+nav a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+  transition: 0.5s all;
+}
+nav a:hover {
+  color: darkblue;
+  border-bottom: 1px solid darkblue;
+}
+.header_title {
+  font-size: 2.5rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* ******************************* FOOTER ************************************** */
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 150px;
+}
+
+/* ******************************* ICONS ************************************** */
+.fa-github-square,
+.fa-linkedin-square,
+.fa-pinterest-square {
+  font-size: 1.75rem !important;
+  margin: 0 1.5rem;
+  cursor: pointer;
+}
+
+.fa-sort-desc {
+  cursor: pointer;
+  padding-left: 5px;
+}
+
+.fa-pencil {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 4px;
+  font-size: 1.3rem !important;
+}
+
+/* ******************************** MAIN - POSTS ************************************** */
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.main_title {
+  font-size: 1.75rem;
+  padding: 2.5rem 0rem 1.5rem 0rem;
+}
+.main_searchbar {
+  width: 20vw;
+  padding: 0.6rem;
+  border: 1px solid black;
+  transition: 0.5s all;
+  border-radius: 4px;
+}
+
+.main_posts {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.main_posts-post {
+  position: relative;
+  width: 20vw;
+  text-align: center;
+  margin: 2rem 0rem;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  cursor: pointer;
+}
+.main_posts-post--image {
+  width: 100%;
+  display: block;
+}
+.main_posts-post--title {
+  padding: 0.5rem 0rem 0rem 0rem;
+  background-color: white;
+}
+.main_posts-post--text {
+  word-break: normal;
+  padding: 0.75rem;
+  background-color: white;
+}
+
+/* ******************************* MAIN - PAGINATION ************************************** */
+.main_pagination {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 15vw;
+  margin: 2rem auto;
+}
+.main_pagination h4 {
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 0.1rem 0.5rem;
+  transition: 0.5s all;
+}
+.main_pagination-number {
+  border: 1px solid black;
+  border-radius: 50%;
+}
+.main_pagination h4.active {
+  border: 1px solid white;
+  color: white;
+  background-color: black;
+}
+.main_pagination-number:hover {
+  border: 1px solid white;
+  color: white;
+  background-color: black;
+}
+
+/* ******************************** MAIN - SIGN IN/UP BUTTONS ************************************** */
+.main_authentication {
+  text-align: center;
+  padding-top: 3rem;
+  margin: 3rem;
+  font-size: 1.5rem;
+}
+.main_authentication a {
+  color: black;
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 0.6rem;
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 0rem 0.5rem;
+  transition: 0.5s all;
+}
+.main_authentication a:hover {
+  color: white;
+  border: 1px solid white;
+  border-radius: 4px;
+  background-color: black;
+}
+
+.main_authentication h4 {
+  margin-top: 2rem;
+  font-size: 2rem;
+  font-weight: 400;
+  border-bottom: 1px solid black;
+  width: 70%;
+  margin: 2rem auto;
+  padding-bottom: 0.5rem;
+}
