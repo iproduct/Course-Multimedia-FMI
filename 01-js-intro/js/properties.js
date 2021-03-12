@@ -1,20 +1,14 @@
 
 var triangle = { a: 1, b: 2, c: 3 };
 
-var coloredTriangle = Object.create(triangle, {
-  color: {
-    value: 'blue',
-    writable: true,
-    enumerable: true,
-    configurable: true
-  },
-  name: {
-    value: 'triangle',
-    writable: true,
-    enumerable: true,
-    configurable: true
-  },
-});
+
+function ColoredTriangle() {
+  this.color = 'red';
+}
+
+ColoredTriangle.prototype = triangle;
+
+coloredTriangle = new ColoredTriangle();
 
 // console.log(coloredTriangle.color);
 
