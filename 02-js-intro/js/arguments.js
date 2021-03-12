@@ -9,9 +9,10 @@ function func1(a1, a2) {
     // expected output: 3
     
     // let args = Array.prototype.slice.call(arguments, 0);
-    console.log(a1, a2)
+    console.log(arguments);
     let args2 = Array.from(arguments);
+    // let args2 = Array.prototype.slice.call(arguments, 0);
     args2.forEach(a => console.log(a))
   }
   
-  func1(1, 2, 3, 4, 5, 6);
+  func1(1, 2, 3, 4, 5, 6, 7, 8, 9);
