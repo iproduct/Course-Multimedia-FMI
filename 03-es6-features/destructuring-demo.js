@@ -13,6 +13,6 @@ let persons2 = [
       father: 'John Moore',
     }, age: 25
   }];
-for (let { name: n, parents: { mother: f }, age } of persons2) {
-  console.log(`Name: ${n}, Mother: ${f}, age: ${age}`);
+for (let { name: n, parents: { mother: m }, age } of persons2) {
+  console.log(`Name: ${n}, Mother: ${m}, age: ${age}`);
 }

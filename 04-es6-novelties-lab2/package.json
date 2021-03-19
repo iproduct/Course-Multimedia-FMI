@@ -1,0 +1,16 @@
+{
+  "name": "04-es6-novelties-lab2",
+  "version": "0.0.1",
+  "description": "ES6 demos",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server"
+  },
+  "repository": "https://github.com/iproduct/Course-Multimedia-FMI/wiki",
+  "author": "Trayan Iliev",
+  "license": "Apache-2.0",
+  "private": false,
+  "devDependencies": {
+    "http-server": "^0.12.3"
+  }
+}
