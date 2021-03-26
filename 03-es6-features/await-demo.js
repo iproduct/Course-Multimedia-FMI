@@ -8,7 +8,8 @@ async function f() {
     result = await promise; // <=> promise.then(result => console.log(result); )
     console.log(result);
   } catch(err) {
-    result = 'Error processed successfully.';
+    result = 'Error processed successfully';
+    // throw result;
   }
   return result;
 }
