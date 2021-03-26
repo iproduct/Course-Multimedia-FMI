@@ -11,4 +11,7 @@ console.log(JSON.stringify(obj)) // {}
 console.log(Object.keys(obj)) // []
 console.log(Object.getOwnPropertyNames(obj)) // []
 console.log(Object.getOwnPropertySymbols(obj)) // [ foo, bar ]
+for(prop of Object.getOwnPropertySymbols(obj)){
+    console.log(prop, '->', obj[prop])
+}
 

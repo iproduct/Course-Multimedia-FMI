@@ -17,14 +17,12 @@ let fibonacci = {
       next() {
         [pre, cur] = [cur, pre + cur];
         index++;
-        return { done: index > 15, value: cur };
+        return { done: index >= 20, value: cur };
       }
     }
   }
 }
 
 for (var n of fibonacci) {
-  // truncate the sequence at 1000
-
   console.log(n);
 }

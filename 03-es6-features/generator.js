@@ -1,17 +1,21 @@
-var fibonacci = {
-    [Symbol.iterator]: function*() {
-      var pre = 0, cur = 1;
+class Fibonacci {
+  constructor(number){
+    this.number = number;
+  }
+
+  *[Symbol.iterator]() {
+      var pre = 0, cur = 1, index = 0;
       for (;;) {
-        var temp = pre;
-        pre = cur;
-        cur += temp;
-        if(cur < 1000)
-            yield cur;
+        [pre, cur] = [cur, pre + cur];
+        index++;
+        if(index > this.number) break;
+        yield cur;
       }
     }
   }
   
-  for (var n of fibonacci) {
-    // truncate the sequence at 1000
+  const fib10 = new Fibonacci(20);
+  console.log(fib10);
+  for (var n of fib10) {
     console.log(n);
   }
