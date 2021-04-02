@@ -1,3 +1,5 @@
+import { LoginComponent } from './login-component.js';
+import { LoginController, LoginControllerImpl } from './login-controller.js';
 import { Repository, RepositoryImpl, IdGenerator, NumberIdGenerator } from './repository.js';
 import {User, Admin, Customer, Manager, UserImpl, Role} from './users.js';
 
@@ -15,3 +17,6 @@ const contentElem = document.getElementById('content');
 if(contentElem) {
     contentElem.innerHTML = '<ul>' + userRepo.findAll().map(user => `<li>${user.salutation}</li>`).join('\n') + '</ul>';
 }
+
+const loginController: LoginController = new LoginControllerImpl(userRepo);
+const loginComponent = new LoginComponent('#content', loginController);

@@ -1,3 +1,5 @@
+import { LoginComponent } from './login-component.js';
+import { LoginControllerImpl } from './login-controller.js';
 import { RepositoryImpl, NumberIdGenerator } from './repository.js';
 import { Admin, Customer, Manager, UserImpl, Role } from './users.js';
 var user1 = new Admin('Default', 'Admin', 'admin@abc.com', 'admin', { country: 'Bulgaria', address: 'Sofia 1000' });
@@ -12,4 +14,6 @@ var contentElem = document.getElementById('content');
 if (contentElem) {
     contentElem.innerHTML = '<ul>' + userRepo.findAll().map(function (user) { return "<li>" + user.salutation + "</li>"; }).join('\n') + '</ul>';
 }
+var loginController = new LoginControllerImpl(userRepo);
+var loginComponent = new LoginComponent('#content', loginController);
 //# sourceMappingURL=index.js.map

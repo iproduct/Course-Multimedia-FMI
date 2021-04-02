@@ -1,4 +1,4 @@
-import { UserRepository } from './user-repository';
+import { Repository } from './repository';
 import { User } from "./user.js";
 
 export interface LoginController {
@@ -10,7 +10,7 @@ export interface LoginController {
 
 export class LoginControllerImpl implements LoginController{
     private loggedUser: User | undefined = undefined;
-    constructor(private userRepo: UserRepository) {}
+    constructor(private userRepo: Repository<User>) {}
     login(principal: User| string, credentials?: string): Promise<User> {
         let email, password: string;
         if(typeof principal === 'string') {
