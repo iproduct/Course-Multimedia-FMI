@@ -1,10 +1,11 @@
+import { UserRepositoryImpl } from './user-repository.js';
 import { LoginComponent } from './login-component.js';
 import { LoginControllerImpl } from './login-controller.js';
-import { RepositoryImpl, NumberIdGenerator } from './repository.js';
+import { NumberIdGenerator } from './repository.js';
 import { Admin, Customer, Manager, UserImpl, Role } from './users.js';
 var user1 = new Admin('Default', 'Admin', 'admin@abc.com', 'admin', { country: 'Bulgaria', address: 'Sofia 1000' });
 var numberIdGen = new NumberIdGenerator;
-var userRepo = new RepositoryImpl(numberIdGen);
+var userRepo = new UserRepositoryImpl(numberIdGen);
 userRepo.create(user1);
 userRepo.create(new Manager('Ivan', 'Petrov', 'ivan@abc.com', 'ivan', { country: 'Bulgaria', address: 'Plovdiv 4000' }));
 userRepo.create(new Customer('Petya', 'Hristova', 'petya@abc.com', 'petya'));

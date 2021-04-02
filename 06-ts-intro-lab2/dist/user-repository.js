@@ -24,7 +24,7 @@ var __values = (this && this.__values) || function(o) {
     };
     throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 };
-import { RepositoryImpl } from "./repository";
+import { RepositoryImpl } from "./repository.js";
 var UserRepositoryImpl = (function (_super) {
     __extends(UserRepositoryImpl, _super);
     function UserRepositoryImpl() {

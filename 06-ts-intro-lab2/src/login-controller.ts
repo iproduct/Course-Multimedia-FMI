@@ -1,5 +1,5 @@
-import { Repository } from './repository';
-import { User } from "./user.js";
+import { UserRepository } from './user-repository.js';
+import { User } from "./users.js";
 
 export interface LoginController {
     login(user: User): Promise<User>;
@@ -10,13 +10,13 @@ export interface LoginController {
 
 export class LoginControllerImpl implements LoginController{
     private loggedUser: User | undefined = undefined;
-    constructor(private userRepo: Repository<User>) {}
+    constructor(private userRepo: UserRepository) {}
     login(principal: User| string, credentials?: string): Promise<User> {
         let email, password: string;
-        if(typeof principal === 'string') {
+        if(typeof principal === 'string') { // type guard
             email = principal;
             password = credentials || '';
-        } else {
+        } else { // User type
             email = principal.email;
             password = principal.password;
         }
