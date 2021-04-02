@@ -1,3 +1,13 @@
+var NumberIdGenerator = (function () {
+    function NumberIdGenerator() {
+    }
+    NumberIdGenerator.prototype.getNextId = function () {
+        return ++NumberIdGenerator.nextId;
+    };
+    NumberIdGenerator.nextId = 0;
+    return NumberIdGenerator;
+}());
+export { NumberIdGenerator };
 var RepositoryImpl = (function () {
     function RepositoryImpl(idGenerator) {
         this.idGenerator = idGenerator;

@@ -20,9 +20,8 @@ export var Role;
     Role[Role["ADMIN"] = 3] = "ADMIN";
 })(Role || (Role = {}));
 var UserImpl = (function () {
-    function UserImpl(id, firstName, lastName, email, password, roles, contact) {
+    function UserImpl(firstName, lastName, email, password, roles, contact) {
         if (roles === void 0) { roles = [Role.CUSTOMER]; }
-        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -42,9 +41,8 @@ var UserImpl = (function () {
 export { UserImpl };
 var Customer = (function (_super) {
     __extends(Customer, _super);
-    function Customer(id, firstName, lastName, email, password, contact) {
-        var _this = _super.call(this, id, firstName, lastName, email, password, [Role.CUSTOMER], contact) || this;
-        _this.id = id;
+    function Customer(firstName, lastName, email, password, contact) {
+        var _this = _super.call(this, firstName, lastName, email, password, [Role.CUSTOMER], contact) || this;
         _this.firstName = firstName;
         _this.lastName = lastName;
         _this.email = email;
@@ -57,9 +55,8 @@ var Customer = (function (_super) {
 export { Customer };
 var Manager = (function (_super) {
     __extends(Manager, _super);
-    function Manager(id, firstName, lastName, email, password, contact) {
-        var _this = _super.call(this, id, firstName, lastName, email, password, [Role.MANGER], contact) || this;
-        _this.id = id;
+    function Manager(firstName, lastName, email, password, contact) {
+        var _this = _super.call(this, firstName, lastName, email, password, [Role.MANGER], contact) || this;
         _this.firstName = firstName;
         _this.lastName = lastName;
         _this.email = email;
@@ -72,9 +69,8 @@ var Manager = (function (_super) {
 export { Manager };
 var Admin = (function (_super) {
     __extends(Admin, _super);
-    function Admin(id, firstName, lastName, email, password, contact) {
-        var _this = _super.call(this, id, firstName, lastName, email, password, [Role.ADMIN], contact) || this;
-        _this.id = id;
+    function Admin(firstName, lastName, email, password, contact) {
+        var _this = _super.call(this, firstName, lastName, email, password, [Role.ADMIN], contact) || this;
         _this.firstName = firstName;
         _this.lastName = lastName;
         _this.email = email;

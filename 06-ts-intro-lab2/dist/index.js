@@ -1,8 +1,15 @@
-import { Admin } from './users.js';
-var user1 = new Admin(1, 'Default', 'Admin', 'admin@mycompany.com', 'admin', { country: 'Bulgaria', address: 'Sofia 1000' });
-console.log(user1);
+import { RepositoryImpl, NumberIdGenerator } from './repository.js';
+import { Admin, Customer, Manager, UserImpl, Role } from './users.js';
+var user1 = new Admin('Default', 'Admin', 'admin@abc.com', 'admin', { country: 'Bulgaria', address: 'Sofia 1000' });
+var numberIdGen = new NumberIdGenerator;
+var userRepo = new RepositoryImpl(numberIdGen);
+userRepo.create(user1);
+userRepo.create(new Manager('Ivan', 'Petrov', 'ivan@abc.com', 'ivan', { country: 'Bulgaria', address: 'Plovdiv 4000' }));
+userRepo.create(new Customer('Petya', 'Hristova', 'petya@abc.com', 'petya'));
+userRepo.create(new UserImpl('Hrisitina', 'Dimitrova', 'hrisi@abc.com', 'hrisi', [Role.ADMIN, Role.MANGER, Role.CUSTOMER]));
+console.log(userRepo.findAll());
 var contentElem = document.getElementById('content');
 if (contentElem) {
-    contentElem.innerHTML = JSON.stringify(user1);
+    contentElem.innerHTML = '<ul>' + userRepo.findAll().map(function (user) { return "<li>" + user.salutation + "</li>"; }).join('\n') + '</ul>';
 }
 //# sourceMappingURL=index.js.map

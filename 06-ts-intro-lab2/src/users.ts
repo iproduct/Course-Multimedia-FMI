@@ -1,5 +1,5 @@
 export interface Person {
-    id: number;
+    id: number | undefined;
     firstName: string;
     lastName: string;
     contact?: Contact;
@@ -23,9 +23,9 @@ export enum Role {
     CUSTOMER = 1, MANGER, ADMIN
 }
 
-export class UserImpl implements User {
+export class UserImpl implements User {        
+    public id: number | undefined;
     constructor(
-        public id: number,
         public firstName: string,
         public lastName: string,
         public email: string,
@@ -39,36 +39,33 @@ export class UserImpl implements User {
 
 export class Customer extends UserImpl {
     constructor(
-        public id: number,
         public firstName: string,
         public lastName: string,
         public email: string,
         public password: string,
         public contact?: Contact | undefined) { 
-            super(id, firstName, lastName, email, password, [Role.CUSTOMER], contact);
+            super(firstName, lastName, email, password, [Role.CUSTOMER], contact);
         }
 }
 
 export class Manager extends UserImpl {
     constructor(
-        public id: number,
         public firstName: string,
         public lastName: string,
         public email: string,
         public password: string,
         public contact?: Contact | undefined) { 
-            super(id, firstName, lastName, email, password, [Role.MANGER], contact);
+            super(firstName, lastName, email, password, [Role.MANGER], contact);
         }
 }
 
 export class Admin extends UserImpl {
     constructor(
-        public id: number,
         public firstName: string,
         public lastName: string,
         public email: string,
         public password: string,
         public contact?: Contact | undefined) { 
-            super(id, firstName, lastName, email, password, [Role.ADMIN], contact);
+            super(firstName, lastName, email, password, [Role.ADMIN], contact);
         }
 }

@@ -1,4 +1,4 @@
-export type IdType = number;
+export type IdType = number | undefined;
 
 export interface Identifiable {
     id: IdType;
@@ -8,6 +8,12 @@ export interface IdGenerator {
     getNextId(): IdType;
 }
 
+export class NumberIdGenerator implements IdGenerator{
+    static nextId = 0;
+    getNextId(): number {
+        return ++ NumberIdGenerator.nextId;
+    }
+}
 
 interface EntityByIdGetter<T extends Identifiable> {
     (id: IdType): T | undefined;
