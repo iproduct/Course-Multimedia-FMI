@@ -1,0 +1,35 @@
+{
+  "name": "06-ts-intro-lab2",
+  "version": "0.0.1",
+  "description": "TS Login Demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iproduct/Course-Multimedia-FMI.git"
+  },
+  "keywords": [
+    "typescript",
+    "intro",
+    "demo",
+    "users",
+    "login"
+  ],
+  "author": "Trayan Iliev",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/iproduct/Course-Multimedia-FMI/issues"
+  },
+  "homepage": "https://github.com/iproduct/Course-Multimedia-FMI#readme",
+  "devDependencies": {
+    "@types/jquery": "^3.5.5",
+    "concurrently": "^6.0.0",
+    "http-server": "^0.12.3"
+  },
+  "dependencies": {
+    "jquery": "^3.6.0"
+  }
+}
