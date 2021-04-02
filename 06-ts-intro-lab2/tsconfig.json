@@ -79,6 +79,6 @@
 
     /* Advanced Options */
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", ".eslintrc.js"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }
