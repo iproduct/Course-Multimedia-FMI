@@ -1,0 +1,7 @@
+{
+    "C_Cpp.commentContinuationPatterns": [
+
+        "/**"
+    ],
+    "docthis.includeDescriptionTag": true
+}

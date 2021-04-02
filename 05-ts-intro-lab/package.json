@@ -1,0 +1,32 @@
+{
+  "name": "05-ts-intro-lab",
+  "version": "1.0.0",
+  "description": "typescript intro",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently --kill-others \"lite-server\" \"tsc -w\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iproduct/fullstack-typescript-react.git"
+  },
+  "keywords": [
+    "typescript",
+    "intro"
+  ],
+  "author": "Trayan Iliev",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/iproduct/fullstack-typescript-react/issues"
+  },
+  "homepage": "https://github.com/iproduct/fullstack-typescript-react#readme",
+  "devDependencies": {
+    "@types/jquery": "^3.3.38",
+    "concurrently": "^5.2.0",
+    "lite-server": "^2.5.4"
+  },
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}
