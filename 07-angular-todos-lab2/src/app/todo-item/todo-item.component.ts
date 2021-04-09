@@ -16,8 +16,8 @@ export class TodoItemComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getStatusText(status: TodoStatus) {
-    return TodoStatus[status];
+  getStatusText(status: TodoStatus | undefined) {
+    return status ? TodoStatus[status] : 'undefined';
   }
 
 }
