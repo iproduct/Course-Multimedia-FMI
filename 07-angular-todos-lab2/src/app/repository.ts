@@ -15,13 +15,11 @@ export class NumberIdGenerator implements IdGenerator{
     }
 }
 
-interface EntityByIdGetter<T extends Identifiable> {
-    (id: IdType): T | undefined;
-}
+type EntityByIdGetter<T extends Identifiable> = (id: IdType) => T | undefined;
 
 export  interface Repository<T extends Identifiable> {
-    findAll(): T[]; //Array<T>
-    findById: EntityByIdGetter<T> //findById(id: IdType): T | undefined;
+    findAll(): T[]; // Array<T>
+    findById: EntityByIdGetter<T>; // findById(id: IdType): T | undefined;
     create(entity: T): T;
     update(entity: T): T | undefined;
     deleteById: EntityByIdGetter<T>;
@@ -35,7 +33,7 @@ export class RepositoryImpl<T extends Identifiable> implements Repository<T> {
     findAll(): T[] {
         return Array.from(this.entities.values());
     }
-    findById(id: IdType):  T | undefined {
+    findById(id: IdType): T | undefined {
         return this.entities.get(id);
     }
     create(entity: T): T {
@@ -44,21 +42,21 @@ export class RepositoryImpl<T extends Identifiable> implements Repository<T> {
         return entity;
     }
     update(entity: T): T | undefined {
-        if(!this.findById(entity.id)) {
+        if (!this.findById(entity.id)) {
             return undefined;
         }
         this.entities.set(entity.id, entity);
         return entity;
     }
-    deleteById(id: IdType):  T | undefined {
+    deleteById(id: IdType): T | undefined {
         const old = this.findById(id);
-        if(old) {
+        if (old) {
             this.entities.delete(id);
         }
         return old;
     }
-    count() {
+    count(): number {
         return this.entities.size;
-    };
+    }
 
 }
