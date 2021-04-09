@@ -120,10 +120,12 @@ button:disabled {
   background-color: #607D8B;
   line-height: 1em;
   position: relative;
+  text-align: right;
   left: -1px;
   top: -4px;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
+  min-width: 1em;
 }
 
 /* everywhere else */
