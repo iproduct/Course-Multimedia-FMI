@@ -5,9 +5,10 @@ import { Todo } from './todo.model';
 @Injectable({
   providedIn: 'root'
 })
-export class TodoServiceService {
+export class TodoService {
   private todoRepo: Repository<Todo> = new RepositoryImpl<Todo>(new NumberIdGenerator());
   constructor() {
+    
   }
 
   getAllTodos(): Todo[] {
