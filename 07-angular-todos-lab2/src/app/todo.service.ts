@@ -1,6 +1,7 @@
 import { Repository, RepositoryImpl, NumberIdGenerator, IdType } from './repository';
 import { Injectable } from '@angular/core';
 import { Todo } from './todo.model';
+import MOCK_TODOS from './mock-todos';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Todo } from './todo.model';
 export class TodoService {
   private todoRepo: Repository<Todo> = new RepositoryImpl<Todo>(new NumberIdGenerator());
   constructor() {
-    
+    MOCK_TODOS.forEach(todo => this.todoRepo.create(todo));
   }
 
   getAllTodos(): Todo[] {
