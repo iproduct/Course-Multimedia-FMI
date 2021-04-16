@@ -132,3 +132,7 @@ button:disabled {
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.pull-right{
+  float: right;
+}

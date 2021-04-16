@@ -1,6 +1,7 @@
 import { TodoStatus } from './../todo.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 import { Todo } from '../todo.model';
+import { Output } from '@angular/core';
 
 @Component({
   selector: 'td-todo-item',
@@ -10,6 +11,7 @@ import { Todo } from '../todo.model';
 export class TodoItemComponent implements OnInit {
   @Input() todo: Todo | undefined;
   @Input() index: number | undefined;
+  @Output() deleteTodo = new EventEmitter<Todo>();
 
   constructor() { }
 
@@ -18,6 +20,10 @@ export class TodoItemComponent implements OnInit {
 
   getStatusText(status: TodoStatus | undefined) {
     return status ? TodoStatus[status] : 'undefined';
+  }
+
+  deleteItem(){
+    this.deleteTodo.emit(this.todo);
   }
 
 }

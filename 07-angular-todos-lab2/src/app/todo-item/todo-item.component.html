@@ -1,2 +1,3 @@
 <span class="badge" [innerHTML]="index! + 1"></span>
 {{todo?.title}} : {{getStatusText(todo?.status)}}
+<span class="pull-right"><button (click)="deleteItem()">Delete</button></span>

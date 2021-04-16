@@ -20,4 +20,14 @@ export class TodoListComponent implements OnInit {
     this.todos = this.todoService.getAllTodos();
   }
 
+  addTodo(todo: Todo) {
+    this.todoService.create(todo);
+    this.refresh();
+  }
+
+  deleteTodo(todo: Todo){
+    this.todoService.deleteById(todo.id);
+    this.refresh();
+  }
+
 }

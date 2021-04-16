@@ -1,0 +1,6 @@
+<!-- <input #todoInput [(ngModel)]="text" type="text" placeholder="What to do next?" /> -->
+<input #todoInput type="text" [value]="text" placeholder="What to do next?" (keyup)="onKey(todoInput.value)"
+  (keyup.enter)="createTodo()"/>
+<button (click)="createTodo()">Add Todo</button>
+<p>{{todoInput.value}}</p>
+<p>{{text}}</p>
