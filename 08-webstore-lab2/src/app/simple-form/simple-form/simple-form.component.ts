@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'ws-simple-form',
   template: `
-  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <form #fElem #f="ngForm" (ngSubmit)="onSubmit(f)">
     <p *ngIf="nameCtrl.invalid">Name is invalid.</p>
     <div ngModelGroup="name" #nameCtrl="ngModelGroup">
       <input name="first" [ngModel]="name.first" minlength="2">
@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
     </div>
     <input name="email" ngModel> <button>Submit</button>
   </form> <button (click)="setValue()">Set value</button>
+  <p>{{fElem.className}}</p>
 `
 })
 export class SimpleFormComponent {
