@@ -8,6 +8,9 @@ import { BrowserModule } from '@angular/platform-browser';
   declarations: [
     SimpleFormComponent
   ],
+  exports: [
+    SimpleFormComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule
