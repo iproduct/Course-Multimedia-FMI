@@ -1,6 +1,6 @@
 <td-todo-input (newTodo)="addTodo($event)"></td-todo-input>
 <ul class="todos items">
-  <li *ngFor="let todo of todos; let i = index">
+  <li *ngFor="let todo of todos; let i = index; trackBy:trackByTodos">
     <td-todo-item [todo]="todo" [index]="i" (deleteTodo)="deleteTodo($event)"></td-todo-item>
   </li>
 </ul>

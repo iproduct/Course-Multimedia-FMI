@@ -1,5 +1,5 @@
 import { TodoService } from './../todo.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Todo } from '../todo.model';
 
 @Component({
@@ -28,6 +28,10 @@ export class TodoListComponent implements OnInit {
   deleteTodo(todo: Todo){
     this.todoService.deleteById(todo.id);
     this.refresh();
+  }
+
+  trackByTodos(index: number, todo: Todo) {
+    return todo.id;
   }
 
 }
