@@ -12,6 +12,8 @@ import { NgForm } from '@angular/forms';
     </div>
     <input name="email" ngModel> <button>Submit</button>
   </form> <button (click)="setValue()">Set value</button>
+  <p>{{f.value | json}}</p>
+  <p>Form valid: {{f.valid}}</p>
   <p>{{fElem.className}}</p>
 `
 })
