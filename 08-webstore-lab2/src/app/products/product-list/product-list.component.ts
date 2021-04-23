@@ -10,10 +10,37 @@ import { Product } from '../product.model';
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
+  errors = '';
+  messages = '';
+  selectedProduct: Product | undefined;
+  currentMode = 'present';
 
   constructor(private productService: ProductService, private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.refresh();
+  }
+
+  selectProduct(product: Product) {
+    this.selectedProduct = product;
+  }
+
+  setMode(mode: string) {
+    this.currentMode = mode;
+  }
+
+  onAddProduct() {
+
+  }
+
+  onDeleteProduct(product: Product) {
+    this.productService.delete(product.id).subscribe(
+      deleted => {
+        const index = this.products.findIndex(p => p.id === product.id);
+        this.products.splice(index, 1);
+
+      }
+    )
   }
 
   private refresh() {
@@ -24,7 +51,12 @@ export class ProductListComponent implements OnInit {
   }
 
   private showError(error: string) {
-    this.messageService.error(error);
+    // this.messageService.error(error);
+    this.errors = error;
+  }
+  private showMessage(error: string) {
+    // this.messageService.info(error);
+    this.messages = error;
   }
 
 }

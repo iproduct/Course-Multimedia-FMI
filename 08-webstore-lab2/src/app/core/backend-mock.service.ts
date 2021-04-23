@@ -21,10 +21,10 @@ export class BackendMockService implements BackendService {
   findById<T extends Identifiable>(type: ResourceType<T>, id: IdType): Observable<T> {
     const entities = this.getCollection(type.typeId) as T[];
     const index = entities.findIndex(elem => elem.id === id);
-    if (index > 0) {
+    if (index >= 0) {
       return of(entities[index]);
     } else {
-      return throwError(`${type} with ID='${id}' not found.`);
+      return throwError(`${type.typeId} with ID='${id}' not found.`);
     }
   }
   create<T extends Identifiable>(type: ResourceType<T>, item: T): Observable<T> {
@@ -36,21 +36,21 @@ export class BackendMockService implements BackendService {
   update<T extends Identifiable>(type: ResourceType<T>, item: T): Observable<T> {
     const entities = this.getCollection(type.typeId) as T[];
     const index = entities.findIndex(e => e.id === item.id);
-    if (index > 0) {
+    if (index >= 0) {
       entities[index] = item;
       return of(entities[index]);
     } else {
-      return throwError(`${type} with ID='${item.id}' not found.`);
+      return throwError(`${type.typeId} with ID='${item.id}' not found.`);
     }
   }
   delete<T extends Identifiable> (type: ResourceType<T>, id: IdType): Observable<T> {
     const entities = this.getCollection(type.typeId) as T[];
     const index = entities.findIndex(e => e.id === id);
-    if (index > 0) {
+    if (index >= 0) {
       const entity = entities.splice(index, 1)[0];
       return of(entity);
     } else {
-      return throwError(`${type} with ID='${id}' not found.`);
+      return throwError(`${type.typeId} with ID='${id}' not found.`);
     }
   }
   count<T extends Identifiable>(type: ResourceType<T>): Observable<number> {

@@ -18,7 +18,7 @@ export class MessageService {
 
   private messages$ = new Subject<MessageData>();
 
-  constructor(private router: Router) {
+  constructor() {
     // router.events.subscribe(event => {
     //   if (event instanceof NavigationStart) {
     //     this.messages$.next(undefined); // clear messages on route change
