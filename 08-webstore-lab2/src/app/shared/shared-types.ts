@@ -1,4 +1,4 @@
-export type IdType = number | undefined;
+export type IdType = string | undefined;
 
 export interface Identifiable {
     id: IdType;
