@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
     this.refresh();
   }
 
-  selectProduct(product: Product) {
+  selectProduct(product: Product | undefined) {
     this.selectedProduct = product;
   }
 
@@ -29,8 +29,9 @@ export class ProductListComponent implements OnInit {
     this.currentMode = mode;
   }
 
-  onAddProduct() {
-
+  showAddProduct() {
+    this.setMode('edit');
+    this.selectProduct(new Product());
   }
 
   onDeleteProduct(product: Product) {
@@ -38,8 +39,8 @@ export class ProductListComponent implements OnInit {
       deleted => {
         const index = this.products.findIndex(p => p.id === product.id);
         this.products.splice(index, 1);
-
-      }
+      },
+      error => this.showError(error)
     )
   }
 
@@ -57,6 +58,31 @@ export class ProductListComponent implements OnInit {
   private showMessage(error: string) {
     // this.messageService.info(error);
     this.messages = error;
+  }
+
+  onProductModified(product: Product) {
+    if (product.id) { // edit mode
+      this.productService.update(product).subscribe(
+        updated => {
+          const index = this.products.findIndex(p => p.id === updated.id);
+          this.products[index] = updated;
+          this.showMessage(`Product '${updated.name}' updated successfully.`);
+        },
+        err => this.showError(err)
+      );
+    } else {
+      this.productService.create(product).subscribe(
+        created => {
+          this.products.push(created);
+          this.showMessage(`Product '${created.name}' created successfully.`);
+        },
+        err => this.showError(err)
+      );
+    }
+  }
+
+  onProductCanceled() {
+    this.selectProduct(undefined);
   }
 
 }

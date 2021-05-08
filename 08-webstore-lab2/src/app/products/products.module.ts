@@ -1,3 +1,4 @@
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { NgModule } from '@angular/core';
 import { ProductListComponent } from './product-list/product-list.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,10 +14,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
-    ProductListComponent
+    ProductListComponent,
+    ProductDetailComponent,
   ],
   exports: [
-    ProductListComponent
+    ProductListComponent,
+    ProductDetailComponent,
   ],
   imports: [
     BrowserModule,

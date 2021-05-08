@@ -25,7 +25,7 @@ export class ProductService {
       return this.backend.update(Product, product);
     }
     delete(id: IdType): Observable<Product>{
-      return this.backend.findById(Product, id);
+      return this.backend.delete(Product, id);
     }
     count(): Observable<number>{
       return this.backend.count(Product);
