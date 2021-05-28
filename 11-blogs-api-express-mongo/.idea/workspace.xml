@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="projectSyncType">
+      <map>
+        <entry key="C:/CourseIoT/git/kafka-connect-mqtt" value="PREVIEW" />
+        <entry key="C:/CourseSpring/Materials/spring4-mvc-gradle-annotation-hello-world" value="PREVIEW" />
+        <entry key="C:/CourseSpring/Workspace/webflux-demo" value="PREVIEW" />
+        <entry key="C:/CourseSpring/git/course-spring5/10-webmvc-serice-jpa" value="PREVIEW" />
+        <entry key="C:/CourseSpring/git/course-spring5/11-webflux-users-lab" value="PREVIEW" />
+        <entry key="C:/CourseSpring/git/course-spring5/12-reactive-streaming-demos" value="PREVIEW" />
+        <entry key="C:/CourseSpring/git/course-spring5/reactive-streaming-demos" value="PREVIEW" />
+        <entry key="C:/CourseSpring/git/course-spring5/webflux-demo" value="PREVIEW" />
+        <entry key="C:/CourseSpring/git/course-spring5/webflux-users" value="PREVIEW" />
+        <entry key="C:/CourseSpring/git/course-spring5/webflux-users-stopper" value="PREVIEW" />
+        <entry key="C:/CourseSpring/git/course-spring5/webmvc-demo" value="PREVIEW" />
+        <entry key="C:/CourseSpring/git/pro-spring-5" value="PREVIEW" />
+        <entry key="C:/CourseSpring/git/spring-security" value="PREVIEW" />
+        <entry key="C:/CourseSpring/git/spring4-mvc-gradle-xml-hello-world" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseMSSR/git/course-social-robotics/esp32-demo" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/IntelliJWorkspace/demo" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/Learning-Spring-5.0/bean-lifecycle" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/01-webflux-demo-lab5" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/01-webflux-demo-lab6" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/01-webflux-intro-lab3" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/01-webflux-intro-lab4" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/04-webservice-lab5" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/04-webservice-lab6" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/05-rest-mvc" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/05-rest-mvc-boot-hateoas" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/05-rest-mvc-boot-lab2" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/05-webmvc-demo" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/05-webmvc-thymeleaf-lab5" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/06-restmvc-jdbc-boot-lab2" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/08-restmvc-boot-jpa-lab2" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/09-webflux-demo-lab2" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/09-webflux-streaming-demo-lab1" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/12-bookstore-jpa" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/12-streaming-demos-lab4" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/12-webflux-boot-rabbitmq" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/course-spring5/webservice" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../../CourseSpring/git/gs-uploading-files/complete" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.23772103" />
+    <property name="settings.editor.selected.configurable" value="reference.projectsettings.compiler.annotationProcessors" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+</project>

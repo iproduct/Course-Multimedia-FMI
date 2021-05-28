@@ -1,0 +1,10 @@
+{
+  "name": "11-nodejs-lab2",
+  "version": "1.0.0",
+  "description": "Intoduction to NodeJS",
+  "main": "index.js",
+  "repository": "https://github.com/iproduct/Course-Multimedia-FMI.git",
+  "author": "Trayan Iliev ",
+  "license": "Apache-v2.0",
+  "private": false
+}
