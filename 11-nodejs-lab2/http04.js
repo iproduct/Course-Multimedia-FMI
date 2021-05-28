@@ -8,13 +8,14 @@ const URL = require('url').URL;
 const posts = [];
 let nextId = 0;
 
-const PORT = 3000;
+const port = 3000;
+const hostname = 'localhost';
 const server = http.createServer((request, response) => {
     // request is an http.IncomingMessage, which is a Readable Stream
     // response is an http.ServerResponse, which is a Writable Stream
 
     // Request url handling - parse to extract the required resource name ***
-    var pathname = new URL(request.url).pathname;
+    var pathname = new URL(request.url, `http://${hostname}:${port}`).pathname;
     console.log("\nRequest for " + pathname + " received.");
     console.log(`Request method: ${request.method}`);
     console.log(`Headers ${JSON.stringify(request.headers)}`);
@@ -49,7 +50,7 @@ const server = http.createServer((request, response) => {
                 // Retun response - 201 : Created
                 response.writeHead(201, {
                     'content-type': 'application/json',
-                    'location': `http://localhost:${PORT}/api/posts/${newPost.id}`
+                    'location': `http://localhost:${port}/api/posts/${newPost.id}`
                 });
                 response.write(JSON.stringify(newPost));
                 response.end();
@@ -61,7 +62,7 @@ const server = http.createServer((request, response) => {
                 });
                 response.end('{"error": "unable to read the request body"}');
             });
-        }else {
+        } else {
             // 404: File not found
             response.writeHead(404, { 'Content-Type': 'text/html' });
             response.end(`
@@ -76,8 +77,8 @@ const server = http.createServer((request, response) => {
 });
 
 // Start listening for reuests 
-server.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://localhost:${port}`);
 });
 
 // Server error handling
