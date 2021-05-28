@@ -6,5 +6,11 @@
   "repository": "https://github.com/iproduct/Course-Multimedia-FMI.git",
   "author": "Trayan Iliev ",
   "license": "Apache-v2.0",
-  "private": false
+  "private": false,
+  "scripts": {
+    "start": "nodemon ./http04.js localhost 3000 -w ."
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }

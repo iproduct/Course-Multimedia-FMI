@@ -2,15 +2,11 @@
  * Htttp server demo - demonstrates url, request and response handling
  */
 
-var http = require('http');
-var fs = require('fs');
-var url = require('url');
-var path = require('path');
+const http = require('http');
+const URL = require('url').URL;
 
 const posts = [];
 let nextId = 0;
-const public = path.join(__dirname);
-console.log(public);
 
 const PORT = 3000;
 const server = http.createServer((request, response) => {
@@ -18,7 +14,7 @@ const server = http.createServer((request, response) => {
     // response is an http.ServerResponse, which is a Writable Stream
 
     // Request url handling - parse to extract the required resource name ***
-    var pathname = url.parse(request.url).pathname;
+    var pathname = new URL(request.url).pathname;
     console.log("\nRequest for " + pathname + " received.");
     console.log(`Request method: ${request.method}`);
     console.log(`Headers ${JSON.stringify(request.headers)}`);
