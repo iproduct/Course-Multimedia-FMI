@@ -4,21 +4,21 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from '../../core/message.service';
-// import { CanComponentDeactivate } from '../../core/can-deactivate-guard.service';
+import { ProductsService } from '../products.service';
+import { CanComponentDeactivate } from '../../core/can-deactivate-guard.service';
+import { DialogService } from '../../core/dialog.service';
 import { shallowEquals } from '../../shared/utils';
-// import { PRODUCTS_ROUTE } from '../../app-routing.module';
+import { PRODUCTS_ROUTE } from '../../app-routing.module';
 import { take } from 'rxjs/operators';
-import { ProductService } from '../product.service';
-import { DialogService } from 'src/app/core/dialog.service';
 
 @Component({
   selector: 'ws-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
-export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges {
+export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges, CanComponentDeactivate {
   @Input() mode = 'present';
-  @Input() product: Product = new Product();
+  @Input() product: Product = new Product(null, null, null, null);
   @Output() productModified = new EventEmitter<Product>();
   @Output() productCanceled = new EventEmitter<void>();
   title = 'Product Details';
@@ -27,17 +27,17 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges {
   get isNewProduct() {
     return !this.product || !this.product.id;
   }
-  form: FormGroup | undefined;
-  private statusSubscription: Subscription | undefined;
+  form: FormGroup;
+  private statusSubscription: Subscription;
 
-  formErrors: any = {
+  formErrors = {
     name: '',
     price: '',
     description: '',
     imageUrl: ''
   };
 
-  validationMessages: any = {
+  validationMessages = {
     name: {
       required: 'Product name is required.',
       minlength: 'Productname must be at least 2 characters long.',
@@ -56,25 +56,24 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges {
     }
   };
 
-  constructor(private fb: FormBuilder,
-    // private router: Router, private route: ActivatedRoute,
-              private messageService: MessageService, private productService: ProductService,
+  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute,
+              private messageService: MessageService, private productsService: ProductsService,
               private dialogService: DialogService) { }
 
   ngOnInit() {
-    // this.route.data
-    // .subscribe(
-    //   (data: { product?: Product, title?: string, mode?: string }) => {
-    //     this.title = data.title || this.title;
-    //     this.mode = data.mode || this.mode;
-    //     const product = data.product;
-    //     if (product) {
-    //       this.product = product;
-    //       this.reset();
-    //     }
-    //   },
-    //   err => this.messageService.error(err)
-    // );  this.route.data
+    this.route.data
+    .subscribe(
+      (data: { product?: Product, title?: string, mode?: string }) => {
+        this.title = data.title || this.title;
+        this.mode = data.mode || this.mode;
+        const product = data.product;
+        if (product) {
+          this.product = product;
+          this.reset();
+        }
+      },
+      err => this.messageService.error(err)
+    );
     this.buildForm();
   }
 
@@ -113,23 +112,23 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   submitProduct() {
-    this.product = this.form?.getRawValue();
+    this.product = this.form.getRawValue();
     this.productModified.emit(this.product);
     this.reset();
     if (this.isNewProduct) { // edit mode
-      this.productService.create(this.product).subscribe(
+      this.productsService.create(this.product).subscribe(
         created => {
           this.messageService.success(`Product '${created.name}' created successfully.`);
           // window.history.back();
-          // this.router.navigate([PRODUCTS_ROUTE], { queryParams: {refresh: true} });
+          this.router.navigate([PRODUCTS_ROUTE], { queryParams: {refresh: true} });
         },
         err => this.messageService.error(err)
       );
     } else {
-      this.productService.update(this.product).subscribe(
+      this.productsService.update(this.product).subscribe(
         updated => {
           this.messageService.success(`Product '${updated.name}' updated successfully.`);
-          // this.router.navigate([PRODUCTS_ROUTE], { queryParams: {refresh: true} });
+          this.router.navigate([PRODUCTS_ROUTE], { queryParams: {refresh: true} });
         },
         err => this.messageService.error(err)
       );
@@ -144,13 +143,13 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges {
   cancelProduct() {
     this.productCanceled.emit();
     this.isCanceled = true;
-    // this.router.navigate([PRODUCTS_ROUTE]);
+    this.router.navigate([PRODUCTS_ROUTE]);
   }
 
   public canDeactivate(): Observable<boolean> | boolean {
     // Allow navigation if no user or the user data is not changed
     // tslint:disable-next-line:prefer-const
-    let rawFormProduct = this.form?.getRawValue() as Product;
+    let rawFormProduct = this.form.getRawValue() as Product;
     delete rawFormProduct.id;
     const {id, ...prod_without_id} = this.product;
     if (this.isCanceled || shallowEquals(prod_without_id, rawFormProduct)) {

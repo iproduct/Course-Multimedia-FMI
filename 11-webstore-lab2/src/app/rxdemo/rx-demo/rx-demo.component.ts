@@ -1,55 +1,79 @@
-import { Component, OnInit } from '@angular/core';
-import { empty, Observable } from 'rxjs';
-import { fromEvent, interval, of, zip } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-interface Point {
-  x: number,
-  y: number
-}
-
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+import { from, Observable, interval, zip, Subscription, fromEvent } from 'rxjs';
+import { map, endWith, startWith, scan, debounceTime, buffer } from 'rxjs/operators';
 
 @Component({
   selector: 'ws-rx-demo',
   templateUrl: './rx-demo.component.html',
   styleUrls: ['./rx-demo.component.css']
 })
-export class RxDemoComponent implements OnInit {
-  numbers = '';
-  clicks$: Observable<[Point, Point]> = of();
+export class RxDemoComponent implements OnInit, OnDestroy {
+
+  names$: Observable<string>;
+  interval$: Observable<number>;
+  asyncNames$: Observable<string>;
+  clickCount$: Observable<number>;
+  nClicks$: Observable<string>;
+  values = '';
+  errors = '';
+  number: number;
+  subscription: Subscription;
+  @ViewChild('clickable', {static: true}) clickSource: ElementRef;
 
   constructor() { }
 
-  ngOnInit(): void {
-    const numbers$ = of(10, 20, 30, 40, 50);
-    const interval$ = interval(1000);
+  ngOnInit() {
+    this.names$ = from([
+      'Hello', 'Reactive', 'Extensions', 'from', 'TypeScript'
+    ]);
 
-    zip(numbers$, interval$)
+    this.interval$ = interval(1000);
+
+    this.asyncNames$ = zip(this.names$, this.interval$)
       .pipe(
-        map(([n, i]) => n)
-      )
-      .subscribe(
-        next => {
-          this.numbers += next + ', ';
-          console.log('next:', next)
-        },
-        err => {
-          this.numbers += 'error';
-          console.log('error:', err)
-        },
-        () => {
-          this.numbers += 'completed';
-          console.log('the end');
-        }
+        map(([name, n]) => name),
+        endWith('In the end.'),
+        startWith('In the begining ...')
       );
 
-    // mouse hot event stream demo
-    const documentEvent = (eventName: string) =>
-      fromEvent<MouseEvent>(document, eventName).pipe(
-        map((e: MouseEvent) => ({ x: e.clientX, y: e.clientY }))
-      );
+    this.subscription = this.interval$.subscribe(n => this.number = n);
 
-    this.clicks$ = zip(documentEvent('mousedown'), documentEvent('mouseup'));
+    const custom$ = new Observable(subscriber => {
+      subscriber.next('first');
+      subscriber.next('second');
+      subscriber.next('third');
+      setTimeout(() => {
+        subscriber.next('forth');
+      }, 1000);
+      setTimeout(() => {
+        subscriber.next('fifth'),
+        subscriber.complete();
+        // subscriber.error('Error in custom Observable!');
+      }, 3000);
+    });
+
+    custom$.subscribe(
+      next => this.values += next + ', ',
+      err => this.values += err,
+      () => this.values += 'COMPLETED.'
+    );
+
+    const clicks$ = fromEvent(this.clickSource.nativeElement, 'click');
+    this.clickCount$ = clicks$.pipe(
+      scan((acc, ev) => acc + 1, 0)
+    );
+
+    this.nClicks$ = clicks$.pipe(
+      buffer(clicks$.pipe(debounceTime(200))),
+      map(events => events.length + ''),
+      scan((acc, nClicks) => acc + ', ' + nClicks, '')
+    );
+
+
   }
-
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
 }

@@ -1,12 +1,16 @@
-import { Type } from '@angular/core';
+import {S} from '@angular/cdk/keycodes/typings';
+import { Identifiable, IdType, ResourceType } from '../shared/common-types';
+import { InjectionToken } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Identifiable, IdType, ResourceType } from '../shared/shared-types';
+import { BackendHttpService } from './backend-http.service';
 
-export abstract class BackendService {
-    abstract findAll<T extends Identifiable>(type: ResourceType<T>): Observable<T[]>;
-    abstract findById<T extends Identifiable>(type: ResourceType<T>, id: IdType): Observable<T>;
-    abstract create<T extends Identifiable>(type: ResourceType<T>, item: T): Observable<T>;
-    abstract update<T extends Identifiable>(type: ResourceType<T>, item: T): Observable<T>;
-    abstract delete<T extends Identifiable>(type: ResourceType<T>, id: IdType): Observable<T>;
-    abstract count<T extends Identifiable>(type: ResourceType<T>): Observable<number>;
+export const BACKEND = new InjectionToken<BackendService>('BackendService');
+
+export  interface BackendService {
+  findAll<T extends Identifiable>(kind: ResourceType<T>): Observable<T[]>;
+  findById<T extends Identifiable>(kind: ResourceType<T>, id: IdType): Observable<T>;
+  create<T extends Identifiable>(kind: ResourceType<T>, entity: T): Observable<T>;
+  update<T extends Identifiable>(kind: ResourceType<T>, entity: T): Observable<T>;
+  deleteById<T extends Identifiable>(kind: ResourceType<T>, id: IdType): Observable<T>;
 }
+

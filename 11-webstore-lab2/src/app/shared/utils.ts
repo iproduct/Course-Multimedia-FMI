@@ -24,7 +24,7 @@ export function shallowEquals(a: any, b: any, compare?: (a: any, b: any) => bool
     : shallowObject(a, b, compare);
 }
 
-function shallowArray<T>(a: T[], b: T[], compare: ((a: T, b: T) => boolean) | undefined) {
+function shallowArray<T>(a: T[], b: T[], compare: (a: T, b: T) => boolean) {
   const l = a.length;
   if (l !== b.length) { return false; }
 
@@ -41,7 +41,7 @@ function shallowArray<T>(a: T[], b: T[], compare: ((a: T, b: T) => boolean) | un
   return true;
 }
 
-function shallowObject<T extends Object>(a: T, b: T, compare: ((a: any, b: any) => boolean) | undefined) {
+function shallowObject<T>(a: T, b: T, compare: (a: any, b: any) => boolean) {
   let ka = 0;
   let kb = 0;
 
@@ -106,7 +106,7 @@ export function deepEquals(a: any, b: any, compare?: (a: any, b: any) => boolean
     : deepObject(a, b, compare);
 }
 
-function deepArray<T>(a: T[], b: T[], compare: ((a: T, b: T) => boolean) | undefined) {
+function deepArray<T>(a: T[], b: T[], compare: (a: T, b: T) => boolean) {
   const l = a.length;
   if (l !== b.length) { return false; }
 
@@ -126,7 +126,7 @@ function deepArray<T>(a: T[], b: T[], compare: ((a: T, b: T) => boolean) | undef
   return true;
 }
 
-function deepObject<T extends Object>(a: T, b: T, compare: ((a: any, b: any) => boolean) | undefined) {
+function deepObject<T>(a: T, b: T, compare: (a: any, b: any) => boolean) {
   let ka = 0;
   let kb = 0;
 

@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
 import { BackendService } from './backend.service';
-import { Identifiable, ResourceType } from '../shared/shared-types';
+import { Identifiable, ResourceType } from '../shared/common-types';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { map, catchError, retry, tap } from 'rxjs/operators';
 import { retryAfter } from '../shared/rx-operators';
 import { LoggerService } from './logger.service';
-import { NAMED_ENTITIES } from '@angular/compiler';
 
 export const BASE_API_URL = 'http://localhost:4200/api';
 
-export const ENTITY_TO_URL_MAP: any  = {
+export const ENTITY_TO_URL_MAP = {
   Product: 'products',
-  // User: 'users',
+  User: 'users',
 }
 
 export interface DataResponse<T> {
@@ -62,7 +61,7 @@ export class BackendHttpService implements BackendService{
         catchError(this.handleError)
       );
   }
-  delete<T extends Identifiable>(kind: ResourceType<T>, id: string): Observable<T> {
+  deleteById<T extends Identifiable>(kind: ResourceType<T>, id: string): Observable<T> {
     return this.http.delete<T>(`${BASE_API_URL}/${this.getUrl(kind)}/${id}`)
       .pipe(
         tap(
@@ -73,15 +72,6 @@ export class BackendHttpService implements BackendService{
         catchError(this.handleError)
       );
   }
-
-  count<T extends Identifiable>(kind: ResourceType<T>): Observable<number> {
-    return this.http.get<number>(`${BASE_API_URL}/${this.getUrl(kind)}/count`)
-      .pipe(
-        retryAfter(3, 1000),
-        catchError(this.handleError)
-      );
-  }
-
 
   protected getUrl<T extends Identifiable>(kind: ResourceType<T>): string {
     return ENTITY_TO_URL_MAP[kind.typeId];

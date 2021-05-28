@@ -5,12 +5,8 @@ import { RxDemoComponent } from './rx-demo/rx-demo.component';
 
 
 @NgModule({
-  declarations: [
-    RxDemoComponent
-  ],
-  exports: [
-    RxDemoComponent
-  ],
+  declarations: [RxDemoComponent],
+  exports: [RxDemoComponent],
   imports: [
     CommonModule
   ]

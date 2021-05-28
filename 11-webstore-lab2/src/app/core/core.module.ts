@@ -1,9 +1,6 @@
-import { PRODUCTS } from './mock-data';
-import { InjectionToken, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-// import { BackendMockService } from './backend-mock.service';
-import { BackendService } from './backend.service';
-import { PRODUCTS_TOKEN } from './injection-tokens';
+import { BACKEND } from './backend.service';
 import { BackendHttpService } from './backend-http.service';
 
 
@@ -13,9 +10,6 @@ import { BackendHttpService } from './backend-http.service';
   imports: [
     CommonModule
   ],
-  providers: [
-    {provide: BackendService, useClass: BackendHttpService},
-    {provide: PRODUCTS_TOKEN, useValue: PRODUCTS}
-  ]
+  providers: [{provide: BACKEND, useClass: BackendHttpService}]
 })
 export class CoreModule { }

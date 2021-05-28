@@ -24,10 +24,9 @@
 'use strict';
 
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 
 const rootPath = path.normalize(path.join(__dirname, '..'));
@@ -37,11 +36,16 @@ const userRoutes = require('./routes/user.routes');
 
 const app = express();
 
+const corsOptions = {
+  origin: 'http://localhost:3000', // create-react-app dev server
+}
+
+app.use(cors(corsOptions))
+
 // view engine setup
 app.set('app', path.join(rootPath, 'app'));
 app.use(logger('dev'));
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(cookieParser());
+app.use(express.json({limit: '50mb'}));
 
 // Route to  REST API top-level resources
 app.use('/api/products', productRoutes);

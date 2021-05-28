@@ -42,14 +42,6 @@ router.get('/', function (req, res) {
     );
 });
 
-// colunt products list
-router.get('/count', async function (req, res) {
-  const db = req.app.locals.db;
-  const count = await db.collection('products').countDocuments();
-  console.log(count);
-  res.json(count);
-});
-
 // GET products list
 router.get('/:productId', function (req, res) {
     const db = req.app.locals.db;
@@ -122,7 +114,7 @@ router.put('/:productId', function (req, res) {
         product._id = new mongodb.ObjectID(product.id);
         delete (product.id);
         console.log('Updating product:', product);
-        collection.updateOne({ _id: product._id }, { "$set": product })
+        collection.updateOne({ _id: new mongodb.ObjectID(product._id) }, { "$set": product })
             .then(result => {
                 const resultProduct = replaceId(product);
                 if (result.result.ok && result.modifiedCount === 1) {

@@ -1,10 +1,9 @@
 ﻿import {Injectable} from '@angular/core';
 import { Observable, from, zip } from 'rxjs';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, toArray, tap, mergeMap } from 'rxjs/operators';
+import { map, toArray, tap, flatMap } from 'rxjs/operators';
 
 export type ResultType = Array<[string, string, string]>;
-type ResponseType = string[][];
 
 @Injectable()
 export class WikipediaService {
@@ -19,8 +18,8 @@ export class WikipediaService {
         console.log(wikiUrl);
         // TODO: Add error handling
         return this.http.jsonp(wikiUrl, 'callback').pipe(
-          tap((data:any) => {console.log(data)}),
-          mergeMap((data: ResponseType) => zip(
+          tap(data => console.log(data)),
+          flatMap(data => zip(
               from(data[1] as string[] || []),
               from(data[2] as string[] || []),
               from(data[3] as string[] || [])

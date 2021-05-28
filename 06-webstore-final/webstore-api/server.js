@@ -24,6 +24,7 @@
 'use strict';
 
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
@@ -36,6 +37,12 @@ const productRoutes = require('./routes/product.routes');
 const userRoutes = require('./routes/user.routes');
 
 const app = express();
+
+const corsOptions = {
+  origin: 'http://localhost:3000', // create-react-app dev server
+};
+
+app.use(cors(corsOptions));
 
 // view engine setup
 app.set('app', path.join(rootPath, 'app'));
