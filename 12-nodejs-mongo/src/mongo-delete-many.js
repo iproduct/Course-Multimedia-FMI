@@ -3,7 +3,7 @@ var dbUrl = "mongodb://localhost:27017/";
 
 MongoClient.connect(dbUrl, function (err, con) {
     if (err) throw err;
-    const db = con.db('webstore4');
+    const db = con.db('webstore5');
     db.collection('products')
         .deleteMany({ name: 'Super Mouse' })
         .then(res => {
@@ -21,5 +21,4 @@ MongoClient.connect(dbUrl, function (err, con) {
         }).catch(err => {
             console.log("Error: Delete unsuccessfull.")
         })
-
 });

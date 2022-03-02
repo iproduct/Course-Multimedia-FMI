@@ -3,7 +3,7 @@ var dbUrl = "mongodb://localhost:27017/";
 
 MongoClient.connect(dbUrl, function (err, con) {
     if (err) throw err;
-    const db = con.db('webstore4');
+    const db = con.db('webstore5');
     db.collection('orders').aggregate([
         {
             $lookup:
@@ -18,7 +18,7 @@ MongoClient.connect(dbUrl, function (err, con) {
         .then(res => {
             res.forEach(order => console.log(JSON.stringify(order)));
         }).catch(err => {
-            console.log("Error: Update unsuccessfull.")
+            console.log("Error: Collection Join unsuccessfull.")
         }).finally(() => {
             con.close();
         })

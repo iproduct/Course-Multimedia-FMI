@@ -27,8 +27,6 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 
 const rootPath = path.normalize(path.join(__dirname, '..'));
@@ -45,10 +43,9 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // view engine setup
-app.set('app', path.join(rootPath, 'app'));
+// app.set('app', path.join(rootPath, 'app'));
 app.use(logger('dev'));
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(cookieParser());
+app.use(express.json({ limit: '50mb' }));
 
 // Route to  REST API top-level resources
 app.use('/api/products', productRoutes);
@@ -66,7 +63,7 @@ app.use(function (req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get("env") === "development") {
-  app.use(function(err, req, res, next) {
+  app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.json({
       message: err.message,
@@ -76,7 +73,7 @@ if (app.get("env") === "development") {
 } else {
   // production error handler
   // no stacktraces leaked to user
-  app.use(function(err, req, res, next) {
+  app.use(function (err, req, res, next) {
     res.status(err.status || 500);
     res.json({
       message: err.message,
@@ -89,7 +86,11 @@ if (app.get("env") === "development") {
 const url = 'mongodb://localhost:27017';
 
 //Use connect to connect to db
-MongoClient.connect(url, { db: { w: 1 } }).then((con) => {
+MongoClient.connect(url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  db: { w: 1 }
+}).then(con => {
   // assert.equal(null, err);
   console.log(`Successfully connected to MongoDB server at: ${url}`);
 

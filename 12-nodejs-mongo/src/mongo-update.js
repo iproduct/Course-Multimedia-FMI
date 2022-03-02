@@ -6,11 +6,11 @@ MongoClient.connect(dbUrl, {
     useUnifiedTopology: true
 }, function (err, con) {
     if (err) throw err;
-    const db = con.db('webstore4');
+    const db = con.db('webstore5');
     db.collection('products')
-        .updateOne({ name: 'Super Mouse' }, { $set: { price: 600 } })
+        .updateOne({ name: 'Super Mouse' }, { $set: { price: 100 } })
         .then(res => {
-            // console.log(res);
+            console.log(res);
             db.collection('products')
                 .find({ name: /^Super/ })
                 .project({ name: 1, price: 1 })

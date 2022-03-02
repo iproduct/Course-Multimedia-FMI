@@ -5,7 +5,7 @@ MongoClient.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(connection => {
-    const db = connection.db('webstore4');
+    const db = connection.db('webstore5');
     db.collection('products')
         // .find({ name: /^Super/ })
         .find()
@@ -14,7 +14,6 @@ MongoClient.connect(dbUrl, {
         .sort({price: -1})
         .toArray().then(res => {
             console.log(res);
-            connection.close();
         }).finally(() => connection.close());
     console.log("Database connected.");
 });

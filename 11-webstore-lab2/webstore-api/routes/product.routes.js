@@ -54,7 +54,7 @@ router.get('/:productId', function (req, res) {
                     (err, product) => {
                         if (err) throw err;
                         if (product === null) {
-                            error(req, res, 404, `Product with Id=${params.productId} not found.`, err);
+                            error(req, res, 404, `Product with Id=${params.productId} not found.`);
                         } else {
                             replaceId(product);
                             res.json(product);
@@ -72,21 +72,23 @@ router.post('/', function (req, res) {
     const db = req.app.locals.db;
     const product = req.body;
     indicative.validate(product, {
-      id: 'regex:^[0-9a-fA-F]{24}$',
       name: 'required|string|min:2',
       price: 'required|regex:^\\d+(\\.\\d+)?$',
-      description: 'string'
+      description: 'string',
+      imageUrl: 'url'
     }).then(() => {
-        const collection = db.collection('products');
+      delete product.id
+      delete product._id
+      const collection = db.collection('products');
         console.log('Inserting product:', product);
         collection.insertOne(product).then((result) => {
             if (result.result.ok && result.insertedCount === 1) {
                 replaceId(product);
                 const uri = req.baseUrl + '/' + product.id;
                 console.log('Created Product: ', uri);
-                res.location(uri).status(201).json(product);
+                res.status(201).location(uri).json(product);
             } else {
-                error(req, res, 400, `Error creating new product: ${product}`);
+                error(req, res, 500, `Error creating new product: ${product}`);
             }
         }).catch((err) => {
             error(req, res, 500, `Server error: ${err}`, err);
@@ -104,7 +106,8 @@ router.put('/:productId', function (req, res) {
       id: 'required|regex:^[0-9a-fA-F]{24}$',
       name: 'required|string|min:2',
       price: 'required|regex:^\\d+(\\.\\d+)?$',
-      description: 'string'
+      description: 'string',
+      imageUrl: 'url'
     }).then(() => {
         if (product.id !== req.params.productId) {
             error(req, res, 400, `Invalid product data - id in url doesn't match: ${product}`);

@@ -7,7 +7,7 @@ MongoClient.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(async client => {
-    const db = client.db('webstore4');
+    const db = client.db('webstore5');
     console.log("Database connected!");
     const products = [{
         "_id": new ObjectId('5ed150848446d5ae645ac3c5'),
@@ -44,5 +44,4 @@ MongoClient.connect(dbUrl, {
     } finally {
         client.close();
     }
-    
 });

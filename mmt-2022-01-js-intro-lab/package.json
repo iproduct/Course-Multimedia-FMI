@@ -1,0 +1,29 @@
+{
+  "name": "mmt-2022-01-js-intro-lab",
+  "version": "1.0.0",
+  "description": "JavaScript introduction lab",
+  "main": "index.js",
+  "scripts": {
+    "start": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iproduct/Course-Multimedia-FMI.git"
+  },
+  "keywords": [
+    "javascript",
+    "es5",
+    "intro",
+    "lab"
+  ],
+  "author": "Trayan Iliev",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/iproduct/Course-Multimedia-FMI/issues"
+  },
+  "homepage": "https://github.com/iproduct/Course-Multimedia-FMI#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}

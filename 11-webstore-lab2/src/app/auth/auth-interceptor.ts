@@ -22,11 +22,11 @@ export class AuthInterceptor implements HttpInterceptor {
       || req.url === `${BASE_API_URL}/auth/login` || req.url === `${BASE_API_URL}/auth/register`) {
         return next.handle(req);
     } else {   // send token
-      return  next.handle(req.clone({ headers: req.headers.set('X-Access-Token', this.authResult.token) })).pipe(
+      return  next.handle(req.clone({ headers: req.headers.set('Authorization', `Bearer ${this.authResult.token}`) }))
+      .pipe(
         tap(evt => {
             if (evt instanceof HttpResponse) {
                 console.log('---> status:', evt.status);
-                console.log('---> filter:', req.params.get('filter'));
             }
         })
       );

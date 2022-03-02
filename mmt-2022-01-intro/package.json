@@ -1,0 +1,30 @@
+{
+  "name": "mmt-2022-01-intro",
+  "version": "1.0.0",
+  "description": "MMT Introduction to HTML, CSS, JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iproduct/Course-Multimedia-FMI.git"
+  },
+  "keywords": [
+    "mmt",
+    "js",
+    "html",
+    "css",
+    "intro"
+  ],
+  "author": "Trayan Iliev",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/iproduct/Course-Multimedia-FMI/issues"
+  },
+  "homepage": "https://github.com/iproduct/Course-Multimedia-FMI#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
