@@ -24,7 +24,7 @@ console.log(counter.decrement());
 console.log(counter.decrement());
        
 for (const prop in counter) {
-  // if (obj.hasOwnProperty(prop)) {
+  if(counter.hasOwnProperty(prop)) {
       console.log(`counter.${prop} = ${counter[prop]}`);
-  // }
+  }
 }

@@ -12,17 +12,30 @@
         </div>
     </div>
     <script>
-        function handler(event) {
+        function handler1(event) {
             var elem = event.currentTarget;
-            console.log(elem.className);
-            event.stopPropagation();
+            console.log("Hadnler 1:", elem.className);
+            event.stopImmediatePropagation();
             elem.style.background = "#ffff00";
-            alert(elem.className);
+            alert("Hadnler 1: " + elem.className);
             elem.style.background = '';
         }
+        function handler2(event) {
+            var elem = event.currentTarget;
+            console.log("Hadnler 2: ", elem.className);
+            // event.stopPropagation();
+            elem.style.background = "#ffff00";
+            alert("Hadnler 2: " + elem.className);
+            elem.style.background = '';
+        }
+
         document.querySelectorAll("div").forEach(
-            elem => elem.addEventListener('click', handler, true)
+            elem => {
+                elem.addEventListener('click', handler1, true);
+                elem.addEventListener('click', handler2, true);
+            }
         );
-    </script>
+    </script>+
 </body>
+
 </html>
