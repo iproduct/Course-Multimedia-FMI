@@ -5,15 +5,17 @@ export var Role;
     Role[Role["ADMIN"] = 3] = "ADMIN";
 })(Role || (Role = {}));
 export class UserBase {
-    constructor(id, password, salutation, firstName, lastName, email, roles = [], contact) {
+    constructor(id, firstName, lastName, email, password, roles = [], contact) {
         this.id = id;
-        this.password = password;
-        this.salutation = salutation;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.password = password;
         this.roles = roles;
         this.contact = contact;
+    }
+    get salutation() {
+        return this.getSalutation();
     }
     getSalutation() {
         return `Hi ${this.firstName} ${this.lastName} in roles: ${this.roles.map(r => Role[r]).join(", ")}`;

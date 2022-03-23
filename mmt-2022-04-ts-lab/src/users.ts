@@ -30,15 +30,17 @@ export enum Role {
 export class UserBase implements User {
     constructor(
         public id: IdType,
-        public password: string,
-        public salutation: string,
         public firstName: string,
         public lastName: string,
         public email: string,
+        public password: string,
         public roles: Role[] = [],
         public contact?: Contact | undefined,
     ) { }
-    public getSalutation(): string {
+    get salutation() {
+        return this.getSalutation();
+    }
+    getSalutation(): string {
         return `Hi ${this.firstName} ${this.lastName} in roles: ${this.roles.map(r => Role[r]).join(", ")}`
     }
 }
