@@ -1,0 +1,16 @@
+{
+  "name": "mmt-2022-04-ts-lab",
+  "version": "1.0.0",
+  "description": "TypeScript demo project",
+  "main": "index.js",
+  "repository": "https://github.com/iproduct/Course-Multimedia-FMI",
+  "author": "Trayan Iliev",
+  "license": "Apache-2.0",
+  "scripts": {
+    "start": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {}
+}
