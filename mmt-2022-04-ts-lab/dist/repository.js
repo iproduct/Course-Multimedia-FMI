@@ -1,22 +1,35 @@
+import { EntityNotFoundException } from "./exceptions";
 export class RepositoryImpl {
-    constructor() { }
+    constructor(idGen) {
+        this.idGen = idGen;
+        this.entities = new Map();
+    }
     findAll() {
-        throw new Error("Method not implemented.");
+        return Array.from(this.entities.values());
     }
     findById(id) {
-        throw new Error("Method not implemented.");
+        return this.entities.get(id);
     }
     create(entity) {
-        throw new Error("Method not implemented.");
+        entity.id = this.idGen.getNextId();
+        this.entities.set(entity.id, entity);
+        return entity;
     }
     update(entity) {
-        throw new Error("Method not implemented.");
+        const old = this.findById(entity.id);
+        if (!old) {
+            throw new EntityNotFoundException(`Entity with ID='${entity.id}' not found.`);
+        }
+        this.entities.set(entity.id, entity);
+        return entity;
     }
     deleteById(id) {
-        throw new Error("Method not implemented.");
+        const old = this.findById(id);
+        this.entities.delete(id);
+        return old;
     }
     count() {
-        throw new Error("Method not implemented.");
+        return this.entities.size;
     }
 }
 //# sourceMappingURL=repository.js.map

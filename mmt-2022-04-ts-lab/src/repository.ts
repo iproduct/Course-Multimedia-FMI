@@ -1,30 +1,52 @@
-export interface Repository<K, E>{
+import { EntityNotFoundException } from "./exceptions";
+
+type IdType = number
+
+interface Identifiable<K> {
+    id: K;
+}
+
+export interface Repository<K, E extends Identifiable<K>>{
     findAll(): E[];
-    findById(id: K): E | null;
+    findById(id: K): E | undefined;
     create(entity: E): E;
     update(entity: E): E;
-    deleteById(id: K): E | null;
+    deleteById(id: K): E | undefined;
     count(): number;
 }
 
-export class RepositoryImpl<K, E> implements Repository<K, E> {
-    constructor(){}
+export interface IdGenerator<K> {
+    getNextId(): K;
+}
+
+export class RepositoryImpl<K, E extends Identifiable<K>> implements Repository<K, E> {
+    private entities = new Map<K, E>();
+    constructor(private idGen: IdGenerator<K>){}
     findAll(): E[] {
-        throw new Error("Method not implemented.");
+        return Array.from(this.entities.values());
     }
-    findById(id: K): E | null {
-        throw new Error("Method not implemented.");
+    findById(id: K): E | undefined {
+        return this.entities.get(id);
     }
     create(entity: E): E {
-        throw new Error("Method not implemented.");
+        entity.id = this.idGen.getNextId();
+        this.entities.set(entity.id, entity);
+        return entity;
     }
     update(entity: E): E {
-        throw new Error("Method not implemented.");
+        const old = this.findById(entity.id);
+        if(!old) {
+            throw new EntityNotFoundException(`Entity with ID='${entity.id}' not found.`);
+        }
+        this.entities.set(entity.id, entity);
+        return entity;
     }
-    deleteById(id: K): E | null {
-        throw new Error("Method not implemented.");
+    deleteById(id: K): E | undefined {
+        const old = this.findById(id);
+        this.entities.delete(id);
+        return old;
     }
     count(): number {
-        throw new Error("Method not implemented.");
+        return this.entities.size;
     }
 }
