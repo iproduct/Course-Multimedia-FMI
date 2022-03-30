@@ -1,4 +1,5 @@
-import { DEFAULT_USERS, greeter } from "./greeter.js";
+import { DEFAULT_USERS, greet} from "./greeter.js";
 
 
-document.getElementById("app")!.innerHTML = greeter(DEFAULT_USERS[0]);
+document.getElementById("users")!.innerHTML = 
+    DEFAULT_USERS.map(user => (`<li>${greet(user)}</li>`)).join('\n');
