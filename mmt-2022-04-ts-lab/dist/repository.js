@@ -1,4 +1,4 @@
-import { EntityNotFoundException } from "./exceptions";
+import { EntityNotFoundException } from "./exceptions.js";
 export class RepositoryImpl {
     constructor(idGen) {
         this.idGen = idGen;

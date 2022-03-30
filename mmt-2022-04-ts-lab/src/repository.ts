@@ -1,8 +1,6 @@
-import { EntityNotFoundException } from "./exceptions";
+import { EntityNotFoundException } from "./exceptions.js";
 
-type IdType = number
-
-interface Identifiable<K> {
+export interface Identifiable<K> {
     id: K;
 }
 
