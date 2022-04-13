@@ -11,6 +11,9 @@ export interface IdGenerator{
   getNextId(): IdType;
 }
 
+@Injectable({
+  providedIn: 'root'
+})
 export class NumberIdGenrator implements IdGenerator{
   private nextId = 0;
   getNextId(): IdType {
@@ -65,4 +68,8 @@ export class RepositoryImpl<T extends Identifiable> implements Repository<T> {
 @Injectable({
   providedIn: 'root'
 })
-export class TodoRepository extends RepositoryImpl<Todo>{}
+export class TodoRepository extends RepositoryImpl<Todo>{
+  constructor(idGen: NumberIdGenrator){
+    super(idGen);
+  }
+}

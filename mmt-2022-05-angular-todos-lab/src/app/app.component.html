@@ -49,4 +49,7 @@
   <!-- Resources -->
   <h2>Next things to do:</h2>
 
+  <ul>
+    <li *ngFor="let todo of todos; let i = index">{{i + 1}}: {{todo.title}} - {{getTodoStatusString(todo.status)}}</li>
+  </ul>
 </div>

@@ -290,3 +290,7 @@ svg#clouds {
     visibility: hidden;
   }
 }
+
+li {
+  list-style-type: none;
+}

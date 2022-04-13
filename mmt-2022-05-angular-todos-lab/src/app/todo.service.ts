@@ -1,12 +1,15 @@
 import { TodoRepository, IdType } from './todo.repository';
 import { Injectable } from '@angular/core';
 import { Todo } from './todo.model';
+import MOCK_TODOS from './mock-todos';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-  constructor(private todoRepo: TodoRepository) { }
+  constructor(private todoRepo: TodoRepository) {
+    MOCK_TODOS.forEach(todo => this.todoRepo.create(todo))
+  }
 
   getAllTodos(){
     return this.todoRepo.findAll();
