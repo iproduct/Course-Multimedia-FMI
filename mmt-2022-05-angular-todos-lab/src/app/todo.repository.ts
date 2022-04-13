@@ -1,16 +1,10 @@
+import { Injectable } from "@angular/core";
+import { Todo } from "./todo.model";
+
 export type IdType = number | undefined;
 
 export interface Identifiable {
   id: IdType;
-}
-
-export interface Repository<T extends Identifiable> {
-  findAll(): T[];
-  findById(id: IdType): T | undefined;
-  create(entity: T): T,
-  update(entity: T): T | undefined,
-  deleteById(id: IdType): T | undefined,
-  count(): number;
 }
 
 export interface IdGenerator{
@@ -24,6 +18,14 @@ export class NumberIdGenrator implements IdGenerator{
   }
 }
 
+export interface Repository<T extends Identifiable> {
+  findAll(): T[];
+  findById(id: IdType): T | undefined;
+  create(entity: T): T,
+  update(entity: T): T | undefined,
+  deleteById(id: IdType): T | undefined,
+  count(): number;
+}
 export class RepositoryImpl<T extends Identifiable> implements Repository<T> {
   protected entities = new Map<IdType, T>();
 
@@ -58,5 +60,9 @@ export class RepositoryImpl<T extends Identifiable> implements Repository<T> {
   count(): number {
     return this.entities.size;
   }
-
 }
+
+@Injectable({
+  providedIn: 'root'
+})
+export class TodoRepository extends RepositoryImpl<Todo>{}
