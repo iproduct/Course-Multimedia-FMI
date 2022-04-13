@@ -1,4 +1,4 @@
-export type IdType = number;
+import { IdType } from "./index.js";
 
 export interface Person {
     id: IdType;
