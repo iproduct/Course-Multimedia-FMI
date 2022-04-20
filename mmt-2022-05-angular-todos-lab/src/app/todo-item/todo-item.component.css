@@ -2,6 +2,11 @@
   margin: 5px 0;
 }
 
+.item .right {
+  float: right;
+  margin: 5px 10px;
+}
+
 button {
   float: right;
   vertical-align: middle;

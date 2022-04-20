@@ -58,7 +58,6 @@
   <!-- Resources -->
   <h2>Next things to do:</h2>
 
-  <div class="todos items">
-    <td-todo-item *ngFor="let todo of todos; let i = index" [todo]="todo" [index]="i"></td-todo-item>
-  </div>
+  <td-todo-list [todos]="todos"></td-todo-list>
+
 </div>
