@@ -1,1 +1,4 @@
-<div>{{i + 1}}: {{todo.title}} - {{getTodoStatusString(todo.status)}}</div>
+<div class="item">
+  <span class="badge">{{index !== undefined ? index + 1 : ""}}</span>
+  {{todo?.title}} : {{getTodoStatusString(todo?.status)}}
+</div>

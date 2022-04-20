@@ -82,30 +82,30 @@ button:disabled {
   padding: 0;
   width: 40em;
 }
-.items li {
+.items .item {
   cursor: pointer;
   position: relative;
   left: 0;
   background-color: #EEE;
   margin: .5em;
   padding: .3em 0;
-  height: 1.5em;
+  height: 1.75em;
   border-radius: 4px;
 }
-.items li.custom {
+.items .item.custom {
   background-color: rgb(255, 250, 204);
 }
-.items li:hover {
+.items .item:hover {
   color: #607D8B;
   background-color: #DDD;
   left: .1em;
 }
-.items li.selected {
+.items .item.selected {
   background-color: #CFD8DC;
   color: white;
 }
 
-.items li.selected:hover {
+.items .item.selected:hover {
   background-color: #BBD8DC;
 }
 .items .text {

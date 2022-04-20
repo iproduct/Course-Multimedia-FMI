@@ -11,13 +11,9 @@ export class AppComponent implements OnInit {
   title = 'Angular TODOs Demo';
   todos: Todo[] = [];
   constructor(private todoService: TodoService){}
-  
+
   ngOnInit(): void {
     this.todos = this.todoService.getAllTodos();
-  }
-
-  getTodoStatusString(todoStatus: TodoStatus){
-    return TodoStatus[todoStatus];
   }
 
 
