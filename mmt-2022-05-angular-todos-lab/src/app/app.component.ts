@@ -13,7 +13,16 @@ export class AppComponent implements OnInit {
   constructor(private todoService: TodoService){}
 
   ngOnInit(): void {
+    this.refresh();
+  }
+
+  refresh() {
     this.todos = this.todoService.getAllTodos();
+  }
+
+  addTodo(todo: Todo) {
+    this.todoService.addTodo(todo);
+    this.refresh();
   }
 
 

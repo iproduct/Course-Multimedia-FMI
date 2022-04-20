@@ -1,0 +1,16 @@
+button {
+  color: white;
+  margin: 0 5px;
+}
+
+button.btn-complete {
+  background-color: cornflowerblue;
+}
+
+button.btn-complete:hover {
+  background-color: rgb(51, 116, 238);
+}
+
+button.btn-complete:active {
+  background-color: rgb(51, 99, 189);
+}
