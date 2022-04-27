@@ -1,2 +1,3 @@
-<input type="text" placeholder="What to do next?" [(ngModel)]="todoText">
+<input type="text" placeholder="What to do next?" (keyup)="onKeyUp($event)">
 <button (click)="addTodo()" class="btn-complete">Add TODO</button>
+<p>{{history}}</p>

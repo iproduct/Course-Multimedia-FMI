@@ -9,6 +9,7 @@ import { Todo } from '../todo.model';
 export class TodoInputComponent implements OnInit {
   @Output() newTodo = new EventEmitter<Todo>();
   todoText = '';
+  history = '';
 
   constructor() { }
 
@@ -21,6 +22,12 @@ export class TodoInputComponent implements OnInit {
       this.newTodo.emit(new Todo(text));
       this.todoText = '';
     }
+  }
+
+  onKeyUp(event: KeyboardEvent) {
+    this.todoText = (event.target as HTMLInputElement).value;
+    this.history += ' | ' + this.todoText;
+
   }
 
 }
