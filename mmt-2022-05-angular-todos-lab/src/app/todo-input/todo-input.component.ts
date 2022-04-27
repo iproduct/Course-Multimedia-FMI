@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Todo } from '../todo.model';
 
 @Component({
@@ -8,6 +8,7 @@ import { Todo } from '../todo.model';
 })
 export class TodoInputComponent implements OnInit {
   @Output() newTodo = new EventEmitter<Todo>();
+  @ViewChild('todoInput', {static: true}) inputElem: ElementRef | undefined;
   todoText = '';
   history = '';
 
@@ -17,10 +18,15 @@ export class TodoInputComponent implements OnInit {
   }
 
   addTodo(){
-    const text = this.todoText.trim();
+    // const text = this.todoText.trim();
+    // text = text.trim();
+    const text = (this.inputElem?.nativeElement as HTMLInputElement)?.value?.trim();
     if(text.length > 0){
       this.newTodo.emit(new Todo(text));
       this.todoText = '';
+    }
+    if((this.inputElem?.nativeElement as HTMLInputElement)?.value) {
+      (this.inputElem!.nativeElement as HTMLInputElement).value = '';
     }
   }
 

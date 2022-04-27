@@ -1,3 +1,3 @@
-<input type="text" placeholder="What to do next?" (keyup)="onKeyUp($event)">
-<button (click)="addTodo()" class="btn-complete">Add TODO</button>
-<p>{{history}}</p>
+<input type="text" #todoInput (keyup)="0" placeholder="What to do next?" (keyup.enter)="addTodo()">
+<button (click)="addTodo()" (keyup.enter)="addTodo()" class="btn-complete">Add TODO</button>
+<p>{{todoInput.value}}</p>
