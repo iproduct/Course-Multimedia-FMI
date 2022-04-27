@@ -10,7 +10,7 @@ import { SimpleFormComponent } from './simple-form.component';
   declarations: [
     SimpleFormComponent
   ],
-  exports: [],
+  exports: [SimpleFormComponent],
   imports: [
     CommonModule,
     BrowserModule,
