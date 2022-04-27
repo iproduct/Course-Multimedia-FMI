@@ -1,1 +1,12 @@
-<p>simple-form works!</p>
+<form #fElem #fModel="ngForm" (ngSubmit)="onSubmit(fModel)">
+  <div ngModelGroup="name" #nameCtrl="ngModelGroup">
+    <input name="first" [ngModel]="name.first" minlength="2">
+    <input name="last" [ngModel]="name.last" minlength="2">
+  </div>
+  <input name="email" ngModel email>
+  <button type="submit">Submit</button>
+  <button type="button" (click)="setValue()">Set Name Values</button>
+</form>
+<p>{{fModel.value | json}}</p>
+<p>{{fModel.valid}}</p>
+<p>{{fElem.className}}</p>
