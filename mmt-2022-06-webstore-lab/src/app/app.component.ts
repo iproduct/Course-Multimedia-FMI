@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'mmt-2022-06-webstore-lab';
+  title = 'Web Store Demo - Angular';
 }
