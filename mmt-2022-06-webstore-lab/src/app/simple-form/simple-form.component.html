@@ -4,9 +4,8 @@
     <input name="last" [ngModel]="name.last" minlength="2">
   </div>
   <input name="email" ngModel email>
-  <button type="submit">Submit</button>
+  <button type="submit" [disabled]="fModel.pristine || fModel.invalid">Submit</button>
   <button type="button" (click)="setValue()">Set Name Values</button>
 </form>
 <p>{{fModel.value | json}}</p>
 <p>{{fModel.valid}}</p>
-<p>{{fElem.className}}</p>
