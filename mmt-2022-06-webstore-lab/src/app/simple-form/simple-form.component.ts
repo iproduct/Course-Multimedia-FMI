@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterContentChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -6,24 +6,28 @@ import { NgForm } from '@angular/forms';
   templateUrl: './simple-form.component.html',
   styleUrls: ['./simple-form.component.scss']
 })
-export class SimpleFormComponent implements OnInit {
-  name = {first: 'John', last: 'Smith'}
+export class SimpleFormComponent implements OnInit, AfterContentChecked {
+  @ViewChild('fElem') fElem: ElementRef | undefined;
+  name = { first: 'John', last: 'Smith' };
+  email = '';
+  elemClasses = '';
 
   constructor() { }
+  ngAfterContentChecked(): void {
+    this.elemClasses = this.fElem?.nativeElement.className;
+  }
 
   ngOnInit(): void {
   }
 
   onSubmit(formModel: NgForm) {
-    console.log(formModel.value);
+    const value = { name: this.name, email: this.email }
+    console.log(value);
     console.log("valid:", formModel.valid);
   }
 
   setValue() {
-    this.name = {first: 'Brian', last: 'Adams'}
+    this.name = { first: 'Brian', last: 'Adams' }
   }
 
-  // wrapInPromise(value: string) {
-  //   return Promise.resolve(value);
-  // }
 }
