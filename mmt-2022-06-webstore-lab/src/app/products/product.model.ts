@@ -7,7 +7,7 @@ export class Product implements Identifiable {
 
   constructor(
     public name: string,
-    public price: string,
+    public price: number,
     public description: string,
     public imageUrl?: string,
   ){}
