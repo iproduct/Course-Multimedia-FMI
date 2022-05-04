@@ -1,7 +1,7 @@
 import { Identifiable } from '../shared/common-types';
 import { Product } from './product.model';
 
-export const PRODUCTS: Identifiable[] = [
+export const MOCK_PRODUCTS: Identifiable[] = [
   new Product('Logitech Mouse', 12.99, 'Super mouse', 'https://assets.logitech.com/assets/64683/performance-mouse-mx.png'),
   new Product('Wireless Keyboard', 23.85, 'Type whereever you are',
     'https://images-na.ssl-images-amazon.com/images/G/01/aplus/detail-page/B005DKZTMG_K400_FOB_US_lg.jpg'),

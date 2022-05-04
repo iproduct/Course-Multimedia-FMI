@@ -7,12 +7,18 @@ import { MatCardModule } from '@angular/material/card'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/input'
-import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ProductListComponent } from './product-list/product-list.component'
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ProductListComponent
+  ],
+  exports: [
+    ProductListComponent
+  ],
   imports: [
     CommonModule,
     BrowserModule,

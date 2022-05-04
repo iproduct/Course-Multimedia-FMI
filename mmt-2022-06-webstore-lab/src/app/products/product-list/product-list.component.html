@@ -1,0 +1,16 @@
+<div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="30px">
+  <div fxLayout="column" class="product-card-container" fxLayoutGap="5px">
+    <mat-card *ngFor="let product of products" class="product-card"
+      [class.selected]="product.id === selectedProduct?.id"
+      (click)="selectProduct(product)" fxLayout="row wrap" fxLayoutAlign="right center">
+      <mat-card-header class="product-header" (click)="setMode('present')">
+        <div mat-card-avatar class="product-header-image">
+          <img [src]="product.imageUrl" [alt]="product.name">
+        </div>
+        <mat-card-title>{{product.name}} - {{product.price | currency:'USD':true:'1.2-2'}}</mat-card-title>
+        <mat-card-subtitle>{{product.description}}</mat-card-subtitle>
+      </mat-card-header>
+
+    </mat-card>
+  </div>
+</div>
