@@ -18,10 +18,10 @@ export class ProductListComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.products = MOCK_PRODUCTS.map(p => ({...p , id: self.crypto.randomUUID()})) as Product[];
+    this.products = MOCK_PRODUCTS.map(p => ({ ...p, id: self.crypto.randomUUID() })) as Product[];
   }
 
-  selectProduct(product: Product) {
+  selectProduct(product: Product | undefined) {
     this.selectedProduct = product;
   }
 
@@ -30,11 +30,22 @@ export class ProductListComponent implements OnInit {
   }
 
   addProduct() {
-    this.selectProduct(new Product('',0,''))
+    this.selectProduct(new Product('', 0, ''))
     this.setMode('edit');
   }
 
-  deleteProduct(product: Product){
+  deleteProduct(product: Product) {
   }
+
+  submitProduct(product: Product) {
+
+  }
+
+  cancelProduct() {
+    this.setMode('present');
+    this.selectProduct(undefined);
+  }
+
+
 
 }
