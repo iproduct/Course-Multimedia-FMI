@@ -83,7 +83,7 @@ export class ProductDetailComponent implements OnInit, OnChanges, OnDestroy {
       [Validators.required, Validators.minLength(2), Validators.maxLength(24)]
       ],
       price: [this.product.price,
-      [Validators.required, Validators.minLength(0)]
+      [Validators.required, Validators.min(0.01)]
       ],
       description: [this.product.description,
       [Validators.minLength(2), Validators.maxLength(512)]

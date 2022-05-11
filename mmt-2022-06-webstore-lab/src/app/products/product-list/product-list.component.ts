@@ -12,6 +12,8 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   selectedProduct: Product | undefined;
   mode: PresentationMode = 'present';
+  errors: string = '';
+  messages: string = '';
 
   constructor() { }
 
@@ -25,6 +27,14 @@ export class ProductListComponent implements OnInit {
 
   setMode(mode: PresentationMode) {
     this.mode = mode;
+  }
+
+  addProduct() {
+    this.selectProduct(new Product('',0,''))
+    this.setMode('edit');
+  }
+
+  deleteProduct(product: Product){
   }
 
 }
