@@ -1,8 +1,8 @@
 <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="30px">
   <div fxLayout="column" class="product-card-container" fxLayoutGap="5px">
     <mat-card *ngFor="let product of products" class="product-card"
-      [class.selected]="product.id === selectedProduct?.id"
-      (click)="selectProduct(product)" fxLayout="row wrap" fxLayoutAlign="right center">
+      [class.selected]="product.id === selectedProduct?.id" (click)="selectProduct(product)" fxLayout="row wrap"
+      fxLayoutAlign="right center">
       <mat-card-header class="product-header" (click)="setMode('present')">
         <div mat-card-avatar class="product-header-image">
           <img [src]="product.imageUrl" [alt]="product.name">
@@ -10,7 +10,22 @@
         <mat-card-title>{{product.name}} - {{product.price | currency:'USD':true:'1.2-2'}}</mat-card-title>
         <mat-card-subtitle>{{product.description}}</mat-card-subtitle>
       </mat-card-header>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" class="icon-button" (click)="selectMode('edit')">
+          <mat-icon mat-button>edit</mat-icon>
+        </button>
+        <button mat-raised-button color="warn" class="icon-button" (click)="deleteUser(user)">
+          <mat-icon mat-button>delete</mat-icon>
+        </button>
+      </mat-card-actions>
     </mat-card>
   </div>
-  <ws-product-detail *ngIf="selectedProduct" [product]="selectedProduct" [mode]="mode" ></ws-product-detail>
+  <!-- <ws-product-detail *ngIf="selectedProduct"
+    [product]="selectedProduct" [mode]="currentMode"
+    (productModified)="onProductModified($event)"
+    (productCanceled)="onProductCanceled()">
+  </ws-product-detail> -->
+  <div fxLayout="column" class="product-card-container" fxLayoutGap="5px">
+    <ws-product-detail *ngIf="selectedProduct" [product]="selectedProduct" [mode]="mode"></ws-product-detail>
+  </div>
 </div>
