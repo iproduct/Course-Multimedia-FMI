@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PresentationMode } from 'src/app/shared/common-types';
 import { MOCK_PRODUCTS } from '../mock-products';
 import { Product } from '../product.model';
-
-export type PresentationMode = 'present' | 'edit' | 'add';
 
 @Component({
   selector: 'ws-product-list',
