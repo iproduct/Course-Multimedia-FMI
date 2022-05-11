@@ -10,4 +10,4 @@ export interface ResourceType<T> extends Function {
   new(...args: any[]): T;
 }
 
-export type PresentationMode = 'present' | 'edit' | 'add';
+export type PresentationMode = 'present' | 'edit';
