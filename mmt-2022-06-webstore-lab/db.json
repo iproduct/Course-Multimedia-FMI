@@ -31,36 +31,43 @@
       "name": "Logitech Mouse",
       "price": 12.99,
       "description": "Super mouse",
-      "imageUrl" : "https://assets.logitech.com/assets/64683/performance-mouse-mx.png"
+      "imageUrl": "https://assets.logitech.com/assets/64683/performance-mouse-mx.png"
     },
     {
       "id": 2,
       "name": "Wireless Keyboard",
       "price": 23.85,
       "description": "Type whereever you are",
-      "imageUrl" : "https://images-na.ssl-images-amazon.com/images/G/01/aplus/detail-page/B005DKZTMG_K400_FOB_US_lg.jpg"
+      "imageUrl": "https://images-na.ssl-images-amazon.com/images/G/01/aplus/detail-page/B005DKZTMG_K400_FOB_US_lg.jpg"
     },
     {
       "id": 3,
       "name": "Whiteboard Marker",
       "price": 0.32,
       "description": "Drawing is fun",
-      "imageUrl" : "https://www.esquoia.com/wp-content/uploads/2016/09/whiteboard-markers.jpg"
+      "imageUrl": "https://www.esquoia.com/wp-content/uploads/2016/09/whiteboard-markers.jpg"
     },
     {
       "id": 4,
       "name": "Lenovo Laptop",
       "price": 1280,
       "description": "Lenovo traveller",
-      "imageUrl" : "https://upload.wikimedia.org/wikipedia/commons/4/45/Lenovo_ThinkPad_X1_Ultrabook.jpg"
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Lenovo_ThinkPad_X1_Ultrabook.jpg"
     },
     {
-      "id": 5,
-      "name": "LCD Beemer",
-      "price": 980.50,
-      "description": "BENQ beemer",
-      "imageUrl" : "https://www.varle.lt/static/uploads/products/292/ben/benq-w1700-desktop-projector-2200ansi-lumens_Lh17HoZ.jpeg"
+      "id": 6,
+      "name": "Coffe Best Taste",
+      "price": 24,
+      "description": "Lavaza BLue",
+      "imageUrl": "http://doctorakil.com/wp-content/uploads/2018/01/coffee-940x600.jpg"
+    },
+    {
+      "name": "LCD Projector",
+      "price": 980.5,
+      "description": "BENQ Beemer",
+      "imageUrl": "https://www.varle.lt/static/uploads/products/292/ben/benq-w1700-desktop-projector-2200ansi-lumens_Lh17HoZ.jpeg",
+      "id": 7
     }
-],
-"comments": []
+  ],
+  "comments": []
 }

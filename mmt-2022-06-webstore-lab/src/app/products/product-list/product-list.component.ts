@@ -21,13 +21,13 @@ export class ProductListComponent implements OnInit {
   ngOnInit(): void {
     //MOCK_PRODUCTS.map(p => ({ ...p, id: self.crypto.randomUUID() })) as Product[];
     this.productService.findAll()
-    .subscribe({
-      next: products => {
-        this.products = products;
-        this.errors = '';
-      },
-      error: err => this.errors += err
-    });
+      .subscribe({
+        next: products => {
+          this.products = products;
+          this.clearMessages();
+        },
+        error: err => this.errors += err
+      });
   }
 
   selectProduct(product: Product | undefined) {
@@ -44,10 +44,41 @@ export class ProductListComponent implements OnInit {
   }
 
   deleteProduct(product: Product) {
+    this.productService.deleteById(product.id)
+      .subscribe({
+        next: deleted => {
+          this.products = this.products.filter(p => p.id !== product.id );
+          this.clearMessages();
+          this.messages += `Successfully deleted product: '${product.name}'. `
+          this.cancelProduct();
+        },
+        error: err => this.errors += err
+      });
   }
 
   submitProduct(product: Product) {
+    if (product.id) { //update
+      this.productService.update(product)
+        .subscribe({
+          next: updated => {
+            this.products = this.products.map(p => p.id === updated.id ? updated : p);
+            this.clearMessages();
+            this.messages += `Successfully updated product: '${updated.name}'. `
+          },
+          error: err => this.errors += err
+        });
+    } else { //create
+      this.productService.create(product)
+        .subscribe({
+          next: created => {
+            this.products = [...this.products, created]
+            this.clearMessages();
+            this.messages += `Successfully created product: '${created.name}'. `
+          },
+          error: err => this.errors += err
+        });
 
+    }
   }
 
   cancelProduct() {
@@ -55,6 +86,8 @@ export class ProductListComponent implements OnInit {
     this.selectProduct(undefined);
   }
 
-
-
+  private clearMessages() {
+    this.errors = '';
+    this.messages = '';
+  }
 }
