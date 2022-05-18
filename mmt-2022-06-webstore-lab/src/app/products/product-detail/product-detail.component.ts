@@ -64,6 +64,7 @@ export class ProductDetailComponent implements OnInit, OnChanges, OnDestroy {
 
   ngOnInit(): void {
   }
+  
   ngOnDestroy(): void {
     this.statusSubscription?.unsubscribe();
   }
