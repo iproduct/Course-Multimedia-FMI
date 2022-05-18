@@ -1,4 +1,4 @@
-import { IdType } from './../shared/common-types';
+import { IdType, ResourceType } from './../shared/common-types';
 import { Identifiable } from "../shared/common-types";
 
 export class Product implements Identifiable {

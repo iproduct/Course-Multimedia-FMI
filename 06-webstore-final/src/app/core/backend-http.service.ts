@@ -90,7 +90,7 @@ export class BackendHttpService implements BackendService{
         message was: ${JSON.stringify(error.message)}`);
     }
     // return ErrorObservable with a user-facing error message
-    return throwError(`Error performing the operation: ${error.message ? error.message : ''}. Correct data and try again.`);
+    return throwError(() => `Error performing the operation: ${error.message ? error.message : ''}. Correct data and try again.`);
   }
 
 }

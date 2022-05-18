@@ -1,3 +1,4 @@
+import { ProductsService } from './../products.service';
 import { Component, OnInit } from '@angular/core';
 import { PresentationMode } from 'src/app/shared/common-types';
 import { MOCK_PRODUCTS } from '../mock-products';
@@ -15,10 +16,18 @@ export class ProductListComponent implements OnInit {
   errors: string = '';
   messages: string = '';
 
-  constructor() { }
+  constructor(private productService: ProductsService) { }
 
   ngOnInit(): void {
-    this.products = MOCK_PRODUCTS.map(p => ({ ...p, id: self.crypto.randomUUID() })) as Product[];
+    //MOCK_PRODUCTS.map(p => ({ ...p, id: self.crypto.randomUUID() })) as Product[];
+    this.productService.findAll()
+    .subscribe({
+      next: products => {
+        this.products = products;
+        this.errors = '';
+      },
+      error: err => this.errors += err
+    });
   }
 
   selectProduct(product: Product | undefined) {
