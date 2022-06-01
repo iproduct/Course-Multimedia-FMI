@@ -67,6 +67,13 @@
       "description": "BENQ Beemer",
       "imageUrl": "https://www.varle.lt/static/uploads/products/292/ben/benq-w1700-desktop-projector-2200ansi-lumens_Lh17HoZ.jpeg",
       "id": 7
+    },
+    {
+      "name": "Coffe Best One AAA",
+      "price": 12.5,
+      "description": "Lavaza",
+      "imageUrl": "https://www.publicdomainpictures.net/pictures/250000/velka/mars-1515656849bmH.jpg",
+      "id": 8
     }
   ],
   "comments": []
