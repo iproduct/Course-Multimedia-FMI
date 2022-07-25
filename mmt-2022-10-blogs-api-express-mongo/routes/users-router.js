@@ -39,11 +39,11 @@ router.post('/', async (req, res) => {
             lastName: 'required|string|min:2',
             username: 'required|string|min:5',
             password: 'required|string|min:6',
-            role: 'in:Author,Admin',
+            role: 'in:AUTHOR,ADMIN',
             imageUrl: 'url'
         });
         if(!user.role) {
-            user.role = 'Author';
+            user.role = 'AUTHOR';
         }
         const salt = bcrypt.genSaltSync(10);
         user.password = await bcrypt.hash(user.password, salt);
@@ -52,7 +52,7 @@ router.post('/', async (req, res) => {
             if (r.result.ok && r.insertedCount === 1) {
                 delete user._id;
                 user.id = r.insertedId;
-                console.log(`Unable to update post: ${user.id}: ${user.firstName} ${user.lastName}`);
+                console.log(`New User created: ${user.id}: ${user.firstName} ${user.lastName}`);
                 res.status(201).location(`/api/users/${user.id}`).json(user);
             } else {
                 sendErrorResponse(req, res, 500, `Unable to create user: ${user.id}: ${user.firstName} ${user.lastName}`);
@@ -83,9 +83,10 @@ router.put('/:id', async (req, res) => {
             id: 'required|regex:^[0-9a-f]{24}$',
             firstName: 'required|string|min:2',
             lastName: 'required|string|min:2',
-            username: 'required|email',
+            username: 'required|string|min:5|max:20',
+            email: 'required|email',
             password: 'required|string|min:6',
-            role: 'required|in:Author,Admin',
+            role: 'required|in:AUTHOR,ADMIN',
             imageUrl: 'url'
         });
         try {

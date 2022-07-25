@@ -1,7 +1,7 @@
 const mongo = require('mongodb');
 const MongoClient = mongo.MongoClient;
 const ObjectId = mongo.ObjectId;
-var dbUrl = "mongodb://localhost:27017/";
+var dbUrl = "mongodb://127.0.0.1:27017/";
 
 MongoClient.connect(dbUrl, {
     useNewUrlParser: true,

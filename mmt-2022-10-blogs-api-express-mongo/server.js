@@ -6,7 +6,7 @@ const usersRouter = require('./routes/users-router');
 const authRouter = require('./routes/auth-router');
 const sendErrorResponse = require('./routes/utils').sendErrorResponse;
 const MongoClient = require('mongodb').MongoClient;
-const url = 'mongodb://localhost:27017';
+const url = 'mongodb://127.0.0.1:27017';
 const db_name = 'blogs2022';
 
 const app = express();
@@ -14,7 +14,7 @@ const port = 9000;
 
 
 const corsOpts = {
-    origin: 'http://localhost:3000'
+    origin: 'http://localhost:4200'
 }
 
 if(!process.env.BLOGS_API_SECRET) {
