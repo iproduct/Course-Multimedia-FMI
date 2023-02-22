@@ -1,0 +1,5 @@
+<ul class="items">
+  <li *ngFor="let td of todos; let i = index">
+    <td-todo-item [todo]="td" [index]="i + 1" />
+  </li>
+</ul>

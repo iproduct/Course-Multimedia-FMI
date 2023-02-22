@@ -1,4 +1,6 @@
+import { MOCK_TODOS } from './model/mock-todos';
 import { Component } from '@angular/core';
+import { Todo } from './model/todo.model';
 
 @Component({
   selector: 'td-root',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'fmi-2023-ng-todos';
+  title = 'Angular Todos';
+  todos = MOCK_TODOS;
+
+  addTodo(todo: Todo){
+    this.todos = this.todos.concat(todo)
+  }
 }
