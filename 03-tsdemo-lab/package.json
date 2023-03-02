@@ -23,7 +23,7 @@
   "homepage": "https://github.com/iproduct/Course-Multimedia-FMI#readme",
   "devDependencies": {
     "@types/jquery": "^3.3.33",
-    "lite-server": "^2.5.4"
+    "lite-server": "^2.6.1"
   },
   "dependencies": {
     "jquery": "^3.4.1",
