@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/iproduct/fullstack-typescript-react#readme",
   "devDependencies": {
-    "lite-server": "^2.5.4"
+    "lite-server": "^2.6.1"
   }
 }
