@@ -12,30 +12,28 @@
         </div>
     </div>
     <script>
-        function handler1(event) {
+        function handler(event) {
             var elem = event.currentTarget;
-            console.log("Hadnler 1:", elem.className);
+            console.log(`Current Target: ${elem.className}, Target: ${event.target.className}`);
             event.stopImmediatePropagation();
             elem.style.background = "#ffff00";
-            alert("Hadnler 1: " + elem.className);
+            alert(elem.className);
             elem.style.background = '';
         }
         function handler2(event) {
             var elem = event.currentTarget;
-            console.log("Hadnler 2: ", elem.className);
+            console.log(`Handler 2: Current Target: ${elem.className}, Target: ${event.target.className}`);
             // event.stopPropagation();
             elem.style.background = "#ffff00";
-            alert("Hadnler 2: " + elem.className);
+            alert('Handler 2:' + elem.className);
             elem.style.background = '';
         }
-
         document.querySelectorAll("div").forEach(
             elem => {
-                elem.addEventListener('click', handler1, true);
-                elem.addEventListener('click', handler2, true);
+                elem.addEventListener('click', handler, true)
+                elem.addEventListener('click', handler2, true)
             }
         );
-    </script>+
+    </script>
 </body>
-
 </html>

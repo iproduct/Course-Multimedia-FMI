@@ -11,10 +11,10 @@ var counter = function countWithClosure() { //IIFE - Module pattern
       return --count;
     }
   };
-}();
+}(); // IIFE
 
 console.log(counter.increment());
-console.log(counter.count)
+console.log(counter._inc)
 console.log(counter.increment());
 console.log(counter.increment());
 console.log(counter.increment());
@@ -24,7 +24,7 @@ console.log(counter.decrement());
 console.log(counter.decrement());
        
 for (const prop in counter) {
-  if(counter.hasOwnProperty(prop)) {
+  // if (obj.hasOwnProperty(prop)) {
       console.log(`counter.${prop} = ${counter[prop]}`);
-  }
+  // }
 }

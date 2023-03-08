@@ -1,18 +1,17 @@
-function func1(a1, a2) {
-    //console.log(arguments);
-    // expected output: 1
-  
-    //console.log(arguments[1]);
-    // expected output: 2
-  
-    //console.log(arguments[2]);
-    // expected output: 3
-    
-    // let args = Array.prototype.slice.call(arguments, 0);
-    console.log(arguments);
-    let args2 = Array.from(arguments);
-    // let args2 = Array.prototype.slice.call(arguments, 0);
-    args2.forEach(a => console.log(a))
-  }
-  
-  func1(1, 2, 3, 4, 5, 6, 7, 8, 9);
+function sum(x, y){
+    console.log(x, y)
+    for(let arg of arguments) {
+        console.log(arg)
+    }
+    // var arr = Array.prototype.slice.apply(arguments); // <=> arguments.slice()
+    // var arr = Array.prototype.slice.call(arguments,);
+    var f = Array.prototype.slice.bind(arguments);
+    // var arr = Array.from(arguments);
+    // var arr = [...arguments];
+    var sum = f().reduce(function(acc, elem){ return acc + elem }, 0);
+    // let sum = 0;
+    // arr.forEach(function(elem, index, arr){ return sum +=elem });
+    return sum;
+}
+
+console.log("sum =", sum(1,2,3,4,5,6,7,8,9,10));

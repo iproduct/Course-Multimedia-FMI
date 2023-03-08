@@ -16,19 +16,22 @@ Shape.prototype.move = function (/*Number*/ deltaX, /*Number*/ deltaY) {
     console.info("Shape moved.");
 }
 
-/* Rectangle extends Shape */
-function Rectangle(/*Number*/ xCoord, /*Number*/ yCoord) {
-    const boundShape = Shape.bind(this, 2);
-    boundShape(5);
-}
+console.log(Shape.prototype);
 
-//subclass extends superclass
-Rectangle.prototype = Object.create(Shape.prototype);
-Rectangle.prototype.constructor = Rectangle;
+// /* Rectangle extends Shape */
+// function Rectangle(/*Number*/ xCoord, /*Number*/ yCoord) {
+//     const boundShape = Shape.bind(this, 2);
+//     boundShape(5);
+// }
 
-var rect = new Rectangle(5, 8);
+// //subclass extends superclass
+// Rectangle.prototype = Object.create(Shape.prototype);
+// Rectangle.prototype.constructor = Rectangle;
 
-console.log("is Rectangle = ", rect instanceof Rectangle);
+var rect = new Shape(5, 8);
+console.log("rect.__proto__", rect.__proto__);
+
+// console.log("is Rectangle = ", rect instanceof Rectangle);
 console.log("is Shape = ", rect instanceof Shape);
 
 console.log("Before move: x = ", rect.x, "y = ", rect.y);

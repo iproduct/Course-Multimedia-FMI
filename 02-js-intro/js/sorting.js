@@ -1,6 +1,6 @@
-function test() {
-  'use strict';
+'use strict';
 
+function test() {
   const employees = [
     new Employee('John Smith', 12, ['js', 'fortran', 'php']),
     new Employee('George Washigton', 5, ['js', 'node.js', 'express']),
@@ -10,9 +10,9 @@ function test() {
   ];
 
   // Employee constructor
-  function Employee(aName, aPractice, qualifications) {
-    this.name = aName;
-    this.practice = aPractice || 0;
+  function Employee(name, practice, qualifications) {
+    this.name = name;
+    this.practice = practice || 0;
     this.qualifications = qualifications || [];
   }
 
@@ -26,7 +26,10 @@ function test() {
     .sort((e1, e2) => {
       let n1 = e1.name.toLowerCase();
       let n2 = e2.name.toLowerCase();
+      // let n1 = e1.practice;
+      // let n2 = e2.practice;
       return n1 > n2 ? 1 : n1 < n2 ? -1 : 0;
-    }).reduce( (acc, emp) => acc + emp + '<br>', '');
+    })
+    .reduce( (acc, emp) => acc + emp + '<br>', '');
  
 }

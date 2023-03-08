@@ -1,13 +1,18 @@
-// 'use strict'
+'use strict'
 var o = {
     name: 'My Object',
     log: function(message){
-        console.log(this.name);
+        temp = 42;
+        console.log(this.name, temp);
+        self=this;
         var internal = function() {
-            console.log(message + ": '" + this.name + "'")
+            console.log(message + ": '" + self.name + "'")
         }
         internal();
+        var temp;
+        var self;
     }
 }
+
 
 o.log('Test message');
