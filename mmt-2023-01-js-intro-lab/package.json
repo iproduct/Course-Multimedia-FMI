@@ -1,0 +1,17 @@
+{
+  "name": "mmt-2023-01-js-intro-lab",
+  "version": "1.0.0",
+  "description": "JS Intro",
+  "main": "index.js",
+  "repository": "https://github.com/iproduct/Course-Multimedia-FMI",
+  "author": "Trayan Iliev",
+  "license": "Apache-2.0",
+  "scripts": {
+    "start": "lite-server",
+    "api": "json-server --port 9000 db.json"
+  },
+  "devDependencies": {
+    "json-server": "^0.17.2",
+    "lite-server": "^2.6.1"
+  }
+}

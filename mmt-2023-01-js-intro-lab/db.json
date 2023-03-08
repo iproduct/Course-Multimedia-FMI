@@ -1,0 +1,34 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "JS is easy",
+      "author": "typicode"
+    },
+    {
+      "id": 3,
+      "title": "OOP in JavaScript",
+      "author": "typicode"
+    },
+    {
+      "title": "Functional JavaScript",
+      "author": "Trayan",
+      "id": 4
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "users": {
+    "name": "typicode"
+  }
+}
