@@ -8,7 +8,7 @@
   "license": "Apache-2.0",
   "scripts": {
     "start": "lite-server",
-    "api": "json-server --port 9000 db.json"
+    "api": "json-server --port 9000 --routes routes.json db.json"
   },
   "devDependencies": {
     "json-server": "^0.17.2",

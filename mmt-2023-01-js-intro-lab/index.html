@@ -5,10 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="js/index.js" defer></script>
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/index.js" type="module" defer></script>
 </head>
 <body>
     <h2>Hello from TypeScript!</h2>
+    <form id="edit-post">
+        <input type="text" id="title" name="title" placeholder="Title">
+        <input type="text" id="author" name="author" placeholder="Author">
+        <input type="submit" value="Submit">
+    </form>
     <div id="results"></div>
 </body>
 </html>

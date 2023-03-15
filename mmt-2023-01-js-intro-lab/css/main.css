@@ -1,0 +1,15 @@
+#results {
+    display: flex;
+    flex-direction: column;
+}
+
+#results .item {
+    padding: 5px 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    max-width: 600px;
+}
+
+#edit-post {
+    padding: 10px 0 30px;
+}
