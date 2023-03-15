@@ -5,11 +5,11 @@ export class ApiClient {
     }
 
     findAll() {
-        return handleRequest(`http://localhost:9000/api/${this.collection}`);
+        return this.handleRequest(`http://localhost:9000/api/${this.collection}`);
     }
 
     create(entity) {
-        return handleRequest(`http://localhost:9000/api/${this.collection}`, {
+        return this.handleRequest(`http://localhost:9000/api/${this.collection}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ export class ApiClient {
     }
 
     deleteById(id) {
-        return handleRequest(`http://localhost:9000/api/${this.collection}/${id}`, {
+        return this.handleRequest(`http://localhost:9000/api/${this.collection}/${id}`, {
             method: 'DELETE'
         });
     }

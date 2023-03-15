@@ -1,15 +1,26 @@
 #results {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #results .item {
-    padding: 5px 10px;
-    border: 1px solid gray;
-    border-radius: 5px;
-    max-width: 600px;
+  padding: 5px 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  max-width: 600px;
 }
 
 #edit-post {
-    padding: 10px 0 30px;
+  padding: 10px 0 30px;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.danger {
+  background-color: rgb(213, 40, 40);
+  color: white;
 }
