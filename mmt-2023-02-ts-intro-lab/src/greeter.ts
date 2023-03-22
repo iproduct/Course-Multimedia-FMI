@@ -1,7 +1,7 @@
-import { NaturalPerson, Person } from "./model/person.js";
+import { NaturalPerson, Person } from "./model/persons";
 
 function greeter(person: Person) {
-    return `Hello ${person.greet()}, from Typescript!`;
+    return `Hello ${person.salutation}, from Typescript!`;
 }
 
 const p1 = new NaturalPerson(1, 'John', 'Doe', 'john@gmail.com');
