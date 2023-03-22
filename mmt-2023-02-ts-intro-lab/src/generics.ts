@@ -135,12 +135,12 @@ const conforms = {
 type KeyType = keyof OnlyBoolsAndHorses;
 type ValueType = OnlyBoolsAndHorses[keyof OnlyBoolsAndHorses];
 type ChangeListenerOptions<T> = {
-    [Key in keyof T as `isLitening${Capitalize<string & Key>}`]: (arrg: T[Key]) => boolean;
+    [Key in keyof T as `isListening${Capitalize<string & Key>}`]: (arrg: T[Key]) => boolean;
 }
 
 const listeners: ChangeListenerOptions<typeof conforms> = {
-    isLiteningDel: (name: string) => true,
-    isLiteningRodney: (name: Date) => true,
+    isListeningDel: (name: string) => true,
+    isListeningRodney: (name: Date) => true,
     //   speedy: true
 }
 
