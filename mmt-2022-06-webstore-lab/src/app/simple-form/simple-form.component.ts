@@ -1,4 +1,4 @@
-import { AfterContentChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -6,14 +6,14 @@ import { NgForm } from '@angular/forms';
   templateUrl: './simple-form.component.html',
   styleUrls: ['./simple-form.component.scss']
 })
-export class SimpleFormComponent implements OnInit, AfterContentChecked {
+export class SimpleFormComponent implements OnInit, AfterViewChecked {
   @ViewChild('fElem') fElem: ElementRef | undefined;
   name = { first: 'John', last: 'Smith' };
   email = '';
   elemClasses = '';
 
   constructor() { }
-  ngAfterContentChecked(): void {
+  ngAfterViewChecked(): void {
     this.elemClasses = this.fElem?.nativeElement.className;
   }
 

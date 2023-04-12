@@ -57,16 +57,9 @@
     {
       "id": 6,
       "name": "Coffe Best Taste",
-      "price": 24,
+      "price": 28,
       "description": "Lavaza BLue",
       "imageUrl": "http://doctorakil.com/wp-content/uploads/2018/01/coffee-940x600.jpg"
-    },
-    {
-      "name": "LCD Projector",
-      "price": 980.5,
-      "description": "BENQ Beemer",
-      "imageUrl": "https://www.varle.lt/static/uploads/products/292/ben/benq-w1700-desktop-projector-2200ansi-lumens_Lh17HoZ.jpeg",
-      "id": 7
     },
     {
       "name": "Coffe Best One AAA",
@@ -74,6 +67,13 @@
       "description": "Lavaza",
       "imageUrl": "https://www.publicdomainpictures.net/pictures/250000/velka/mars-1515656849bmH.jpg",
       "id": 8
+    },
+    {
+      "id": 9,
+      "name": "Beemer",
+      "price": 998,
+      "description": "Prusa 3D Printer",
+      "imageUrl": "https://www.prusa3d.com/content/images/product/default/2280.jpg"
     }
   ],
   "comments": []

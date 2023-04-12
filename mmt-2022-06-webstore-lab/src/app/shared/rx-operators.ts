@@ -1,13 +1,13 @@
 
-import { delay, retryWhen, scan } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { delay, retry, scan } from 'rxjs/operators';
+import { MonoTypeOperatorFunction, Observable } from 'rxjs';
 
 export function retryAfter<T>(
   count: number,
   wait: number
-): (source: Observable<T>) => Observable<T> {
+):  MonoTypeOperatorFunction<T> { //(source: Observable<T>) => Observable<T>
 
-  return retryWhen(errors => errors.pipe(
+  return retry({delay: errors => errors.pipe(
     // Each time an error occurs, increment the accumulator.
     // When the maximum number of retries have been attempted, throw the error.
     scan((acc, error) => {
@@ -16,5 +16,5 @@ export function retryAfter<T>(
     }, 0),
     // Wait the specified number of milliseconds between retries.
     delay(wait)
-  ));
+  )});
 }
