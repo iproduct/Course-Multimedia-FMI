@@ -5,7 +5,8 @@ dotenv.config()
 
 const app = express();
 app.get("/", (req: Request, res: Response) => { 
-    res.send("Hello World") 
+    res.set('Content-Type', 'text/html')
+    res.send("<h1>Hello World!!!</h1>") 
 })
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => { 
