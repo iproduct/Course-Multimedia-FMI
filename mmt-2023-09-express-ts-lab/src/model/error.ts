@@ -1,3 +1,3 @@
-export class MyError{
-    constructor(public status: number, public message:string, public error: any) { }
+export class HttpError{
+    constructor(public status: number, public message:string, public error: any = undefined) { }
 }
