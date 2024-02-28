@@ -1,0 +1,28 @@
+{
+  "name": "mmt-2024-01-rest-json-server",
+  "version": "1.0.0",
+  "description": "rest api intro",
+  "main": "index.js",
+  "scripts": {
+    "server": "json-server db.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iproduct/Course-Multimedia-FMI.git"
+  },
+  "keywords": [
+    "json",
+    "rest",
+    "api"
+  ],
+  "author": "Trayan Iliev",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/iproduct/Course-Multimedia-FMI/issues"
+  },
+  "homepage": "https://github.com/iproduct/Course-Multimedia-FMI#readme",
+  "devDependencies": {
+    "json-server": "^1.0.0-alpha.23"
+  }
+}
