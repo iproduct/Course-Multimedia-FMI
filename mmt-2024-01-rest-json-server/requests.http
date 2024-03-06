@@ -1,0 +1,13 @@
+GET http://127.0.0.1:3000/api/posts
+
+###
+
+POST http://localhost:3000/api/posts HTTP/1.1
+content-type: application/json
+
+{
+    "title": "json server",
+    "content": "Get a full fake REST API with zero coding in less than 30 seconds",
+    "imageUrl": "https://res.cloudinary.com/practicaldev/image/fetch/s--j-EmFU3z--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/5hl5zsh5cn4b88tloai8.jpg",
+    "views": 1
+}
