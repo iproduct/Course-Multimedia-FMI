@@ -17,6 +17,7 @@
     "rest",
     "api"
   ],
+  "type": "module",
   "author": "Trayan Iliev",
   "license": "Apache-2.0",
   "bugs": {
