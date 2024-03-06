@@ -1,13 +1,15 @@
-export class Post {
+import { Entity } from "./entity.model.js";
+
+export class Post extends Entity {
     constructor(title, content, imageUrl = null, views = 0, id) {
-        this.id = id;
+        super(id);
         this.title = title;
         this.content = content;
         this.imageUrl = imageUrl;
         this.views = views;
     }
     toString() {
-        return `${this.id}: ${this.title}: ${this.content} -> ${this.views} views`
+        return `${super.toString()}: ${this.title}: ${this.content} -> ${this.views} views`
     }
 }
 

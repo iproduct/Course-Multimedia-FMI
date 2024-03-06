@@ -1,10 +1,10 @@
-// 'use strict';
+'use strict';
 
 var bob = {
-    name: "Bob",
-    friends: ["Alice", "Jane"],
-    printFriends() {
-      this.friends.forEach(f => console.log(this.name + " knows " + f));
-    }
+  name: "Bob",
+  friends: ["Alice", "Jane"],
+  printFriends() {
+    this.friends.forEach(fr => console.log(this.name + " knows " + fr ));
   }
-  bob.printFriends();
+}
+bob.printFriends();
