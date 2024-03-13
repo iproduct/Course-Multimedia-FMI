@@ -2,8 +2,8 @@ async function f() {
   return 1;
 }
 async function g() {
-  throw "Error!!!";
-  // return 2;
+  // throw "Error!!!";
+  return 2;
 }
 
 const result = Promise.all([f(), g()])
