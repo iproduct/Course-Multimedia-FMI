@@ -1,7 +1,7 @@
 function msgAfterTimeout(msg, who, timeout) {
     return new Promise((resolve, reject) => {
         setTimeout(
-            () => (Math.random() >= 0) ?
+            () => (Math.random() >= 0.5) ?
                 resolve(`${msg} Hello ${who}!`)
                 : reject('Error getting message.'),
             timeout)
@@ -15,12 +15,13 @@ const result = msgAfterTimeout("", "Foo", 2000)
     .then((msg) => {
         console.log(`done after 5000ms:${msg}`)
         throw `ERROR from .then(): to be catched!!!`;
+        // return Promise.reject(`ERROR from .then(): to be catched!!!`);
         // return `Final message: ${msg}!!!`;
     })
     .catch(err => {
         console.log(`IN catch(): ${err}`);
-        // return  msgAfterTimeout('', `Final message after Error: ${err}!!!`, 2000);
-        throw `Final message after Error: ${err}!!!`;
+        return  msgAfterTimeout('', `Final message after Error: ${err}!!!`, 2000);
+        // throw `Final message after Error: ${err}!!!`;
     })
     .then(
         msg => {
