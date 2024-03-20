@@ -1,3 +1,4 @@
+import { Repository } from './repository';
 import { Role, User } from "./users.js";
 
 
@@ -6,6 +7,7 @@ const users = [
     new User('Jane', 'Doe', 'janen@gmail.com', 'jane123', {country: 'USA', city: 'Seattle'}, [Role.Author, Role.Reader], 2),
     new User('Ivan', 'Petrov', 'ivan@gmail.com', 'ivan123', {country: 'BG', city: 'Sofia'}, [Role.Reader], 3),
 ]
+
 
 const elem = document.getElementById('content');
 const usersHtml = users.map(user => `<li>${user.salutation}</li>`).join('');

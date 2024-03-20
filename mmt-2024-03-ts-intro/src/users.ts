@@ -1,6 +1,6 @@
-import { IdType } from "./common-types.js";
+import { Identifiable, IdType } from "./common-types.js";
 
-export interface Person {
+export interface Person extends Identifiable<IdType>{
     firstName: string;
     lastName: string;
     email: string;
@@ -14,7 +14,7 @@ export interface Contact {
     phone?: string;
 }
 
-export interface UserI extends Person {
+export interface User extends Person {
     password: string;
     roles: Role[]; // or Array<Role>;
 }
@@ -23,7 +23,7 @@ export enum Role {
     Author = 1, Reader, Admin
 }
 
-export class UserBase implements UserI {
+class UserBase implements Omit<User, "id"> {
     constructor(
         public firstName: string,
         public lastName: string,
@@ -31,12 +31,11 @@ export class UserBase implements UserI {
         public password: string,
         public contact?: Contact,
         public roles: Role[] = [Role.Reader],
-        public id?: IdType
     ) {}
 }
 
 
-export class User extends UserBase {
+export class UserDto extends UserBase {
     get salutation() {
         return `Hello ${this.firstName} ${this.lastName} [${this.email}] in roles: ${this.roles.map(r => Role[r]).join(', ')}`;
     }

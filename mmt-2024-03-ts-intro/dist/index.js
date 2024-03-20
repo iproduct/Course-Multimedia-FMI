@@ -1,4 +1,4 @@
-import { Role, User } from "./users.js";
+import { Role } from "./users.js";
 const users = [
     new User('John', 'Doe', 'john@gmail.com', 'john123', { country: 'USA', city: 'New York' }, [Role.Admin, Role.Author, Role.Reader], 1),
     new User('Jane', 'Doe', 'janen@gmail.com', 'jane123', { country: 'USA', city: 'Seattle' }, [Role.Author, Role.Reader], 2),
