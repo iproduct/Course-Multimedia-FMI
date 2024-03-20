@@ -1,0 +1,15 @@
+{
+  "name": "mmt-2024-03-ts-intro",
+  "version": "1.0.0",
+  "description": "Intro to TypeScript",
+  "main": "index.js",
+  "repository": "https://github.com/iproduct/Course-Multimedia-FMI",
+  "scripts": {
+    "start": "lite-server"
+  },
+  "author": "Trayan Iliev",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
