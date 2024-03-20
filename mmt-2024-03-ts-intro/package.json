@@ -5,11 +5,12 @@
   "main": "index.js",
   "repository": "https://github.com/iproduct/Course-Multimedia-FMI",
   "scripts": {
-    "start": "lite-server"
+    "start": "concurrently --kill-others \"tsc -w\" \"lite-server\""
   },
   "author": "Trayan Iliev",
   "license": "Apache-2.0",
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "lite-server": "^2.6.1"
   }
 }
