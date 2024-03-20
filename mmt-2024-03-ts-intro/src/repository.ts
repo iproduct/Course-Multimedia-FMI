@@ -1,4 +1,4 @@
-import { Identifiable, IdType } from "./common-types";
+import { Identifiable} from "./common-types.js";
 
 export interface IdGenerator<K> {
     getNextId(): K;
@@ -11,7 +11,7 @@ export class NumberIdGenerator implements IdGenerator<number> {
     }
 }
 
-export interface Repository<K, T extends Identifiable> {
+export interface Repository<K, T extends Identifiable<K>> {
     findAll(): T[];
     findById(id: K): T | undefined;
     create(entity: Omit<T, 'id'>): T;
