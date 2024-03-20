@@ -4,7 +4,7 @@ export var Role;
     Role[Role["Reader"] = 2] = "Reader";
     Role[Role["Admin"] = 3] = "Admin";
 })(Role || (Role = {}));
-class UserBase {
+export class UserDto {
     constructor(firstName, lastName, email, password, contact, roles = [Role.Reader]) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -13,8 +13,6 @@ class UserBase {
         this.contact = contact;
         this.roles = roles;
     }
-}
-export class UserDto extends UserBase {
     get salutation() {
         return `Hello ${this.firstName} ${this.lastName} [${this.email}] in roles: ${this.roles.map(r => Role[r]).join(', ')}`;
     }
