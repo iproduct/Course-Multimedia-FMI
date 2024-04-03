@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { TodoListComponent } from './components/todo-list/todo-list.component';
-import MOCK_TODOS from './model/mock-todos';
+import { TodoListComponent } from './todos/todo-list/todo-list.component';
+import MOCK_TODOS from './todos/model/mock-todos';
+import { TodosModule } from './todos/todos.module';
 
 @Component({
   selector: 'td-root',
-  standalone: true,
-  imports: [RouterOutlet, TodoListComponent],
   templateUrl: './app.component.html',
+  standalone: true,
+  imports:[TodosModule],
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {

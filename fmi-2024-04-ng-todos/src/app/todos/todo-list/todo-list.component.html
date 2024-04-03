@@ -1,6 +1,6 @@
 <div class="d-flex flex-column">
-  <div *ngFor="let todo of todos">
-    <span class="id">{{todo.id}}</span> -
+  <div *ngFor="let todo of todos; index as i; count as c; trackBy: identity">
+    <span class="id">{{i + 1}} / {{c}}</span> -
     <span class="text">{{todo.title}}</span>:
     <span class="status">{{getStatusStr(todo.status)}}</span>
   </div>
