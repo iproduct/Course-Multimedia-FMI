@@ -7,6 +7,6 @@ import { Todo } from '../../model/todo.model';
   styleUrl: './todo-item.component.css'
 })
 export class TodoItemComponent {
-  @Input() todo!: Todo;
+  @Input() todo: Todo | undefined;
 
 }
