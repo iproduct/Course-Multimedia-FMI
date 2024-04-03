@@ -1,0 +1,5 @@
+<div class="d-flex flex-column row-gap-1">
+  <div *ngFor="let todo of todos; index as i; count as c; trackBy: identity">
+    <td-todo-item [todo]="todo"/>
+  </div>
+</div>
