@@ -16,6 +16,6 @@ export class UserRepositoryImpl extends RepositoryImpl<IdType, User> implements 
         return user.roles;
     };
     findByEmail(email: string): User | undefined {
-        throw new Error('Method not implemented.');
+        return this.findAll().find(u => u.email === email);
     }
 }

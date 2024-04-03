@@ -16,5 +16,8 @@ export class UserDto {
     get salutation() {
         return `Hello ${this.firstName} ${this.lastName} [${this.email}] in roles: ${this.roles.map(r => Role[r]).join(', ')}`;
     }
+    toString() {
+        return `${this.firstName} ${this.lastName} [${this.email}] in roles: ${this.roles.map(r => Role[r]).join(', ')}`;
+    }
 }
 //# sourceMappingURL=users.js.map

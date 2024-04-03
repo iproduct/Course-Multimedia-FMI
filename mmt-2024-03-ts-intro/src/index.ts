@@ -1,12 +1,13 @@
+import { DemoLoginController, LoginController } from './login-controller.js';
 import { UserRepository, UserRepositoryImpl } from './user-repository.js';
 import { NumberIdGenerator, Repository } from './repository.js';
 import { Role, User, UserDto } from "./users.js";
 
 
 const users = [
-    new UserDto('John', 'Doe', 'john@gmail.com', 'john123', {country: 'USA', city: 'New York'}, [Role.Admin, Role.Author, Role.Reader]),
-    new UserDto('Jane', 'Doe', 'janen@gmail.com', 'jane123', {country: 'USA', city: 'Seattle'}, [Role.Author, Role.Reader]),
-    new UserDto('Ivan', 'Petrov', 'ivan@gmail.com', 'ivan123', {country: 'BG', city: 'Sofia'}, [Role.Reader]),
+    new UserDto('John', 'Doe', 'john@gmail.com', 'john123', { country: 'USA', city: 'New York' }, [Role.Admin, Role.Author, Role.Reader]),
+    new UserDto('Jane', 'Doe', 'jane@gmail.com', 'jane123', { country: 'USA', city: 'Seattle' }, [Role.Author, Role.Reader]),
+    new UserDto('Ivan', 'Petrov', 'ivan@gmail.com', 'ivan123', { country: 'BG', city: 'Sofia' }, [Role.Reader]),
 ]
 
 const userRepo: UserRepository = new UserRepositoryImpl(new NumberIdGenerator());
@@ -14,25 +15,25 @@ users.forEach(u => userRepo.create(u));
 
 const elem = document.getElementById('content');
 const usersHtml = userRepo.findAll().map(user => `<li>${user.salutation}</li>`).join('');
-if(elem !== null) {
+if (elem !== null) {
     elem.innerHTML = `<ul>${usersHtml}</ul>`;
 }
 
 
 class Post {
-    constructor(public title: string) {}
+    constructor(public title: string) { }
 }
 
 class Author {
-    constructor(public name: string) {}
+    constructor(public name: string) { }
 }
 
 type SomeCtor = {
-    new (s: string) : Post;
+    new(s: string): Post;
 }
 
 type SomeOtherCtor = {
-    new(s: string) : Author;
+    new(s: string): Author;
 }
 
 function create(ctor: SomeCtor | SomeOtherCtor, s: string) {
@@ -42,17 +43,17 @@ function create(ctor: SomeCtor | SomeOtherCtor, s: string) {
 console.log(create(Post, 'Moby'));
 console.log(create(Author, 'Moby'));
 
-const entities = ["One","Two", "Three", "Four", "Five"].map(s => {
+const entities = ["One", "Two", "Three", "Four", "Five"].map(s => {
     const ctor = Math.random() > 0.5 ? Post : Author;
     return create(ctor, s);
 })
 
-type Entity =  Post | Author;
+type Entity = Post | Author;
 
 function isPost(obj: Entity): obj is Post { // type predicate
     return 'title' in obj;
     // return (obj as Post).title !== undefined;
-  }
+}
 
 function log(arr: Entity[]) {
     arr.forEach(
@@ -67,7 +68,7 @@ function log(arr: Entity[]) {
             // } else {
             //     console.log('Author: ', obj.name);
             // }
-            if(isPost(obj)) {
+            if (isPost(obj)) {
                 console.log('Post: ', obj.title);
             } else {
                 console.log('Author: ', obj.name);
@@ -76,5 +77,19 @@ function log(arr: Entity[]) {
     )
 }
 
-log(entities);
+// log(entities);
 
+const sampleUser = userRepo.findById(2) as User;
+
+const loginController: LoginController = new DemoLoginController(userRepo);
+(async () => {
+    try {
+        const loggedUser = await loginController.login(sampleUser);
+        if(elem) {
+            elem.innerHTML += `<p>LOGIN SUCCESS: ${loggedUser}</p>`;
+        }
+        console.log('LOGIN SUCCESS:', loggedUser);
+    } catch (err) {
+        console.log('LOGIN FAILURE:', err);
+    }
+})(); //IIFE

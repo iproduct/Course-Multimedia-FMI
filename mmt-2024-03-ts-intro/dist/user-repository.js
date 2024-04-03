@@ -5,7 +5,7 @@ export class UserRepositoryImpl extends RepositoryImpl {
     }
     ;
     findByEmail(email) {
-        throw new Error('Method not implemented.');
+        return this.findAll().find(u => u.email === email);
     }
 }
 //# sourceMappingURL=user-repository.js.map

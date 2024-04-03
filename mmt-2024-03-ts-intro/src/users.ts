@@ -36,5 +36,8 @@ export class UserDto implements Omit<User, "id"> {
     get salutation() {
         return `Hello ${this.firstName} ${this.lastName} [${this.email}] in roles: ${this.roles.map(r => Role[r]).join(', ')}`;
     }
+    toString() {
+        return `${this.firstName} ${this.lastName} [${this.email}] in roles: ${this.roles.map(r => Role[r]).join(', ')}`;
+    }
 }
 
