@@ -1,6 +1,6 @@
 type IdType = number;
 
-enum TodoStatus {
+export enum TodoStatus {
   Active = 1, Completed, Canceled
 }
 
