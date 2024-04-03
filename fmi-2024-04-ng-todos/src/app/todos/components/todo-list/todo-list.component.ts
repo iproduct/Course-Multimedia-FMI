@@ -1,7 +1,7 @@
-import { TodoStatus } from '../model/todo.model';
+import { TodoStatus } from '../../model/todo.model';
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { Todo } from '../model/todo.model';
+import { Todo } from '../../model/todo.model';
 
 @Component({
   selector: 'td-todo-list',
