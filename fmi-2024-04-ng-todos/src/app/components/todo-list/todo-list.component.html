@@ -1,0 +1,7 @@
+<div class="d-flex flex-column">
+  <div *ngFor="let todo of todos">
+    <span class="id">{{todo.id}}</span> -
+    <span class="text">{{todo.title}}</span>:
+    <span class="status">{{getStatusStr(todo.status)}}</span>
+  </div>
+</div>
