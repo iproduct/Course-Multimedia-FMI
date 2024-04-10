@@ -1,5 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { OutletContext } from '@angular/router';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Todo } from '../../model/todo.model';
 
 @Component({
@@ -8,13 +7,14 @@ import { Todo } from '../../model/todo.model';
   styleUrl: './todo-input.component.css'
 })
 export class TodoInputComponent {
+  @ViewChild('todoInput') todoInput!: ElementRef<HTMLInputElement>;
   @Output() newTodo = new EventEmitter<Todo>();
   currentText = '';
   onKeyUp(keyUpEvent: KeyboardEvent) {
     // console.log(keyUpEvent);
     this.currentText = (keyUpEvent.target as HTMLInputElement).value;
   }
-  submitTodo(todoText: string) {
-    this.newTodo.emit(new Todo(todoText));
+  submitTodo() {
+    this.newTodo.emit(new Todo(this.todoInput.nativeElement.value));
   }
 }
