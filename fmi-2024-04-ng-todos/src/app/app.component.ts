@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { TodoListComponent } from './todos/components/todo-list/todo-list.component';
 import MOCK_TODOS from './todos/model/mock-todos';
 import { TodosModule } from './todos/todos.module';
+import { Todo } from './todos/model/todo.model';
 
 @Component({
   selector: 'td-root',
@@ -17,5 +18,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  updateTodo(todo: Todo) {
+    this.todos = this.todos.map(td => td.id === todo.id ? todo : td);
+  }
 
 }

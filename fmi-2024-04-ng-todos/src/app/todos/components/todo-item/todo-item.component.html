@@ -3,7 +3,7 @@
     <img class="img-thumbnail" src="https://www.publicdomainpictures.net/pictures/410000/velka/astronomie-astrologie-vintage-alt-1628027671rUQ.jpg" class="card-img-top" alt="The world map">
   </div>
   <div class="card-body p-1">
-    <h5 class="card-title">{{todo.title}}</h5>
-    <a href="#" class="btn btn-sm btn-primary">Complete</a>
+    <h5 class="card-title">{{todo.title}} - {{statusAsStr(todo.status)}}</h5>
+    <button class="btn btn-sm btn-primary" (click)="onComplete()">Complete</button>
   </div>
 </div>

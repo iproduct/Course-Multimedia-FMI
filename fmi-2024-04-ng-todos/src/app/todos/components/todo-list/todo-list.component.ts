@@ -1,6 +1,6 @@
 import { TodoStatus } from '../../model/todo.model';
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Todo } from '../../model/todo.model';
 
 @Component({
@@ -9,7 +9,8 @@ import { Todo } from '../../model/todo.model';
   styleUrl: './todo-list.component.css'
 })
 export class TodoListComponent {
-  @Input() todos:Todo[] = [];
+  @Input({ required: true }) todos!:Todo[];
+  @Output() statusChange = new EventEmitter<Todo>();
   getStatusStr(status: TodoStatus){
     return TodoStatus[status]
   }

@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Todo } from '../../model/todo.model';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Todo, TodoStatus } from '../../model/todo.model';
 
 @Component({
   selector: 'td-todo-item',
@@ -7,6 +7,16 @@ import { Todo } from '../../model/todo.model';
   styleUrl: './todo-item.component.css'
 })
 export class TodoItemComponent {
-  @Input() todo: Todo | undefined;
+  @Input({ required: true }) todo!: Todo;
+  @Output() statusChange = new EventEmitter<Todo>();
+
+  onComplete() {
+    this.todo.status = TodoStatus.Completed;
+    this.statusChange.emit(this.todo);
+  }
+
+  statusAsStr(status :TodoStatus) {
+    return TodoStatus[status];
+  }
 
 }
