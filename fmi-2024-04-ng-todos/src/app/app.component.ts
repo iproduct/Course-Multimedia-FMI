@@ -26,4 +26,8 @@ export class AppComponent implements OnInit {
     this.todos = this.todos.filter(td => td.id !== todo.id);
   }
 
+  createTodo(todo: Todo) {
+    this.todos = [... this.todos, todo];
+  }
+
 }

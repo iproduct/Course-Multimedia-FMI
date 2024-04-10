@@ -1,5 +1,5 @@
 <div class="container">
   <h1 class="py-3">Angular Todos Demo </h1>
-  <td-todo-input />
+  <td-todo-input (newTodo)="createTodo($event)"/>
   <td-todo-list [todos]="todos" (statusChange)="updateTodo($event)" (delete)="deleteTodo($event)" />
 </div>
