@@ -1,3 +1,3 @@
-<input #todoInput placeholder="What to do next?" (keyup)="onKeyUp($event)" />
+<input #todoInput placeholder="What to do next?" (keyup)="onKeyUp($event)" (keyup.enter)="submitTodo()"/>
 <button class="btn btn-sm btn-primary me-2" (click)="submitTodo()">Complete</button>
 <p>{{todoInput.value}}</p>

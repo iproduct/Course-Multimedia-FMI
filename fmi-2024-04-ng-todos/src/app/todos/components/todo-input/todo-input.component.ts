@@ -16,5 +16,6 @@ export class TodoInputComponent {
   }
   submitTodo() {
     this.newTodo.emit(new Todo(this.todoInput.nativeElement.value));
+    this.todoInput.nativeElement.value = '';
   }
 }
