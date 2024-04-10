@@ -1,3 +1,6 @@
-<input #todoInput placeholder="What to do next?" (keyup)="onKeyUp($event)" (keyup.enter)="submitTodo()"/>
-<button class="btn btn-sm btn-primary me-2" (click)="submitTodo()">Complete</button>
-<p>{{todoInput.value}}</p>
+<input [(ngModel)]="todo.title" class="form-control" #todoInput placeholder="What to do next?" (keyup)="onKeyUp($event)" (keyup.enter)="submitTodo()"/>
+<select [(ngModel)]="todo.status" class="form-control" id="status" required>
+  <option *ngFor="let status of getTodoStatuses()" [value]="status">{{statusAsStr(status)}}</option>
+</select>
+<button class="btn btn-sm btn-primary me-2" (click)="submitTodo()">Submit</button>
+<p>{{todo | json}}</p>
