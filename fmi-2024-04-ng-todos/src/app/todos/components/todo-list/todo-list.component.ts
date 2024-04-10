@@ -11,6 +11,7 @@ import { Todo } from '../../model/todo.model';
 export class TodoListComponent {
   @Input({ required: true }) todos!:Todo[];
   @Output() statusChange = new EventEmitter<Todo>();
+  @Output()  delete= new EventEmitter<Todo>();
   getStatusStr(status: TodoStatus){
     return TodoStatus[status]
   }

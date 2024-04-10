@@ -4,6 +4,8 @@
   </div>
   <div class="card-body p-1">
     <h5 class="card-title">{{todo.title}} - {{statusAsStr(todo.status)}}</h5>
-    <button class="btn btn-sm btn-primary" (click)="onComplete()">Complete</button>
+    <button class="btn btn-sm btn-primary me-2" (click)="completeTodo()">Complete</button>
+    <button class="btn btn-sm btn-secondary me-2" (click)="cancelTodo()">Cancel</button>
+    <button class="btn btn-sm btn-danger me-2" (click)="deleteTodo()">Delete</button>
   </div>
 </div>

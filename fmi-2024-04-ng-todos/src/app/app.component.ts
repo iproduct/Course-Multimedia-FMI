@@ -22,4 +22,8 @@ export class AppComponent implements OnInit {
     this.todos = this.todos.map(td => td.id === todo.id ? todo : td);
   }
 
+  deleteTodo(todo: Todo) {
+    this.todos = this.todos.filter(td => td.id !== todo.id);
+  }
+
 }
