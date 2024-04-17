@@ -1,34 +1,31 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
-import { Product } from '../product.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subscription, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MessageService } from '../../core/message.service';
-import { ProductsService } from '../products.service';
-import { CanComponentDeactivate } from '../../core/can-deactivate-guard.service';
-import { DialogService } from '../../core/dialog.service';
-import { shallowEquals } from '../../shared/utils';
-import { PRODUCTS_ROUTE } from '../../app-routing.module';
-import { take } from 'rxjs/operators';
+import { Post } from '../../model/post-model';
+import { MessageService } from '../../../core/message.service';
+import { PostsService } from '../../posts.service';
+import { DialogService } from '../../../core/dialog.service';
+import { shallowEquals } from '../../../shared/utils';
 
 @Component({
-  selector: 'ws-product-detail',
-  templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.css']
+  selector: 'ws-post-detail',
+  templateUrl: './post-detail.component.html',
+  styleUrls: ['./post-detail.component.css']
 })
-export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges, CanComponentDeactivate {
+export class PostDetailComponent implements OnInit, OnDestroy, OnChanges {
   @Input() mode = 'present';
-  @Input() product: Product = new Product(null, null, null, null);
-  @Output() productModified = new EventEmitter<Product>();
-  @Output() productCanceled = new EventEmitter<void>();
-  title = 'Product Details';
+  @Input() post: Post = new Post('', '', 1, Date.now(), [], '');
+  @Output() postModified = new EventEmitter<Post>();
+  @Output() postCanceled = new EventEmitter<void>();
+  title = 'Post Details';
   isCanceled = false;
 
-  get isNewProduct() {
-    return !this.product || !this.product.id;
+  get isNewPost() {
+    return !this.post || !this.post.id;
   }
-  form: FormGroup;
-  private statusSubscription: Subscription;
+  form: FormGroup | undefined;
+  private statusSubscription: Subscription | undefined;
 
   formErrors = {
     name: '',
@@ -39,9 +36,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges, Can
 
   validationMessages = {
     name: {
-      required: 'Product name is required.',
-      minlength: 'Productname must be at least 2 characters long.',
-      maxlength: 'Productname cannot be more than 24 characters long.'
+      required: 'Post name is required.',
+      minlength: 'Postname must be at least 2 characters long.',
+      maxlength: 'Postname cannot be more than 24 characters long.'
     },
     price: {
       required: 'Price is required.',
@@ -57,18 +54,18 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges, Can
   };
 
   constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute,
-              private messageService: MessageService, private productsService: ProductsService,
+              private messageService: MessageService, private postsService: PostsService,
               private dialogService: DialogService) { }
 
   ngOnInit() {
     this.route.data
     .subscribe(
-      (data: { product?: Product, title?: string, mode?: string }) => {
+      (data: { post?: Post, title?: string, mode?: string }) => {
         this.title = data.title || this.title;
         this.mode = data.mode || this.mode;
-        const product = data.product;
-        if (product) {
-          this.product = product;
+        const post = data.post;
+        if (post) {
+          this.post = post;
           this.reset();
         }
       },
@@ -78,7 +75,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges, Can
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const prodChange = changes.product;
+    const prodChange = changes['post'];
     if (prodChange && prodChange.currentValue !== prodChange.previousValue) {
       this.reset();
     }
@@ -92,17 +89,14 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges, Can
 
   buildForm() {
     this.form = this.fb.group({
-      id: {value: this.product.id, disabled: true},
-      name: [this.product.name,
+      id: {value: this.post.id, disabled: true},
+      name: [this.post.title,
         [Validators.required, Validators.minLength(2), Validators.maxLength(24)]
       ],
-      price: [this.product.price,
-        [Validators.required, Validators.min(0)]
-      ],
-      description: [this.product.description,
+      description: [this.post.content,
         [Validators.required, Validators.minLength(2), Validators.maxLength(512)]
       ],
-      imageUrl: [this.product.imageUrl,
+      imageUrl: [this.post.imageUrl,
         [
           Validators.pattern(/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/i)
         ]
@@ -111,24 +105,24 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges, Can
     this.statusSubscription = this.form.statusChanges.subscribe(() => this.onStatusChanged());
   }
 
-  submitProduct() {
-    this.product = this.form.getRawValue();
-    this.productModified.emit(this.product);
+  submitPost() {
+    this.post = this.form?.getRawValue();
+    this.postModified.emit(this.post);
     this.reset();
-    if (this.isNewProduct) { // edit mode
-      this.productsService.create(this.product).subscribe(
+    if (this.isNewPost) { // edit mode
+      this.postsService.create(this.post).subscribe(
         created => {
-          this.messageService.success(`Product '${created.name}' created successfully.`);
+          this.messageService.success(`Post '${created.title}' created successfully.`);
           // window.history.back();
-          this.router.navigate([PRODUCTS_ROUTE], { queryParams: {refresh: true} });
+          // this.router.navigate([PRODUCTS_ROUTE], { queryParams: {refresh: true} });
         },
         err => this.messageService.error(err)
       );
     } else {
-      this.productsService.update(this.product).subscribe(
+      this.postsService.update(this.post).subscribe(
         updated => {
-          this.messageService.success(`Product '${updated.name}' updated successfully.`);
-          this.router.navigate([PRODUCTS_ROUTE], { queryParams: {refresh: true} });
+          this.messageService.success(`Post '${updated.title}' updated successfully.`);
+          // this.router.navigate([PRODUCTS_ROUTE], { queryParams: {refresh: true} });
         },
         err => this.messageService.error(err)
       );
@@ -136,23 +130,23 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges, Can
   }
 
   reset() {
-    if ( this.form && this.product) {
-      this.form.reset(this.product);
+    if ( this.form && this.post) {
+      this.form.reset(this.post);
     }
   }
-  cancelProduct() {
-    this.productCanceled.emit();
+  cancelPost() {
+    this.postCanceled.emit();
     this.isCanceled = true;
-    this.router.navigate([PRODUCTS_ROUTE]);
+    // this.router.navigate([PRODUCTS_ROUTE]);
   }
 
   public canDeactivate(): Observable<boolean> | boolean {
     // Allow navigation if no user or the user data is not changed
     // tslint:disable-next-line:prefer-const
-    let rawFormProduct = this.form.getRawValue() as Product;
-    delete rawFormProduct.id;
-    const {id, ...prod_without_id} = this.product;
-    if (this.isCanceled || shallowEquals(prod_without_id, rawFormProduct)) {
+    let rawFormPost = this.form?.getRawValue() as Post;
+    // delete rawFormPost.id;
+    const {id, ...prod_without_id} = this.post;
+    if (this.isCanceled || shallowEquals(prod_without_id, rawFormPost)) {
       return true;
     }
     // Otherwise ask the user to confirm loosing changes using the dialog service
@@ -165,13 +159,13 @@ export class ProductDetailComponent implements OnInit, OnDestroy, OnChanges, Can
 
     for (const field in this.formErrors) {
       // clear previous error message (if any)
-      this.formErrors[field] = '';
+      // this.formErrors[field] = '';
       const control = form.get(field);
 
       if (control && (control.dirty || control.touched) && control.invalid) {
-        const messages = this.validationMessages[field];
+        // const messages = this.validationMessages[field];
         for (const key in control.errors) {
-          this.formErrors[field] += messages[key] + ' ';
+          // this.formErrors[field] += messages[key] + ' ';
         }
       }
     }

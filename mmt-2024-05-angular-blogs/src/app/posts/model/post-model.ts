@@ -10,9 +10,10 @@ export class PostCreateDto {
         public title: string,
         public content: string,
         public authorId: IdType,
-        tags: string[],
-        imageUrl: string,
-        public status: PostStatus =PostStatus.Published,
+        public publishDate: number,
+        public tags: string[],
+        public imageUrl: string,
+        public status: PostStatus = PostStatus.Published,
     ) {}
 }
 

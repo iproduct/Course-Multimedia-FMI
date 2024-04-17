@@ -31,6 +31,7 @@
       "title": "Fetch API",
       "content": "Fetch API is easy to use Promise-based web service client API.",
       "authorId": 1,
+      "publishDate": 1,
       "tags": [
         "fetch",
         "api",
@@ -44,6 +45,7 @@
       "id": 3,
       "title": "Fetch API 123",
       "content": "Fetch API is easy to use Promise-based web service client API.",
+      "publishDate": 1,
       "tags": [
         "fetch",
         "api",
@@ -56,6 +58,7 @@
     {
       "title": "Fetch API",
       "content": "Fetch API is easy to use Promise-based web service client API.",
+      "publishDate": 1,
       "authorId": 1,
       "tags": [
         "fetch",
@@ -71,6 +74,7 @@
       "id": 8,
       "title": "aaa",
       "content": "aaaa\naaa\naaa\n\naaaaaa",
+      "publishDate": 1,
       "tags": [
         "aaaa",
         "bbbb",
@@ -84,6 +88,7 @@
       "id": 9,
       "title": "Hello React123",
       "content": "Hello React content ...\nEasy ...",
+      "publishDate": 1,
       "tags": [
         "react",
         "hello",
@@ -96,6 +101,7 @@
     {
       "id": 10,
       "title": "sdfwe",
+      "publishDate": 1,
       "content": "ewewewfrewf",
       "tags": [
         "refref",
@@ -109,6 +115,7 @@
     {
       "title": "React Hooks",
       "content": "Hooks let you use different React features from your components.",
+      "publishDate": 1,
       "authorId": 1,
       "tags": [
         "react",
@@ -121,6 +128,7 @@
     {
       "title": "React Context",
       "content": "Context provides a way to pass data through the component tree without having to pass props down manually at every level.",
+      "publishDate": 1,
       "authorId": 1,
       "tags": [
         "react",
@@ -133,6 +141,7 @@
     {
       "title": "React Context",
       "content": "Context provides a way to pass data through the component tree without having to pass props down manually at every level.",
+      "publishDate": 1,
       "authorId": 1,
       "tags": [
         "react",
@@ -145,6 +154,7 @@
     {
       "title": "React Context",
       "content": "Context provides a way to pass data through the component tree without having to pass props down manually at every level.",
+      "publishDate": 1,
       "authorId": 1,
       "tags": [
         "react",
@@ -157,6 +167,7 @@
     {
       "title": "wqwqs",
       "content": "wqsqws qwsqswqswqswqwq",
+      "publishDate": 1,
       "authorId": 1,
       "tags": [
         "qwswqs"
@@ -168,6 +179,7 @@
     {
       "title": "Hi React",
       "content": "Hi from React. Hi from React.",
+      "publishDate": 1,
       "authorId": 1,
       "tags": [
         "hi",

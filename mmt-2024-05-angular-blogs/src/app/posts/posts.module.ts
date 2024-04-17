@@ -8,11 +8,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { RouterModule } from '@angular/router';
+import { PostListComponent } from './components/post-list/post-list.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component';
 
 
 @NgModule({
-  declarations: [PostListComponent, ProductDetailComponent],
-  exports: [ProductListComponent],
+  declarations: [PostListComponent],
+  exports: [PostListComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -22,9 +24,7 @@ import { RouterModule } from '@angular/router';
     MatIconModule,
     MatInputModule,
     MatSnackBarModule,
-    RouterModule,
-    ProductsRoutingModule
+    RouterModule
   ],
-  providers: [ProductResolver]
 })
 export class ProductsModule { }
