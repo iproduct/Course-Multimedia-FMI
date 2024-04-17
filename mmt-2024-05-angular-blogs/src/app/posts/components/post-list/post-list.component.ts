@@ -7,7 +7,7 @@ import { MessageService } from '../../../core/message.service';
 
 @Component({
   selector: 'bp-post-list',
-  animations: [ slideInDownAnimation ],
+  animations: [slideInDownAnimation],
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.css']
 })
@@ -21,18 +21,18 @@ export class PostListComponent implements OnInit {
   errors: string | undefined;
 
   constructor(private service: PostsService, private messageService: MessageService,
-              private router: Router, private route: ActivatedRoute) { }
+    private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(qparams => {
-      if (qparams['refresh']) {
-        this.refresh();
-      }
-    });
+    // this.route.queryParams.subscribe(qparams => {
+    //   if (qparams['refresh']) {
+    //     this.refresh();
+    //   }
+    // });
     this.refresh();
   }
 
-  selectPost(post: Post) {
+  selectPost(post: Post | undefined) {
     this.selectedPost = post;
     // this.router.navigate([PRODUCTS_ROUTE, this.currentMode, post.id]);
   }
@@ -49,46 +49,47 @@ export class PostListComponent implements OnInit {
 
   onDeletePost(post: Post) {
     this.service.deleteById(post.id)
-      .subscribe(
-        deleted => {
+      .subscribe({
+        next: deleted => {
           const index = this.posts.findIndex(p => p.id === deleted.id);
           this.posts.splice(index, 1);
-          this.showMessage(`Post ${deleted.title} was successfully deleted.`);
+          this.showMessage(`Post '${deleted.title}' was successfully deleted.`);
         },
-        err => this.showError(err)
-      );
+        error: err => this.showError(err)
+      });
   }
 
   onPostModified(post: Post) {
     if (post.id) { // edit mode
-      this.service.update(post).subscribe(
-        updated => {
+      this.service.update(post).subscribe({
+        next: updated => {
           const index = this.posts.findIndex(p => p.id === updated.id);
           this.posts[index] = updated;
           this.showMessage(`Post '${updated.title}' updated successfully.`);
         },
-        err => this.showError(err)
-      );
+        error: err => this.showError(err)
+      });
     } else {
-      this.service.create(post).subscribe(
-        created => {
+      this.service.create(post).subscribe({
+        next: created => {
           this.posts.push(created);
           this.showMessage(`Post '${created.title}' created successfully.`);
         },
-        err => this.showError(err)
-      );
+        error: err => this.showError(err)
+      });
     }
   }
 
   onPostCanceled() {
-    // this.selectPost(undefined);
+    this.selectPost(undefined);
   }
 
   private refresh() {
     this.service.findAll()
-      .subscribe(
-        posts => this.posts = posts,
-        err => this.showError(err));
+      .subscribe({
+        next: posts => this.posts = posts,
+        error: err => this.showError(err)
+      });
   }
 
   private showMessage(msg: string) {

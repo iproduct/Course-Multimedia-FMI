@@ -7,7 +7,7 @@
       <mat-card-title>{{post.title}}</mat-card-title>
       <mat-card-subtitle>{{post.publishDate | date:'MMM d, y, h:mm:ss a'}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="form.get('imageUrl')?.value">
+    <img mat-card-image [src]="form.get('imageUrl')?.value" class="post-image">
     <mat-card-content>
       {{post.content}}
     </mat-card-content>

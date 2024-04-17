@@ -1,13 +1,20 @@
-.product-card-detail {
-  max-width: 500px;
+.post-card-detail {
+  max-width: 600px;
 }
 
-.product-header-image:first-child {
-  margin: auto 20px auto 10px;
+.post-header-image:first-child {
   background: transparent;
   border-radius: 10px;
 }
 
+.mat-mdc-card-image {
+  width: 100%;
+}
+
 mat-form-field {
-  width:100%
+  width: 100%;
+}
+
+.post-image {
+  width: 100%;
 }

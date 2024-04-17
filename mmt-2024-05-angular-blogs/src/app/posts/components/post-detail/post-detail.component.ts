@@ -24,7 +24,9 @@ export class PostDetailComponent implements OnInit, OnDestroy, OnChanges {
   get isNewPost() {
     return !this.post || !this.post.id;
   }
+
   form: FormGroup = this.buildForm();
+
   private statusSubscription: Subscription | undefined;
 
   formErrors = {
@@ -53,25 +55,24 @@ export class PostDetailComponent implements OnInit, OnDestroy, OnChanges {
               private dialogService: DialogService) { }
 
   ngOnInit() {
-    this.route.data
-    .subscribe(
-      (data: { post?: Post, title?: string, mode?: string }) => {
-        this.title = data.title || this.title;
-        this.mode = data.mode || this.mode;
-        const post = data.post;
-        if (post) {
-          this.post = post;
-          this.reset();
-        }
-      },
-      err => this.messageService.error(err)
-    );
-    this.buildForm();
+    // this.route.data
+    // .subscribe(
+    //   (data: { post?: Post, title?: string, mode?: string }) => {
+    //     this.title = data.title || this.title;
+    //     this.mode = data.mode || this.mode;
+    //     const post = data.post;
+    //     if (post) {
+    //       this.post = post;
+    //       this.reset();
+    //     }
+    //   },
+    //   err => this.messageService.error(err)
+    // );
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const prodChange = changes['post'];
-    if (prodChange && prodChange.currentValue !== prodChange.previousValue) {
+    const postChange = changes['post'];
+    if (postChange && postChange.currentValue !== postChange.previousValue) {
       this.reset();
     }
   }
@@ -86,10 +87,10 @@ export class PostDetailComponent implements OnInit, OnDestroy, OnChanges {
     return this.fb.group({
       id: {value: this.post.id, disabled: true},
       name: [this.post.title,
-        [Validators.required, Validators.minLength(2), Validators.maxLength(24)]
+        [Validators.required, Validators.minLength(2), Validators.maxLength(60)]
       ],
       description: [this.post.content,
-        [Validators.required, Validators.minLength(2), Validators.maxLength(512)]
+        [Validators.required, Validators.minLength(2), Validators.maxLength(1024)]
       ],
       imageUrl: [this.post.imageUrl,
         [
@@ -114,13 +115,13 @@ export class PostDetailComponent implements OnInit, OnDestroy, OnChanges {
         err => this.messageService.error(err)
       );
     } else {
-      this.postsService.update(this.post).subscribe(
-        updated => {
+      this.postsService.update(this.post).subscribe({
+        next: updated => {
           this.messageService.success(`Post '${updated.title}' updated successfully.`);
           // this.router.navigate([PRODUCTS_ROUTE], { queryParams: {refresh: true} });
         },
-        err => this.messageService.error(err)
-      );
+        error: err => this.messageService.error(err)
+    });
     }
   }
 

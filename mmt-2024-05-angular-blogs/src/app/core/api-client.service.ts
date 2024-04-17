@@ -25,9 +25,7 @@ export interface ApiClientService {
   deleteById<T extends Identifiable<IdType>>(type: EntityConstructor<T>, id: IdType): Observable<T>;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ApiClientHttpService implements ApiClientService {
 
   constructor(private http: HttpClient, private logger: LoggerService) { }
@@ -35,7 +33,7 @@ export class ApiClientHttpService implements ApiClientService {
   findAll<T extends Identifiable<IdType>>(type: EntityConstructor<T>): Observable<T[]> {
     return this.http.get<T[]>(`${BASE_API_URL}/${this.getUrl(type)}`)
       .pipe(
-        tap({ next: () => { }, error: err => this.logger.error(err) }),
+        tap({ error: err => this.logger.error(err) }),
         retryAfter(3, 1000),
         catchError(this.handleError)
       );
@@ -80,7 +78,6 @@ export class ApiClientHttpService implements ApiClientService {
   }
 
   protected getUrl<T extends Identifiable<IdType>>(type: EntityConstructor<T>): string {
-    console.log(type, type.className);
     return ENTITY_TO_URL_MAP[type.className];
   }
 

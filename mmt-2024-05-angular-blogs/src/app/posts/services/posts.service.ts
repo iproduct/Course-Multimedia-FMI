@@ -9,7 +9,7 @@ import { API, ApiClientHttpService, ApiClientService } from '../../core/api-clie
 })
 export class PostsService {
 
-  private backend: ApiClientService = inject(ApiClientHttpService);
+  private backend: ApiClientService = inject(API);
 
   findAll(): Observable<Post[]> {
     return this.backend.findAll(Post);
