@@ -1,13 +1,14 @@
+import { CoreModule } from './core/core.module';
+import { PostsModule } from './posts/posts.module';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'bl-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [CoreModule, PostsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'mmt-2024-05-angular-blogs';
+  title = 'Angular Blogs Demo';
 }

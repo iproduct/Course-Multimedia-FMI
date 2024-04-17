@@ -4,12 +4,12 @@ import { Subscription, Observable } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../../model/post-model';
 import { MessageService } from '../../../core/message.service';
-import { PostsService } from '../../posts.service';
+import { PostsService } from '../../services/posts.service';
 import { DialogService } from '../../../core/dialog.service';
 import { shallowEquals } from '../../../shared/utils';
 
 @Component({
-  selector: 'ws-post-detail',
+  selector: 'bp-post-detail',
   templateUrl: './post-detail.component.html',
   styleUrls: ['./post-detail.component.css']
 })
@@ -24,27 +24,22 @@ export class PostDetailComponent implements OnInit, OnDestroy, OnChanges {
   get isNewPost() {
     return !this.post || !this.post.id;
   }
-  form: FormGroup | undefined;
+  form: FormGroup = this.buildForm();
   private statusSubscription: Subscription | undefined;
 
   formErrors = {
-    name: '',
-    price: '',
-    description: '',
+    title: '',
+    content: '',
     imageUrl: ''
   };
 
   validationMessages = {
-    name: {
+    title: {
       required: 'Post name is required.',
       minlength: 'Postname must be at least 2 characters long.',
       maxlength: 'Postname cannot be more than 24 characters long.'
     },
-    price: {
-      required: 'Price is required.',
-      min: 'Price should be positive number.'
-    },
-    description: {
+    content: {
       minlength: 'Description must be at least 2 characters long.',
       maxlength: 'Description cannot be more than 512 characters long.'
     },
@@ -88,7 +83,7 @@ export class PostDetailComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   buildForm() {
-    this.form = this.fb.group({
+    return this.fb.group({
       id: {value: this.post.id, disabled: true},
       name: [this.post.title,
         [Validators.required, Validators.minLength(2), Validators.maxLength(24)]

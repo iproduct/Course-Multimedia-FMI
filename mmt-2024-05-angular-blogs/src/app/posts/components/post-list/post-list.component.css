@@ -51,3 +51,7 @@
   min-width: 3em;
   padding: 0px;
 }
+
+.thumbnail {
+  width: 50px;
+}

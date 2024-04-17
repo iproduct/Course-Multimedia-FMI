@@ -16,7 +16,7 @@
         (click)="selectPost(post)" fxLayout="row wrap" fxLayoutAlign="right center">
           <mat-card-header class="post-header" (click)="setMode('present')">
             <div mat-card-avatar class="post-header-image">
-              <img [src]="post.imageUrl" [alt]="post.title">
+              <img [src]="post.imageUrl" [alt]="post.title" class="thumbnail">
             </div>
             <mat-card-title>{{post.title}} - {{post.publishDate | date:'MMM d, y, h:mm:ss a'}}</mat-card-title>
             <mat-card-subtitle>{{post.content}}</mat-card-subtitle>

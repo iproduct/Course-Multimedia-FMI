@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "bl",
+      "prefix": "bp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",

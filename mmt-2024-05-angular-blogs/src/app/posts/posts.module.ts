@@ -13,7 +13,7 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
 
 
 @NgModule({
-  declarations: [PostListComponent],
+  declarations: [PostListComponent, PostDetailComponent],
   exports: [PostListComponent],
   imports: [
     CommonModule,
@@ -27,4 +27,4 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
     RouterModule
   ],
 })
-export class ProductsModule { }
+export class PostsModule { }

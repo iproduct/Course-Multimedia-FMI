@@ -1,15 +1,15 @@
-import { Injectable, Inject } from '@angular/core';
-import { Post } from './model/post-model';
+import { Injectable, Inject, inject } from '@angular/core';
+import { Post } from '../model/post-model';
 import { Observable } from 'rxjs';
-import { IdType } from '../shared/shared-types';
-import { API, ApiClientService } from '../core/api-client.service';
+import { IdType } from '../../shared/shared-types';
+import { API, ApiClientHttpService, ApiClientService } from '../../core/api-client.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostsService {
 
-  constructor(@Inject(API) private backend: ApiClientService) { }
+  private backend: ApiClientService = inject(ApiClientHttpService);
 
   findAll(): Observable<Post[]> {
     return this.backend.findAll(Post);

@@ -8,10 +8,10 @@ import { catchError, tap } from 'rxjs/operators';
 import { retryAfter } from '../shared/rx-operators';
 import { LoggerService } from './logger.service';
 
-export const BASE_API_URL = 'http://localhost:4200/api';
+export const BASE_API_URL = 'http://localhost:9000';
 
 export const ENTITY_TO_URL_MAP: { [index: string]: string } = {
-  'Product': 'products',
+  'Post': 'posts',
   'User': 'users',
 }
 
@@ -25,7 +25,9 @@ export interface ApiClientService {
   deleteById<T extends Identifiable<IdType>>(type: EntityConstructor<T>, id: IdType): Observable<T>;
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class ApiClientHttpService implements ApiClientService {
 
   constructor(private http: HttpClient, private logger: LoggerService) { }
@@ -78,6 +80,7 @@ export class ApiClientHttpService implements ApiClientService {
   }
 
   protected getUrl<T extends Identifiable<IdType>>(type: EntityConstructor<T>): string {
+    console.log(type, type.className);
     return ENTITY_TO_URL_MAP[type.className];
   }
 

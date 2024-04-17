@@ -1,12 +1,12 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Post } from '../../model/post-model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostsService } from '../../posts.service';
+import { PostsService } from '../../services/posts.service';
 import { slideInDownAnimation } from '../../../shared/animations';
 import { MessageService } from '../../../core/message.service';
 
 @Component({
-  selector: 'bl-post-list',
+  selector: 'bp-post-list',
   animations: [ slideInDownAnimation ],
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.css']
