@@ -61,8 +61,7 @@ export class PostListComponent implements OnInit {
     if (post.id) { // edit mode
       this.service.update(post).subscribe({
         next: updated => {
-          const index = this.posts.findIndex(p => p.id === updated.id);
-          this.posts[index] = updated;
+          this.posts = this.posts.map(p => p.id === updated.id? updated: p)
           this.showMessage(`Post '${updated.title}' updated successfully.`);
         },
         error: err => this.showError(err)
@@ -70,7 +69,7 @@ export class PostListComponent implements OnInit {
     } else {
       this.service.create(post).subscribe({
         next: created => {
-          this.posts.push(created);
+          this.posts = this.posts.concat(created);
           this.showMessage(`Post '${created.title}' created successfully.`);
         },
         error: err => this.showError(err)

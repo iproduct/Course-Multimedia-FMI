@@ -6,11 +6,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SimpleFormModule } from './simple-form/simple-form.module';
 import { CommonModule } from '@angular/common';
 import { RxdemoModule } from './rxdemo/rxdemo.module';
+import { WikiModule } from './wiki/wiki.module';
 
 @Component({
   selector: 'bl-root',
   standalone: true,
-  imports: [CommonModule, CoreModule, PostsModule, MatToolbarModule, FlexLayoutModule, SimpleFormModule, RxdemoModule],
+  imports: [CommonModule, CoreModule, PostsModule, MatToolbarModule, FlexLayoutModule, SimpleFormModule, RxdemoModule,  WikiModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

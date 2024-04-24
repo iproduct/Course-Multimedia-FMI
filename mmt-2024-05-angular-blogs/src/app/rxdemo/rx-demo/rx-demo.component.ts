@@ -31,7 +31,7 @@ export class RxDemoComponent implements OnInit, OnDestroy {
 
     this.asyncNames$ = zip(this.names$, this.interval$)
       .pipe(
-        map(([name, n]) => name),
+        map(([name, n]) => name + ' ' + n),
         endWith('In the end.'),
         startWith('In the begining ...')
       );
@@ -52,11 +52,11 @@ export class RxDemoComponent implements OnInit, OnDestroy {
       }, 3000);
     });
 
-    custom$.subscribe(
-      next => this.values += next + ', ',
-      err => this.values += err,
-      () => this.values += 'COMPLETED.'
-    );
+    custom$.subscribe({
+      next: next => this.values += next + ', ',
+      error: err => this.values += err,
+      complete: () => this.values += 'COMPLETED.'
+  });
 
     const clicks$ = fromEvent(this.clickSource?.nativeElement, 'click');
     this.clickCount$ = clicks$.pipe(
