@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'ws-simple-form',
+  selector: 'bp-simple-form',
   template: `
     <form #fElem #f="ngForm" (ngSubmit)="onSubmit(f)">
       <p *ngIf="nameCtrl.invalid">Name is invalid.</p>

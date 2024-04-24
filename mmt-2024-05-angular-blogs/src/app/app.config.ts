@@ -6,6 +6,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 export const appConfig: ApplicationConfig = {
   providers: [

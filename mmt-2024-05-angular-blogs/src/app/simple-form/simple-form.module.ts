@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   exports: [SimpleFormComponent],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class SimpleFormModule { }

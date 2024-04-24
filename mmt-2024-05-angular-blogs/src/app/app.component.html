@@ -1,2 +1,14 @@
 <h1>{{title}}</h1>
-<bp-post-list />
+<mat-toolbar color="primary" fxLayout="row nowrap" fxLayoutAlign="start center" fxLayoutGap="30px">
+  <div (click)="showView('blogs')">Blogs Demo</div>
+  <div (click)="showView('simple-form')">Simple Form Demo</div>
+  <div (click)="showView('rxjs')">RxJS Demo</div>
+</mat-toolbar>
+<span [ngSwitch]="currentView">
+  <bp-simple-form *ngSwitchCase="'simple-form'" />
+  <p *ngSwitchCase="'rxjs'">
+    RxJS Demo
+  </p>
+  <bp-post-list *ngSwitchDefault />
+</span>
+

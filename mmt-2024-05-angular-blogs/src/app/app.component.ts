@@ -1,14 +1,23 @@
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { CoreModule } from './core/core.module';
 import { PostsModule } from './posts/posts.module';
 import { Component } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { SimpleFormModule } from './simple-form/simple-form.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'bl-root',
   standalone: true,
-  imports: [CoreModule, PostsModule],
+  imports: [CommonModule, CoreModule, PostsModule, MatToolbarModule, FlexLayoutModule, SimpleFormModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'Angular Blogs Demo';
+  currentView = "blogs";
+  
+  showView(view: string) {
+    this.currentView = view;
+  }
 }
