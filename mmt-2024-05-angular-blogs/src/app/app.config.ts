@@ -7,6 +7,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,5 +16,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(withFetch()),
     importProvidersFrom(CoreModule),
+    importProvidersFrom(ReactiveFormsModule),
   ]
 };

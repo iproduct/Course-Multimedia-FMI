@@ -50,8 +50,7 @@ export class PostDetailComponent implements OnInit, OnDestroy, OnChanges {
     }
   };
 
-  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute,
-              private messageService: MessageService, private postsService: PostsService,
+  constructor(private fb: FormBuilder, private postsService: PostsService, private messageService: MessageService,
               private dialogService: DialogService) { }
 
   ngOnInit() {
@@ -86,10 +85,10 @@ export class PostDetailComponent implements OnInit, OnDestroy, OnChanges {
   buildForm() {
     return this.fb.group({
       id: {value: this.post.id, disabled: true},
-      name: [this.post.title,
+      title: [this.post.title,
         [Validators.required, Validators.minLength(2), Validators.maxLength(60)]
       ],
-      description: [this.post.content,
+      content: [this.post.content,
         [Validators.required, Validators.minLength(2), Validators.maxLength(1024)]
       ],
       imageUrl: [this.post.imageUrl,
@@ -102,27 +101,13 @@ export class PostDetailComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   submitPost() {
-    this.post = this.form?.getRawValue();
-    this.postModified.emit(this.post);
-    this.reset();
-    if (this.isNewPost) { // edit mode
-      this.postsService.create(this.post).subscribe(
-        created => {
-          this.messageService.success(`Post '${created.title}' created successfully.`);
-          // window.history.back();
-          // this.router.navigate([PRODUCTS_ROUTE], { queryParams: {refresh: true} });
-        },
-        err => this.messageService.error(err)
-      );
-    } else {
-      this.postsService.update(this.post).subscribe({
-        next: updated => {
-          this.messageService.success(`Post '${updated.title}' updated successfully.`);
-          // this.router.navigate([PRODUCTS_ROUTE], { queryParams: {refresh: true} });
-        },
-        error: err => this.messageService.error(err)
-    });
+    this.post = this.form.getRawValue();
+    const submittedPost =  this.form.getRawValue();
+    if(submittedPost.id === 0) {
+      submittedPost.id = undefined;
     }
+    this.postModified.emit(submittedPost);
+    this.reset();
   }
 
   reset() {

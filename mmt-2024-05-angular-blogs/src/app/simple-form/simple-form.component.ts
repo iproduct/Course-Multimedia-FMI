@@ -7,12 +7,14 @@ import { NgForm } from '@angular/forms';
     <form #fElem #f="ngForm" (ngSubmit)="onSubmit(f)">
       <p *ngIf="nameCtrl.invalid">Name is invalid.</p>
       <div ngModelGroup="name" #nameCtrl="ngModelGroup">
-        <input name="first" [ngModel]="name.first" minlength="2">
-        <input name="last" [ngModel]="name.last" required>
+        <input name="first" [(ngModel)]="name.first" required minlength="2">
+        <input name="last" [(ngModel)]="name.last" required>
       </div>
       <input name="email" ngModel> <button>Submit</button>
     </form> <button (click)="setValue()">Set value</button>
+    <p>Name property: {{name | json}}</p>
     <p>Value: {{f.value | json}}</p>
+    <p>Status: {{f.status}}</p>
     <p>Valid: {{f.valid}}</p>
     <p>Value: {{fElem.className}}</p>
     `,

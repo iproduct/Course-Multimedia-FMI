@@ -20,8 +20,7 @@ export class PostListComponent implements OnInit {
   messages: string | undefined;
   errors: string | undefined;
 
-  constructor(private service: PostsService, private messageService: MessageService,
-    private router: Router, private route: ActivatedRoute) { }
+  constructor(private service: PostsService, private messageService: MessageService) { }
 
   ngOnInit() {
     // this.route.queryParams.subscribe(qparams => {
@@ -43,16 +42,15 @@ export class PostListComponent implements OnInit {
 
   onAddPost() {
     this.setMode('edit');
-    // this.selectedPost = new Post(undefined, undefined);
-    this.router.navigate(['posts', 'create']);
+    this.selectedPost = new Post('', '', 1, Date.now(), [], '');
+    // this.router.navigate(['posts', 'create']);
   }
 
   onDeletePost(post: Post) {
     this.service.deleteById(post.id)
       .subscribe({
         next: deleted => {
-          const index = this.posts.findIndex(p => p.id === deleted.id);
-          this.posts.splice(index, 1);
+          this.posts = this.posts.filter(p => p.id !== deleted.id);
           this.showMessage(`Post '${deleted.title}' was successfully deleted.`);
         },
         error: err => this.showError(err)
