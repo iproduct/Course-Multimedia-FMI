@@ -5,18 +5,19 @@ import { Component } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SimpleFormModule } from './simple-form/simple-form.module';
 import { CommonModule } from '@angular/common';
+import { RxdemoModule } from './rxdemo/rxdemo.module';
 
 @Component({
   selector: 'bl-root',
   standalone: true,
-  imports: [CommonModule, CoreModule, PostsModule, MatToolbarModule, FlexLayoutModule, SimpleFormModule],
+  imports: [CommonModule, CoreModule, PostsModule, MatToolbarModule, FlexLayoutModule, SimpleFormModule, RxdemoModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'Angular Blogs Demo';
   currentView = "blogs";
-  
+
   showView(view: string) {
     this.currentView = view;
   }

@@ -6,9 +6,7 @@
 </mat-toolbar>
 <span [ngSwitch]="currentView">
   <bp-simple-form *ngSwitchCase="'simple-form'" />
-  <p *ngSwitchCase="'rxjs'">
-    RxJS Demo
-  </p>
+  <bp-rx-demo *ngSwitchCase="'rxjs'" />
   <bp-post-list *ngSwitchDefault />
 </span>
 
