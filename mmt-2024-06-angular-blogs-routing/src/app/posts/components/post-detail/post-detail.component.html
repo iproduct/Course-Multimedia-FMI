@@ -1,0 +1,59 @@
+<mat-card *ngIf="mode === 'present'" class="post-card-detail">
+    <mat-card-header>
+      <div mat-card-avatar class="post-header-image">
+        <img *ngIf="form.get('imageUrl')" mat-card-image
+          [src]="form.get('imageUrl')?.value" [alt]="form.get('title')?.value">
+      </div>
+      <mat-card-title>{{post.title}}</mat-card-title>
+      <mat-card-subtitle>{{post.publishDate | date:'MMM d, y, h:mm:ss a'}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="form.get('imageUrl')?.value" class="post-image">
+    <mat-card-content>
+      {{post.content}}
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card>
+  <mat-card *ngIf="mode === 'edit'" class="post-card-detail">
+    <mat-card-header>
+      <div mat-card-avatar class="post-header-image">
+        <img *ngIf="form.get('imageUrl')?.value && form.get('imageUrl')?.valid" mat-card-image
+        [src]="form.get('imageUrl')?.value" [alt]="form.get('title')?.value">
+      </div>
+      <mat-card-title>{{post.title}}</mat-card-title>
+      <mat-card-subtitle>{{post.publishDate | date:'MMM d, y, h:mm:ss a'}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" class="post-form">
+        <mat-form-field *ngIf="post?.id">
+          <input title="id" matInput placeholder="ID" formControlName="id">
+        </mat-form-field>
+        <mat-form-field>
+          <input title="title" matInput placeholder="Post title" formControlName="title">
+          <mat-error *ngIf="formErrors.title">
+            {{formErrors.title}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input title="content" matInput placeholder="Post content" formControlName="content">
+          <mat-error *ngIf="formErrors.content">
+            {{formErrors.content}}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input title="imageUrl" matInput placeholder="Post image URL" formControlName="imageUrl">
+          <mat-error *ngIf="formErrors.imageUrl">
+            {{formErrors.imageUrl}}
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="submitPost()"
+        [disabled]="form.pristine || form.invalid">Submit</button>
+      <button mat-raised-button color="warn" (click)="reset()">Reset</button>
+      <button mat-raised-button (click)="cancelPost()">Cancel</button>
+    </mat-card-actions>
+  </mat-card>

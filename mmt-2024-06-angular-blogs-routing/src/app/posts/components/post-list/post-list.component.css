@@ -1,0 +1,55 @@
+:host {
+  display: block;
+  width: 100%;
+  position: relative;
+}
+
+.post-list-header {
+  width: 100%;
+}
+
+.post-card-container {
+  width: 600px;
+  margin-bottom: 20px;
+}
+
+.post-card {
+  width: 100%;
+}
+
+.post-card:hover {
+  background-color: lightgoldenrodyellow;
+}
+
+.post-card.active {
+  background-color: blanchedalmond;
+}
+
+.post-header {
+  width: 100%;
+}
+
+.post-header-image {
+  margin-right: 15px;
+}
+
+.post-header-image.mat-card-avatar img {
+  width:60px;
+
+}
+
+.mat-card-image:first-child {
+  overflow: hidden;
+  border-radius: 5px;
+  margin-left: -15px;
+  margin-top:  0;
+  background: transparent;
+}
+
+.mdc-button {
+  margin-left: 8px;
+}
+
+.thumbnail {
+  width: 60px;
+}

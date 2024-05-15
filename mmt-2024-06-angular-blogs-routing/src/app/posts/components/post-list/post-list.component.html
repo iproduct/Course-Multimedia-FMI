@@ -1,0 +1,40 @@
+<div fxLayout="row wrap" fxLayoutAlign="start center" fxLayoutGap="30px">
+  <h2>Posts Available:</h2>
+  <button mat-raised-button color="primary" (click)="onAddPost()">
+    <mat-icon mat-button>add_to_photos</mat-icon>
+    Add Post
+  </button>
+</div>
+
+<div *ngIf="errors" class="errors">{{errors}}</div>
+<div *ngIf="messages" class="messages">{{messages}}</div>
+
+<div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="30px">
+  <div fxLayout="column" class="post-card-container" fxLayoutGap="5px">
+      <mat-card *ngFor="let post of posts" class="post-card"
+        [class.selected]="post.id === selectedPost?.id"
+        (click)="selectPost(post)" fxLayout="row wrap" fxLayoutAlign="right center">
+          <mat-card-header class="post-header" (click)="setMode('present')">
+            <div mat-card-avatar class="post-header-image">
+              <img [src]="post.imageUrl" [alt]="post.title" class="thumbnail">
+            </div>
+            <mat-card-title>{{post.title}} - {{post.publishDate | date:'MMM d, y, h:mm:ss a'}}</mat-card-title>
+            <mat-card-subtitle>{{post.content}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="setMode('edit')">
+              <mat-icon mat-button>edit</mat-icon>
+            </button>
+            <button mat-raised-button color="warn" (click)="onDeletePost(post)">
+              <mat-icon mat-button>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+  </div>
+
+  <bp-post-detail *ngIf="selectedPost"
+    [post]="selectedPost" [mode]="currentMode"
+    (postModified)="onPostModified($event)"
+    (postCanceled)="onPostCanceled()">
+  </bp-post-detail>
+</div>

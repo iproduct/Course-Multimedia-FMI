@@ -1,0 +1,20 @@
+.post-card-detail {
+  max-width: 600px;
+}
+
+.post-header-image:first-child {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.mat-mdc-card-image {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.post-image {
+  width: 100%;
+}
