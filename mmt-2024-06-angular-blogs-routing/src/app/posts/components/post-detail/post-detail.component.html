@@ -1,4 +1,4 @@
-<mat-card *ngIf="mode === 'present'" class="post-card-detail">
+<mat-card *ngIf="mode !== 'edit'" class="post-card-detail">
     <mat-card-header>
       <div mat-card-avatar class="post-header-image">
         <img *ngIf="form.get('imageUrl')" mat-card-image

@@ -5,6 +5,11 @@ import { PostsService } from '../../services/posts.service';
 import { slideInDownAnimation } from '../../../shared/animations';
 import { MessageService } from '../../../core/message.service';
 
+export const POSTS_ROUTE = 'posts';
+export const MODE_PRESENT = 'present';
+export const MODE_EDIT = 'edit';
+export const REFRESH = 'refresh';
+
 @Component({
   selector: 'bp-post-list',
   animations: [slideInDownAnimation],
@@ -20,21 +25,31 @@ export class PostListComponent implements OnInit {
   messages: string | undefined;
   errors: string | undefined;
 
-  constructor(private service: PostsService, private messageService: MessageService) { }
+  constructor(private service: PostsService, private messageService: MessageService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    // this.route.queryParams.subscribe(qparams => {
-    //   if (qparams['refresh']) {
-    //     this.refresh();
-    //   }
-    // });
+    this.route.queryParams.subscribe(qparams => {
+      if (qparams[REFRESH]) {
+        this.refresh();
+      }
+    });
     this.refresh();
   }
 
   selectPost(post: Post | undefined) {
-    this.selectedPost = post;
-    // this.router.navigate([PRODUCTS_ROUTE, this.currentMode, post.id]);
+    // this.selectedPost = post;
+    if (post) {
+      this.router.navigate([POSTS_ROUTE, post.id]);
+    } else {
+      this.router.navigate([POSTS_ROUTE]);
+    }
   }
+
+  editPost(post: Post, event: MouseEvent) {
+    event.stopPropagation();
+    this.router.navigate([POSTS_ROUTE, post.id, MODE_EDIT]);
+  }
+
 
   setMode(mode: string) {
     this.currentMode = mode;
@@ -46,8 +61,8 @@ export class PostListComponent implements OnInit {
     // this.router.navigate(['posts', 'create']);
   }
 
-  onDeletePost(post: Post) {
-    this.service.deleteById(post.id)
+  deletePost(post: Post) {
+    this.service.deleteById(post.id!)
       .subscribe({
         next: deleted => {
           this.posts = this.posts.filter(p => p.id !== deleted.id);
@@ -61,7 +76,7 @@ export class PostListComponent implements OnInit {
     if (post.id) { // edit mode
       this.service.update(post).subscribe({
         next: updated => {
-          this.posts = this.posts.map(p => p.id === updated.id? updated: p)
+          this.posts = this.posts.map(p => p.id === updated.id ? updated : p)
           this.showMessage(`Post '${updated.title}' updated successfully.`);
         },
         error: err => this.showError(err)

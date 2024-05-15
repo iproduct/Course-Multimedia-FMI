@@ -46,7 +46,7 @@ export class ApiClientHttpService implements ApiClientService {
       );
   }
   create<T extends Identifiable<IdType>>(type: EntityConstructor<T>, entity: T): Observable<T> {
-    return this.http.post<T>(`${BASE_API_URL}/${this.getUrl(type)}`, entity)
+    return this.http.post<T>(`${BASE_API_URL}/${this.getUrl(type)}`, {... entity, id: undefined})
       .pipe(
         tap({
           next: created => this.logger.log(`${type.className} created: ${JSON.stringify(created)}`),

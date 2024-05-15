@@ -30,16 +30,8 @@
       "id": "2",
       "title": "Fetch API",
       "content": "Fetch API is easy to use Promise-based web service client API.",
-      "authorId": 1,
-      "publishDate": 1,
-      "tags": [
-        "fetch",
-        "api",
-        "http",
-        "client"
-      ],
       "imageUrl": "https://www.publicdomainpictures.net/pictures/220000/velka/binare-kontakte.jpg",
-      "status": 1
+      "publishDate": 1715802892028
     },
     {
       "id": "3",
@@ -71,17 +63,11 @@
       "id": "4"
     },
     {
-      "title": "React Hooks",
+      "id": "13",
+      "title": "React Hooks ",
       "content": "Hooks let you use different React features from your components.",
-      "publishDate": 1,
-      "authorId": 1,
-      "tags": [
-        "react",
-        "hooks"
-      ],
       "imageUrl": "https://www.photos-public-domain.com/wp-content/uploads/2011/02/screw-in-hooks-white.jpg",
-      "status": 1,
-      "id": "13"
+      "publishDate": 1
     },
     {
       "title": "React Context",
@@ -97,35 +83,25 @@
       "id": "16"
     },
     {
-      "title": "wqwqs",
+      "id": "17",
+      "title": "New Topic",
       "content": "wqsqws qwsqswqswqswqwq",
-      "publishDate": 1,
-      "authorId": 1,
-      "tags": [
-        "qwswqs"
-      ],
       "imageUrl": "https://cdn.mos.cms.futurecdn.net/sfgpCc8Ba2GFWVLcPmBzcM.jpg",
-      "status": 1,
-      "id": "17"
+      "publishDate": 1715802929980
     },
     {
+      "id": "18",
       "title": "Hi React",
       "content": "Hi from React. Hi from React.",
-      "publishDate": 1,
-      "authorId": 1,
-      "tags": [
-        "hi",
-        "react"
-      ],
       "imageUrl": "https://cdn.mos.cms.futurecdn.net/sfgpCc8Ba2GFWVLcPmBzcM.jpg",
-      "status": 1,
-      "id": "18"
+      "publishDate": 1715802778564
     },
     {
       "id": "4030",
       "title": "Reactive Programming with RxJS",
       "content": "Reactive extensions for JS",
-      "imageUrl": "https://www.publicdomainpictures.net/pictures/590000/velka/tiktok-monetization.jpg"
+      "imageUrl": "https://www.publicdomainpictures.net/pictures/590000/velka/tiktok-monetization.jpg",
+      "publishDate": 1715803008547
     }
   ],
   "comments": []

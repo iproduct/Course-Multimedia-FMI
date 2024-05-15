@@ -14,12 +14,13 @@ export class PostCreateDto {
         public tags: string[],
         public imageUrl: string,
         public status: PostStatus = PostStatus.Published,
+        public id?: IdType
     ) {}
 }
 
 export class Post extends PostCreateDto{
     static className = 'Post';
-    public id: IdType = 0;
+    override id: IdType = 0;
 }
 
 export type PostFilterType = PostStatus | undefined;

@@ -22,19 +22,21 @@
             <mat-card-subtitle>{{post.content}}</mat-card-subtitle>
           </mat-card-header>
           <mat-card-actions>
-            <button mat-raised-button color="primary" (click)="setMode('edit')">
+            <button mat-raised-button color="primary" (click)="editPost(post, $event)">
               <mat-icon mat-button>edit</mat-icon>
             </button>
-            <button mat-raised-button color="warn" (click)="onDeletePost(post)">
+            <button mat-raised-button color="warn" (click)="deletePost(post)">
               <mat-icon mat-button>delete</mat-icon>
             </button>
           </mat-card-actions>
         </mat-card>
   </div>
 
-  <bp-post-detail *ngIf="selectedPost"
+  <router-outlet />
+
+  <!-- <bp-post-detail *ngIf="selectedPost"
     [post]="selectedPost" [mode]="currentMode"
     (postModified)="onPostModified($event)"
     (postCanceled)="onPostCanceled()">
-  </bp-post-detail>
+  </bp-post-detail> -->
 </div>
