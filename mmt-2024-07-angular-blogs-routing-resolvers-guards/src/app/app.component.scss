@@ -1,0 +1,14 @@
+mat-toolbar {
+  margin-bottom: 30px;
+}
+
+mat-toolbar a {
+  color: rgb(192, 191, 191);
+  text-decoration: none;
+}
+
+mat-toolbar a.active {
+  color: white;
+  text-decoration: underline;
+}
+
