@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/12-blogs-api-express-mongo.iml" filepath="$PROJECT_DIR$/.idea/12-blogs-api-express-mongo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/15-ts-node-lab.iml" filepath="$PROJECT_DIR$/.idea/15-ts-node-lab.iml" />
     </modules>
   </component>
 </project>

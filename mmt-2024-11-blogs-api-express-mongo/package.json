@@ -1,47 +1,51 @@
 {
-  "name": "10-express-lab4",
+  "name": "15-ts-node-lab",
   "version": "1.0.0",
-  "description": "express demo",
-  "main": "index.js",
-  "scripts": {
-    "start": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iproduct/course-node-express-react.git"
-  },
-  "keywords": [
-    "node",
-    "express"
-  ],
+  "description": "nodejs typescript demos",
+  "main": "server.js",
+  "repository": "https://github.com/iproduct/fullstack-typescript-react.git",
   "author": "Trayan Iliev",
   "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/iproduct/course-node-express-react/issues"
+  "private": false,
+  "scripts": {
+    "server": "node --inspect=5858 -r ts-node/register ./src/server.ts",
+    "tsc": "tsc -w",
+    "start": "concurrently --kill-others \"nodemon\" \"livereload ./dist -d\"",
+    "build": "tsc"
   },
-  "homepage": "https://github.com/iproduct/course-node-express-react#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "cors": "^2.8.5",
     "express": "^4.17.1",
     "indicative": "^7.4.4",
-    "jsonwebtoken": "^9.0.2",
-    "mongodb": "^6.6.2",
-    "morgan": "^1.10.0",
-    "socket.io": "^4.7.5",
-    "dotenv": "^16.0.3"
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.5.9",
+    "rxjs": "^6.5.5"
   },
   "devDependencies": {
-    "livereload": "^0.9.3",
-    "nodemon": "^3.1.2",
-    "@types/cors": "^2.8.17",
-    "@types/express": "^4.17.21",
-    "@types/mysql": "^2.15.26",
-    "@types/node": "^20.12.12",
-    "@types/uuid": "^9.0.8",
-    "concurrently": "^8.2.2",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.4.5"
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.6",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/mongodb": "^3.5.25",
+    "@types/node": "^14.0.14",
+    "concurrently": "^5.2.0",
+    "eslint": "^7.3.1",
+    "eslint-plugin-import": "^2.22.0",
+    "livereload": "^0.9.1",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm run server",
+    "ext": "ts"
   }
 }
