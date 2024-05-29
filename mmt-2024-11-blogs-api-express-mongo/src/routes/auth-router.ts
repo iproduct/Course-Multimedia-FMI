@@ -22,9 +22,11 @@ import { PostRepository, UserRepository } from '../dao/mongo-repository';
 import * as indicative from 'indicative';
 import * as bcrypt from 'bcryptjs';
 import * as jwt from 'jsonwebtoken';
-import { secret } from '../config/secret';
 import { Role } from '../model/user.model';
 import Credentials from '../model/auth';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 const router = Router();
 
@@ -52,7 +54,7 @@ router.post('/login', async (req, res, next) => {
             next(new AppError(401, `Username or password is incorrect.`));
             return;
         }
-        const token = jwt.sign({ id: user._id }, secret, {
+        const token = jwt.sign({ id: user._id }, process.env.SECRET, {
             expiresIn: '1h' //expires in 1h
         });
         delete user.password;
