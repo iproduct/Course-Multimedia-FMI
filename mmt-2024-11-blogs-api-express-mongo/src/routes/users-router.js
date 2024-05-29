@@ -21,6 +21,7 @@ const sendErrorResponse = require('./utils').sendErrorResponse;
 const replaceId = require('./utils').replaceId;
 const ObjectID = require('mongodb').ObjectID;
 const indicative = require('indicative');
+const bcrypt = require('bcryptjs');
 
 const router = express.Router();
 
@@ -59,12 +60,18 @@ router.post('/', async (req, res) => {
             role: 'in:Author,Admin',
             imageUrl: 'url'
         });
-        if(!user.role) {
+        if (!user.role) {
             user.role = 'Author';
         }
         try {
+            const salt = bcrypt.genSaltSync(10);
+            user.password = bcrypt.hashSync(user.password, salt); // hash user password before inserting in MongoDB
+        } catch (err) {
+            console.log(err)
+        }
+        try {
             const r = await req.app.locals.db.collection('users').insertOne(user);
-            if (r.result.ok && r.insertedCount === 1) {
+            if (r.acknowledged) {
                 delete user._id;
                 user.id = r.insertedId;
                 console.log(`Unable to update post: ${user.id}: ${user.firstName} ${user.lastName}`);
@@ -77,7 +84,7 @@ router.post('/', async (req, res) => {
             console.error(err);
             sendErrorResponse(req, res, 500, `Unable to create user: ${user.id}: ${user.firstName} ${user.lastName}`, err);
         }
-    } catch(errors) {
+    } catch (errors) {
         sendErrorResponse(req, res, 400, `Invalid user data: ${errors.map(e => e.message).join(', ')}`, errors);
     }
 });

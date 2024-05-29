@@ -23,7 +23,7 @@ const ObjectID = require('mongodb').ObjectID;
 const indicative = require('indicative');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const secret = require('../config/secret').secret;
+const secret = require('../../config/secret').secret;
 
 const router = express.Router();
 
@@ -43,6 +43,7 @@ router.post('/login', async (req, res) => {
                 return;
             }
             const passIsValid = await bcrypt.compare(credentials.password, user.password);
+            console.log(credentials.password, user.password, passIsValid)
             if(!passIsValid) {
                 sendErrorResponse(req, res, 401, `Username or password is incorrect.`);
                 return;

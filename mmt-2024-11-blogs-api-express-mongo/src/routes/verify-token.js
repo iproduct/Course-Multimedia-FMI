@@ -17,7 +17,7 @@
  */
 
 const jwt = require('jsonwebtoken');
-const config = require('../config/secret');
+const config = require('../../config/secret');
 
 function verifyToken(req, res, next) {
   console.log(req.headers);
