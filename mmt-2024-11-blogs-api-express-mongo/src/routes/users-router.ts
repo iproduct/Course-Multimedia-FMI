@@ -21,7 +21,7 @@ import { AppError } from '../model/errors';
 import { UserRepository } from '../dao/mongo-repository';
 import * as indicative from 'indicative';
 import * as bcrypt from 'bcryptjs';
-import { User } from '../model/user.model';
+import { Role, User } from '../model/user.model';
 import { userInfo } from 'os';
 
 const router = Router();
@@ -57,16 +57,16 @@ router.post('/', async (req, res, next) => {
     // validate new user
     const newUser = req.body;
     try {
-        await indicative.validator.validate(newUser, {
+        await  await indicative.validator.validate(newUser, {
             id: 'regex:^[0-9a-fA-F]{24}$',
-            title: 'required|string|min:3|max:30',
-            text: 'required|string|min:3|max:1024',
-            // authorId: 'required|regex:^[0-9a-fA-F]{24}$',s
+            firstName: 'required|string|min:3|max:20',
+            lastName: 'required|string|min:3|max:20',
+            username: 'required|string|min:5|max:20',
+            email: 'required|email',
+            password: 'required|string|min:6',
             imageUrl: 'url',
-            categories: 'array',
-            'categories.*': 'string',
-            keywords: 'array',
-            'keywords.*': 'string',
+            roles: 'array',
+            'roles.*': `integer|range:${Role.READER},${Role.ADMIN}`
         });
     } catch (err) {
         next(new AppError(400, err.message, err));
