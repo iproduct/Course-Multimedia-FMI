@@ -49,10 +49,9 @@ app.use(function (err, req, res, next) {
     sendErrorResponse(req, res, err.status, `Error: ${err.message}`, err);
 })
 
-MongoClient.connect(url, { useUnifiedTopology: true }, function (err, con) {
-    if (err) throw err;
+MongoClient.connect(url).then(con => {
     app.locals.db = con.db(db_name);
-    console.log(`Connection extablished to ${db_name}.`);
-    app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+    console.log(`Connection etablished to ${db_name}.`);
+    app.listen(port, () => console.log(`Server started at: http://localhost:${port}`))
 });
 
