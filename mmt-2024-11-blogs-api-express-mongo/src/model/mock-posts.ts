@@ -17,7 +17,7 @@
  */
 
 import { Post, IPost } from './post.model';
-import { ObjectID } from 'mongodb';
+import { ObjectId } from 'mongodb';
 const MOCK_POSTS = [
     {
         "title": "Learning React",

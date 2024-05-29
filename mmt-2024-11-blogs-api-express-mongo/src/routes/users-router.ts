@@ -58,7 +58,7 @@ router.post('/', async (req, res, next) => {
     const newUser = req.body;
     try {
         await indicative.validator.validate(newUser, {
-            _id: 'regex:^[0-9a-fA-F]{24}$',
+            id: 'regex:^[0-9a-fA-F]{24}$',
             title: 'required|string|min:3|max:30',
             text: 'required|string|min:3|max:1024',
             // authorId: 'required|regex:^[0-9a-fA-F]{24}$',s
@@ -98,7 +98,7 @@ router.put('/:id', async function (req, res, next) {
     const user = req.body as User;
     try {
         await indicative.validator.validate(user, {
-            _id: 'required|regex:^[0-9a-fA-F]{24}$',
+            id: 'required|regex:^[0-9a-fA-F]{24}$',
             // title: 'required|string|min:3|max:30',
             // text: 'required|string|min:3|max:1024',
             // // authorId: 'required|regex:^[0-9a-fA-F]{24}$',s
@@ -116,7 +116,7 @@ router.put('/:id', async function (req, res, next) {
     try {
         const userId = req.params.id;
 
-        if (userId !== user._id) {
+        if (userId !== user.id) {
             next(new AppError(400, `IDs in the URL and message body are different.`));
             return;
         }
@@ -124,8 +124,8 @@ router.put('/:id', async function (req, res, next) {
         if (user.username && user.username.length > 0 && found.username !== user.username) {
             throw new AppError(400, `Can not change username.`);
         }
-        // _id and authorId are unmodifiable
-        user._id = found._id;
+        // id and authorId are unmodifiable
+        user.id = found.id;
         user.username = found.username;
         delete user.password;
         const updated = await (<UserRepository>req.app.locals.userRepo).edit(user);

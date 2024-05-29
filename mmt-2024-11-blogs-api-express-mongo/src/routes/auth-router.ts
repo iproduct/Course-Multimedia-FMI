@@ -54,7 +54,7 @@ router.post('/login', async (req, res, next) => {
             next(new AppError(401, `Username or password is incorrect.`));
             return;
         }
-        const token = jwt.sign({ id: user._id }, process.env.SECRET, {
+        const token = jwt.sign({ id: user.id }, process.env.SECRET, {
             expiresIn: '1h' //expires in 1h
         });
         delete user.password;

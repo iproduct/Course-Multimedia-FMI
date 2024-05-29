@@ -29,7 +29,7 @@ export interface IPost extends Indentifiable {
 export class Post implements IPost {
     static typeId = 'Post';
     constructor(
-        public _id: IdType,
+        public id: IdType,
         public title: string,
         public text: string,
         public authorId: IdType | null,

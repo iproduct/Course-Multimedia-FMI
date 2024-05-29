@@ -17,6 +17,7 @@
  */
 
 import * as express from 'express';
+import * as cors from 'cors';
 import { Request, Response, NextFunction } from 'express';
 import * as path from 'path';
 import { MongoClient } from 'mongodb';
@@ -45,22 +46,27 @@ async function start() {
   app.locals.userRepo = userRepo;
 
   app.set('port', PORT);
+  app.options('*', cors());
+  app.use(cors({
+    origin: 'http://localhost:4200',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE'
+  }));
 
   app.use('/', express.static(path.join(__dirname, '../public')));
   app.use(express.json());
 
   // Additional middleware which will set headers that we need on each request.
-  app.use(function (req, res, next) {
-    // Set permissive CORS header - this allows this server to be used only as
-    // an API server in conjunction with something like webpack-dev-server.
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Headers', '*');
-    res.setHeader(`Access-Control-Allow-Methods`, `GET, POST, PUT, DELETE, OPTIONS`);
-    res.setHeader('Access-Control-Max-Age', 3600); // 1 hour
-    // Disable caching so we'll always get the latest posts.
-    res.setHeader('Cache-Control', 'no-cache');
-    next();
-  });
+  // app.use(function (req, res, next) {
+  //   // Set permissive CORS header - this allows this server to be used only as
+  //   // an API server in conjunction with something like webpack-dev-server.
+  //   res.setHeader('Access-Control-Allow-Origin', '*');
+  //   res.setHeader('Access-Control-Allow-Headers', '*');
+  //   res.setHeader(`Access-Control-Allow-Methods`, `GET, POST, PUT, DELETE, OPTIONS`);
+  //   res.setHeader('Access-Control-Max-Age', 3600); // 1 hour
+  //   // Disable caching so we'll always get the latest posts.
+  //   res.setHeader('Cache-Control', 'no-cache');
+  //   next();
+  // });
 
   // attach feature routers
   app.use('/api/posts', postsRouter);
@@ -93,15 +99,13 @@ start();
 
 async function initDb(mongoUrl: string, dbName: string) {
   // connect to mongodb
-  connection = await MongoClient.connect(mongoUrl, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
+  connection = await MongoClient.connect(mongoUrl);
   return connection.db(dbName);
 }
 
 async function cleanup() {
-  if (connection && connection.isConnected()) {
-    return connection.close();
+  if (connection) {
+    await connection.close();
   }
+  console.log("Server stopped and DB connection closed.");
 }

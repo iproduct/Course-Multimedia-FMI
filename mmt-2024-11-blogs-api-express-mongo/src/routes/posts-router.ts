@@ -114,8 +114,8 @@ router.put('/:id', async function (req, res, next) {
         if (post.authorId && post.authorId.length > 0 && found.authorId !== post.authorId) {
             throw new AppError(400, `Can not change Post's author.`);
         }
-        // _id and authorId are unmodifiable
-        post._id = found._id;
+        // id and authorId are unmodifiable
+        post.id = found.id;
         post.authorId = found.authorId;
         const updated = await (<PostRepository>req.app.locals.postRepo).edit(post);
         res.json(updated); //200 OK with post in the body
